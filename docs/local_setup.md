@@ -4,8 +4,8 @@
 ```
 git clone https://github.com/mees/vapo.git
 cd vapo/
-conda create -n vapo python=3.8
-conda activate vapo
+conda create -n vapo_env python=3.8
+conda activate vapo_env
 ```
 ## Install pytorch
 

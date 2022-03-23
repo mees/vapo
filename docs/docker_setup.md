@@ -38,7 +38,6 @@ sudo docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
 In the directory where the Dockerfile is, run:
 ```
 docker build -t vapo_image .
-docker build -t test .
 ```
 
 ### Run a container
@@ -53,8 +52,22 @@ The -it flag is to open an interactive session
 
 ```
 docker run -it --gpus all --name vapo_container vapo_image bash
-docker run -it --gpus all --rm --name test_container test_img bash
 ```
+
+To be able to visualize the images in the host computer, instead run:
+```
+xhost +local:docker
+docker run -it --rm \
+  --gpus all \
+  --name vapo_container \
+  -e DISPLAY \
+  -e QT_X11_NO_MITSHM=1 \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v $HOME/.Xauthority:/root/.Xauthority \
+  vapo_image bash
+```
+For more information see [run opencv on docker](https://stackoverflow.com/questions/67099130/how-to-run-my-scrip-python-opencv-on-docker-ubuntu).
+
 ###  Resume the container
 Start your container using container id: 
 ```
