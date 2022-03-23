@@ -1,0 +1,25 @@
+save_dir: "./trained_models"
+hyperparameters:
+    gamma: 0.98
+    actor_lr: 0.00347
+    critic_lr: 0.00873
+    alpha_lr: 0.006437
+    alpha: "auto" #"auto",
+    tau: 0.0131
+    batch_size: 200
+    buffer_size: 1e6
+    learning_starts: 1000 #timesteps before starting updates
+
+net_cfg:
+    hidden_dim: 265
+    activation: relu
+    affordance: ${affordance}
+
+learn_config:
+    total_timesteps: 600000
+    log_interval: 1000 #log timestep reward every log_interval steps
+    max_episode_length: 200 #max episode length
+    n_eval_ep: 10
+
+# Slide
+# {'config': {'actor_lr': 0.0034708726584658746, 'alpha_lr': 0.006437618821816975, 'batch_size': 200, 'critic_lr': 0.008731567643577019, 'hidden_dim': 265, 'tau': 0.013101761572076816}, 'config_info': {'model_based_pick': False}}

@@ -1,0 +1,29 @@
+loss:
+  centers: 2.5
+  dice: 5
+  ce_loss: 1
+  affordance:
+    add_dice: true
+    ce_class_weights: [0.2, 0.8]
+# centers_loss:
+#   weight: 2.5
+# aff_loss:
+#   weight: 1
+#   dice_loss:
+#     add: True
+#     weight: 5
+#   ce_loss:
+#     weight: 1
+#     class_weights: [0.2, 0.8]
+optimizer:
+  lr: 1e-5
+  weight_decay: 1e-3
+unet_cfg:
+  decoder_channels: [128, 64, 32]
+hough_voting:
+  skip_pixels: 2
+  inlier_threshold: 0.7
+  angle_discretization: 100
+  inlier_distance: 10
+  percentage_threshold: 0.3
+  object_center_kernel_radius: 10

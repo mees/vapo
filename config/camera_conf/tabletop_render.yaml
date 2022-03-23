@@ -1,0 +1,4 @@
+defaults:
+  - cameras@static: tabletop_sideview # tabletop_topview
+  - cameras@gripper: gripper
+  - cameras@render: tabletop_render

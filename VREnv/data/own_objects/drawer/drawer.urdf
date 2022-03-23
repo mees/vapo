@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<robot name="compartment">
+ <link name="baseLink">
+   <contact>
+     <lateral_friction value="0.5"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0.400006 0.164337 0.515558"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.000100" ixy="-0.000000" ixz="0.000000" iyy="0.000160" iyz="0.000006" izz="0.000243"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="meshes/drawer_compartment.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="meshes/drawer_compartment_vhacd2.obj" scale="1.0 1.0 0.95"/>
+     </geometry>
+   </collision>
+ </link>
+
+<link name="drawer">
+    <contact>
+     <lateral_friction value="0.5"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0.399998 0.224967 0.532091"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.000124" ixy="0.000000" ixz="0.000000" iyy="0.000127" iyz="0.000001" izz="0.000238"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="meshes/drawer_easy_handle.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="meshes/drawer_easy_handle_vhacd2.obj" scale="1.0 1.0 0.99"/>
+     </geometry>
+   </collision>
+ </link>
+
+ <joint name="drawer_joint" type="prismatic">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="baseLink"/>
+    <child link="drawer"/>
+    <dynamics damping="1.0" friction="0.05"/>
+    <limit effort="30" lower="0.0" upper="0.3" velocity="3.0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+</robot> 

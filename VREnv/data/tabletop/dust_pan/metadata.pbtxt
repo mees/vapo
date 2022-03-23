@@ -1,0 +1,34 @@
+model {
+  file: "model.sdf"
+}
+name: "Ocedar_Snap_On_Dust_Pan_And_Brush_1_ct"
+description: "Ocedar Snap On Dust Pan And Brush - 1 ct"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Ocedar"
+}
+annotations {
+  key: "gtin"
+  value: "00041785004227"
+}
+annotations {
+  key: "sku"
+  value: "00041785004227"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+}

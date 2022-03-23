@@ -1,0 +1,25 @@
+save_dir: "./trained_models"
+hyperparameters:
+    gamma: 0.98
+    actor_lr: 0.000148
+    critic_lr: 0.00123
+    alpha_lr: 0.001526
+    alpha: "auto" #"auto",
+    tau: 0.01569
+    batch_size: 64
+    buffer_size: 1e6
+    learning_starts: 200 #timesteps before starting updates
+    
+net_cfg:
+    hidden_dim: 313
+    activation: relu
+    affordance: ${affordance}
+
+learn_config:
+    total_timesteps: 100000
+    log_interval: 2000 #log timestep reward every log_interval steps
+    max_episode_length: 200 #max episode length
+    n_eval_ep: 5
+
+# Drawer
+# {'config': {'actor_lr': 0.0001488978575665266, 'alpha_lr': 0.0015266099402555507, 'batch_size': 235, 'critic_lr': 0.0012353596739322521, 'hidden_dim': 313, 'tau': 0.015691814561289274}, 'config_info': {'model_based_pick': False}}

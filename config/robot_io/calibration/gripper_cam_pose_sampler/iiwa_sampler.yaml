@@ -1,0 +1,11 @@
+_target_: robot_io.calibration.gripper_cam_calibration.GripperCamPoseSampler
+_recursive_: false
+initial_pos: [0.5, 0, 0.25]
+initial_orn: ???
+theta_limits: [-3.14, 0]
+r_limits: [0.05, 0.1]
+h_limits: [-0.05, 0.05]
+trans_limits: [-0.05, 0.05]
+yaw_limits: [-0.087, 0.087]
+pitch_limit: [-0.087, 0.087]
+roll_limit: [-0.087, 0.087]

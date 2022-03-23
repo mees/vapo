@@ -1,0 +1,36 @@
+save_dir: ./hydra_outputs/teleop_aff
+freq: 30
+
+# Tabletop real-world Static cam
+static_cam:
+  folder_name: ${paths.vapo_path}/hydra_outputs/affordance_model/2021-11-26/17-47-08_aff_rl
+  model_name: last.ckpt
+
+gripper_cam:
+  folder_name: ${paths.vapo_path}/hydra_outputs/affordance_model/2021-11-29/15-16-48_aff_rl
+  model_name: last.ckpt
+
+img_size:
+  static: 200
+  gripper: 64
+
+
+
+#-- Hydra config --#
+# hydra output will be stored to save_dir
+hydra:
+  run:
+    dir: ${save_dir}/ # Output directory for normal runs
+
+defaults:
+  - paths: general_paths
+  - transforms: aff_transforms
+  - robot_io/input@input: vr_input
+  - robot_io/recorder@recorder: vr_recorder
+  - robot_io/robot@robot: panda_frankx_interface
+  - robot_io/env@env: env
+  - robot_io/cams@cams: camera_manager
+  - aff_model@static_cam.model_cfg: aff_model
+  - aff_model@gripper_cam.model_cfg: aff_model
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog

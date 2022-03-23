@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<robot name="table">
+ <link name="baseLink">
+   <contact>
+     <lateral_friction value="0.5"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0.425016 0.151115 0.615396"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.003734" ixy="0.000094" ixz="-0.000492" iyy="0.006571" iyz="0.000494" izz="0.004455"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="table.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="table_vhacd2.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+ </link>
+</robot> 

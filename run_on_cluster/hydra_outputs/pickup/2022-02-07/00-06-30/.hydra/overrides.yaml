@@ -1,0 +1,5 @@
+- model_name=15objs
+- agent.learn_config.total_timesteps=500000
+- env_wrapper.max_target_dist=0.10
+- scene=tabletop_random_15objs
+- wandb_login.project=vapo_new

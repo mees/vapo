@@ -1,0 +1,6 @@
+_target_: robot_io.ik.ik_frankx.IKFrankX
+_recursive_: false
+nullspace_joint_id: 2
+nullspace_joint_value: 1.4
+ll: [-2.8973, -1.7628, -2.8973, -3.0718, -2.8973, -0.0175, -2.8973]
+ul: [2.8973, 1.7628, 2.8973, -0.0698, 2.8973, 3.7525, 2.8973]

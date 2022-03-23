@@ -1,0 +1,19 @@
+save_dir: ../calibration/calibration_files
+num_poses: 50
+marker_id: 11
+robot:
+  use_impedance: false
+
+hydra:
+  run:
+    dir: ${save_dir}
+
+defaults:
+  - env: env
+  - robot: panda_frankx_interface
+  - cams/gripper_cam@cam: framos_highres
+  - marker_detector: apriltag_board
+  - calibration/gripper_cam_pose_sampler@gripper_cam_pose_sampler: panda_sampler
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+

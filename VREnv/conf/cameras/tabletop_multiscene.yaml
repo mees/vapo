@@ -1,0 +1,3 @@
+defaults:
+  - cameras@static: tabletop_multiscene
+  - cameras@gripper: gripper

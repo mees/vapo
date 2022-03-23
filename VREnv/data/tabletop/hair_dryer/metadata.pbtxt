@@ -1,0 +1,38 @@
+model {
+  file: "model.sdf"
+}
+name: "Remington_TStudio_Hair_Dryer"
+description: "Remington T/Studio Hair Dryer"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Remington"
+}
+annotations {
+  key: "gtin"
+  value: "074590520866"
+}
+annotations {
+  key: "mpn"
+  value: "ac-9096"
+}
+annotations {
+  key: "sku"
+  value: "074590520866"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+}

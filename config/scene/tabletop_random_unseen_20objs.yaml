@@ -1,0 +1,107 @@
+_target_: vr_env.scene.play_table_scene.PlayTableScene
+_recursive_: false
+data_path: ${data_path}
+global_scaling: 0.8
+euler_obs: ${robot.euler_obs}
+robot_base_position: [0.3, 0.15, 0.45]
+robot_base_orientation: [0, 0, 1.5707963]
+robot_initial_joint_positions: [-0.3457686708019129, -0.15454379621111053, -0.6607497652179231, -2.431721569843283, -0.12811896258574057, 2.3050911768605884, -0.128854091294185]
+surfaces: []
+positions:
+  [[-0.09, 0.75],
+   [0.35, 0.50],
+   [0.025, 0.50],
+   [0.15, 0.75],
+   [0.43, 0.83]]
+
+objects:
+  fixed_objects:
+    table:
+      file: table/hightable.urdf
+      initial_pos: [0.3, 0.7, 0.02]
+      initial_orn: [0, 0, 0]
+    bin:
+      file: ais_objects/bin_10_30_50/bin_10_30_50.urdf
+      initial_pos: [0.7, 0.75, 0.6]
+      initial_orn: [1.57, 0, 0]
+  movable_objects:
+    teapot_3:
+      file: tabletop/teapot_3/teapot_3.urdf
+      initial_pos: [-0.15, 0.85, 0.642]
+      initial_orn: [0, 0, -1]
+    coffee_machine:
+      file: tabletop/coffee_machine/coffee_machine.urdf
+      initial_pos: [0.4, 0.8, 0.654]
+      initial_orn: [0, 0, -1.5]
+    dust_pan:
+      file: tabletop/dust_pan/dust_pan.urdf
+      initial_pos: [0.1, 0.9, 0.63]
+      initial_orn: [0, 0, 0]
+    flashlight_3:
+      file: tabletop/flashlight_3/flashlight_3.urdf
+      initial_pos: [-0.1, 0.6, 0.632]
+      initial_orn: [0, 0, 0]
+    spatula_3:
+      file: tabletop/spatula_3/spatula_3.urdf
+      initial_pos: [-0.1, 0.6, 0.601]
+      initial_orn: [0, 0, 0]
+    frying_pan_3:
+      file: tabletop/frying_pan_3/frying_pan_3.urdf
+      initial_pos: [0.4, 0.5, 0.602]
+      initial_orn: [0, 0, 0]
+    frying_pan_4:
+      file: tabletop/frying_pan_4/frying_pan_4.urdf
+      initial_pos: [-0.15, 0.85, 0.61]
+      initial_orn: [0, 0, 0]
+    tennis_racket:
+      file: tabletop/tennis_racket/tennis_racket.urdf
+      initial_pos: [0.4, 0.5, 0.618]
+      initial_orn: [0, 0, 0]
+    paint_brush:
+      file: tabletop/paint_brush/paint_brush.urdf
+      initial_pos: [-0.1, 0.6, 0.61]
+      initial_orn: [0, 0, 0]
+    hair_dryer:
+      file: tabletop/hair_dryer/hair_dryer.urdf
+      initial_pos: [-0.15, 0.85, 0.632]
+      initial_orn: [0, 0, 0]
+    tool_1:
+      file: tabletop/plier/plier.urdf
+      initial_pos: [0.4, 0.8, 0.607]
+      initial_orn: [0, 0, 0]
+    tool_2:
+      file: tabletop/can_opener/can_opener.urdf
+      initial_pos: [0.18, 0.67, 0.614]
+      initial_orn: [0, 0, -0.5]
+    tool_3:
+      file: tabletop/plaster_spatula_2/plaster_spatula_2.urdf
+      initial_pos: [0.4, 0.5, 0.618]
+      initial_orn: [0, 0, 0]
+    hammer_1:
+      file: tabletop/hammer_4/hammer_4.urdf
+      initial_pos: [0.18, 0.67, 0.614]
+      initial_orn: [0, 0, 0]
+    hammer_2:
+      file: tabletop/hammer_3/hammer_3.urdf
+      initial_pos: [0.18, 0.67, 0.614]
+      initial_orn: [0, 0, 0.5]
+    screwdriver_1:
+      file: tabletop/screwdriver/screwdriver.urdf
+      initial_pos: [0.1, 0.9, 0.614]
+      initial_orn: [0, 0, 0]
+    screwdriver_2:
+      file: tabletop/screwdriver_2/screwdriver_2.urdf
+      initial_pos: [0.2, 0.45, 0.61]
+      initial_orn: [0, 0, 0]
+    screwdriver_3:
+      file: tabletop/screwdriver_3/screwdriver_3.urdf
+      initial_pos: [0.1, 0.9, 0.614]
+      initial_orn: [0, 0, 0]
+    screwdriver_4:
+      file: tabletop/screwdriver_4/screwdriver_4.urdf
+      initial_pos: [-0.1, 0.6, 0.601]
+      initial_orn: [0, 0, 0]
+    screwdriver_5:
+      file: tabletop/screwdriver_5/screwdriver_5.urdf
+      initial_pos: [0.4, 0.5, 0.618]
+      initial_orn: [0, 0, 0]

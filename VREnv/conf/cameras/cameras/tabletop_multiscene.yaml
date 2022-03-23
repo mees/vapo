@@ -1,0 +1,10 @@
+_target_: vr_env.camera.static_camera.StaticCamera
+name: tabletop_multiscene
+fov: 45
+aspect: 1
+nearval: 0.01
+farval: 2
+width: 200
+height: 200
+look_at: [0.22791078686714172, 0.008461681194603443, -0.24000032246112823]
+look_from: [0.22790421545536008, 1.570319612342189, 1.5822541675395883]

@@ -1,0 +1,7 @@
+- paths.parent_folder=/home/borjadi/
+- model_name=15objs_4lay_256
+- scene=tabletop_random_15objs
+- wandb_login.project=vapo_ablation
+- agent.save_replay_buffer=True
+- agent=default_densenet
+- agent.net_cfg.n_layers=4

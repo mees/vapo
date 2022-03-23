@@ -1,0 +1,35 @@
+model {
+  file: "model.sdf"
+}
+name: "Diamond_Visions_Scissors_Red"
+description: "Diamond Visions Scissors, Red"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Diamond Visions"
+}
+annotations {
+  key: "gtin"
+  value: "00856434001799"
+}
+annotations {
+  key: "sku"
+  value: "00856434001799"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Consumer Goods"
+}

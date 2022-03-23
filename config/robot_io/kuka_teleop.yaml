@@ -1,0 +1,15 @@
+save_dir: /tmp
+freq: 30
+
+hydra:
+  run:
+    dir: ${save_dir}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+defaults:
+  - env: env
+  - robot: iiwa_interface
+  - input: vr_input
+  - recorder: vr_recorder
+  - cams: no_cameras
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog

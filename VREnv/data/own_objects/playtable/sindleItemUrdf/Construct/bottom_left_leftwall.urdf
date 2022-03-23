@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<robot name="botto_left_leftwall">
+ <link name="baseLink">
+   <contact>
+     <lateral_friction value="0.5"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="1.39 0.21 0.89"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.000045" ixy="0.000000" ixz="-0.000000" iyy="0.000017" iyz="0.000000" izz="0.000028"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="botto_left_leftwall.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="botto_left_leftwall.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+ </link>
+</robot> 

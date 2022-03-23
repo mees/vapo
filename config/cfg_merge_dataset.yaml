@@ -1,0 +1,14 @@
+parent_folder: ${paths.parent_folder}
+data_lst: [../datasets/calvin_lang_contactEndPt/training,
+           ../datasets/calvin_lang_contactEndPt/validation]
+
+output_dir: ${parent_folder}/datasets/calvin_lang_contactEndPt
+
+hydra:
+  run:
+    dir: ./hydra_outputs/merge_datasets/${now:%Y-%m-%d}_${now:%H-%M-%S}
+
+defaults:
+  - paths: general_paths
+  - override hydra/hydra_logging: colorlog
+  - override hydra/job_logging: colorlog

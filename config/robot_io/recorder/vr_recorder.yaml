@@ -1,0 +1,3 @@
+_target_: robot_io.recorder.vr_recorder.VrRecorder
+_recursive_: false
+n_digits: 6

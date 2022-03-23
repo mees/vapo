@@ -1,0 +1,249 @@
+<?xml version="1.0" ?>
+<robot name="playtable">
+
+ <link name="baseLink">
+   <contact>
+     <lateral_friction value="0.5"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0.700682 0.27126 0.854622"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.017520" ixy="0.000005" ixz="-0.000017" iyy="0.035863" iyz="0.003140" izz="0.032645"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="playtable_visual_02.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="construct_backside_01.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="construct_floor01.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="construct_floor02.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="construct_floor03_v2.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="bottom_right_rightwall.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="bottom_right_leftwall.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="bottom_left_rightwall.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="bottom_left_leftwall.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="top_left_rightwall.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="top_left_leftwall.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="tabletop.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="tablebase1.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+      <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="tablebase2.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+      <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="tablebase3.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+      <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="tablebase4.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+ </link>
+ 
+ <link name="slideDoor">
+   <contact>
+     <lateral_friction value="0.05"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0.35 0.41 0.89"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.000032" ixy="0.000000" ixz="0.000000" iyy="0.000203" iyz="-0.000000" izz="0.000172"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="slide_door.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="slide_door.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+ </link>
+
+  <link name="leftTopDoor">
+   <contact>
+     <lateral_friction value="0.05"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.000032" ixy="-0.000000" ixz="0.000000" iyy="0.000203" iyz="-0.000000" izz="0.000172"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="-1.4 -0.4 0"/>
+     <geometry>
+       <mesh filename="left_top_door.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="-1.4 -0.4 0"/>
+     <geometry>
+       <mesh filename="left_top_door.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+  </link>
+
+  <joint name="construct_2_leftTopDoor" type="revolute">
+    <origin rpy="0 0 0" xyz="1.4 0.4 0"/>
+    <parent link="baseLink"/>
+    <child link="leftTopDoor"/>
+    <dynamics damping="1.0" friction="0.5"/>
+    <limit effort="500" lower="0.0" upper="1.7453292519943" velocity="3.0"/>
+    <axis xyz="0 0 -1"/>
+  </joint>
+
+ <link name="slide_door_grip">
+   <contact>
+     <lateral_friction value="1.0"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0.3575 0.456499 0.890001"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.000000" ixy="0.000000" ixz="0.000000" iyy="0.000000" iyz="0.000000" izz="0.000000"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="slide_grip.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="slide_grip_vhacd2.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+ </link>
+
+<joint name="slideDoorHandle_2_SlideDoor" type="fixed">
+  <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+  <parent link="slideDoor"/>
+  <child link="slide_door_grip"/>
+  <axis xyz="0.0 0.0 0.0"/>
+  <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/>
+</joint>
+
+
+  <joint name="construct_2_slideDoor" type="prismatic">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="baseLink"/>
+    <child link="slideDoor"/>
+    <dynamics damping="1.0" friction="0.5"/>
+    <limit effort="500" lower="0.0" upper="0.7" velocity="3.0"/>
+    <axis xyz="1 0 0"/>
+  </joint>
+
+  <joint name="topleftdoor2handle" type="fixed">
+    <origin rpy="0 0 0" xyz="-1.4 -0.4 0"/>
+    <parent link="leftTopDoor"/>
+    <child link="handle_top_left"/>
+    <axis xyz="0.0 0.0 0.0"/>
+    <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/>
+  </joint>
+
+ <link name="handle_top_left">
+   <contact>
+     <lateral_friction value="0.5"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0.747499 0.456499 1.19"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.000000" ixy="-0.000000" ixz="-0.000000" iyy="0.000000" iyz="-0.000000" izz="0.000000"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="handle_top_left.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="handle_top_left_vhacd2.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+ </link>
+</robot>

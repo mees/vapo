@@ -1,0 +1,6 @@
+_target_: robot_io.marker_detection.aruco_detector.ArucoDetector
+cam: ???
+marker_size: 0.1
+marker_dict: "aruco.DICT_4X4_1000"
+visualize: true
+marker_id: 11

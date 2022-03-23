@@ -1,0 +1,14 @@
+[2022-02-07 00:06:30,655][vapo.wrappers.play_table_rl][INFO] - EGL_DEVICE_ID 0 <==> CUDA_DEVICE_ID 0
+[2022-02-07 00:06:30,665][vr_env.envs.play_table_env][INFO] - Loading EGL plugin (may segfault on misconfigured systems)...
+[2022-02-07 00:06:30,704][vr_env.envs.play_table_env][INFO] - Successfully loaded egl plugin
+[2022-02-07 00:06:30,704][vr_env.envs.play_table_env][INFO] - Connected to server with id: 0
+[2022-02-07 00:06:30,706][vr_env.envs.play_table_env][INFO] - Connected to server with id: 0
+[2022-02-07 00:06:30,717][vr_env.robot.robot][INFO] - Loading robot
+[2022-02-07 00:06:30,738][vr_env.envs.play_table_env][INFO] - Resetting simulation
+[2022-02-07 00:06:30,738][vr_env.envs.play_table_env][INFO] - Setting gravity
+[2022-02-07 00:06:38,713][vr_env.envs.play_table_env][INFO] - Using VREnv with commit 785c8a6fd0b54b9ba80abac5b2dc495e28c240d3.
+[2022-02-07 00:06:38,877][vr_env.envs.play_table_env][INFO] - Resetting simulation
+[2022-02-07 00:06:38,880][vr_env.envs.play_table_env][INFO] - Setting gravity
+[2022-02-07 00:06:40,262][__main__][INFO] - model: 15objs_img_depth_sparse
+[2022-02-07 00:06:43,466][__main__][INFO] - SAC get_nets using: ['gripper_depth_obs', 'gripper_img_obs', 'robot_obs']
+[2022-02-07 00:06:43,469][__main__][INFO] - SAC get_nets: CNNPolicyRes, 	CNNCriticRes

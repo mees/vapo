@@ -1,0 +1,177 @@
+<?xml version="1.0" ?>
+<robot name="compartment">
+<link name="baseLink">
+   <contact>
+     <lateral_friction value="0.5"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0.700002 0.346449 0.571451"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.001135" ixy="-0.000000" ixz="-0.000000" iyy="0.001263" iyz="0.000043" izz="0.002310"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="0 0.4 0"/>
+     <geometry>
+       <mesh filename="drawer_compartment.obj" scale="0.7 0.5 1.0"/>
+     </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0.4 0"/>
+     <geometry>
+       <mesh filename="drawer_compartment_rightwall.obj" scale="0.7 0.5 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0.4 0"/>
+     <geometry>
+       <mesh filename="drawer_compartment_backwall.obj" scale="0.7 0.5 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0.4 0"/>
+     <geometry>
+       <mesh filename="drawer_compartment_leftwall.obj" scale="0.7 0.5 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0.4 0"/>
+     <geometry>
+       <mesh filename="drawer_compartment_bottom.obj" scale="0.7 0.5 1.0"/>
+     </geometry>
+   </collision>
+ </link>
+
+  <link name="drawer">
+   <contact>
+     <lateral_friction value="1.5"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0.699998 0.418395 0.589933"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.001351" ixy="-0.000000" ixz="0.000000" iyy="0.001106" iyz="0.000004" izz="0.002382"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="0 0.39 0"/>
+     <geometry>
+       <mesh filename="drawer.obj" scale="0.7 0.5 1.0"/>
+     </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0.39 0"/>
+     <geometry>
+       <mesh filename="drawer_rightwall.obj" scale="0.7 0.5 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0.39 0"/>
+     <geometry>
+       <mesh filename="drawer_leftwall.obj" scale="0.7 0.5 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0.39 0"/>
+     <geometry>
+       <mesh filename="drawer_bottom.obj" scale="0.7 0.5 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0.39 0"/>
+     <geometry>
+       <mesh filename="drawer_backwall.obj" scale="0.7 0.5 1.0"/>
+     </geometry>
+   </collision>
+ </link>
+
+ <link name="drawerfront">
+   <contact>
+     <lateral_friction value="0.5"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0.7 0.79 0.615"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.000006" ixy="-0.000000" ixz="0.000000" iyy="0.000121" iyz="0.000000" izz="0.000115"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="drawer_front.obj" scale="0.7 1.0 1.0"/>
+     </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="drawer_front.obj" scale="0.7 1.0 1.0"/>
+     </geometry>
+   </collision>
+ </link>
+
+  <link name="drawerhandle">
+   <contact>
+     <lateral_friction value="1.0"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0.699998 0.8365 0.6225"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.000000" ixy="-0.000000" ixz="0.000000" iyy="0.000000" iyz="0.000000" izz="0.000000"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="-0.2 0 0"/>
+     <geometry>
+       <mesh filename="drawer_handle_visual.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+     <material name="black">
+      <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="-0.2 0 0"/>
+     <geometry>
+       <mesh filename="handle_grip.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="-0.2 0 0"/>
+     <geometry>
+       <mesh filename="handle_left.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   <collision>
+     <origin rpy="0 0 0" xyz="-0.2 0 0"/>
+     <geometry>
+       <mesh filename="handle_right.obj" scale="1.0 1.0 1.0"/>
+     </geometry>
+   </collision>
+   </link>
+
+   <joint name="drawer_2_base" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="drawerfront"/>
+    <child link="drawer"/>
+  </joint>
+
+ <joint name="compartment_2_drawer" type="prismatic">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="baseLink"/>
+    <child link="drawerfront"/>
+    <dynamics damping="1.0" friction="0.05"/>
+    <limit effort="30" lower="0.0" upper="0.42" velocity="3.0"/>
+    <axis xyz="0 0.8 0"/>
+  </joint>
+
+  <joint name="drawerfront_2_handle" type="fixed">
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="drawerfront"/>
+    <child link="drawerhandle"/>
+    <axis xyz="0.0 0.0 0.0"/>
+    <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/>
+  </joint>
+</robot> 

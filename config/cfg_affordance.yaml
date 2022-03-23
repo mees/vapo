@@ -1,0 +1,48 @@
+defaults:
+  - paths: general_paths
+  - model_cfg: default
+  - transforms@dataset.transforms_cfg: rgb
+  - override hydra/hydra_logging: colorlog
+  - override hydra/job_logging: colorlog
+
+model_name: test
+n_epochs: 50
+rand_crop: 0.8
+
+model_cfg:
+  n_classes: 2
+
+dataset_name: real_world/drawer_affordance/
+dataset:
+  data_dir: ${paths.datasets}/${dataset_name}
+  cam: static
+  n_train_ep: -1  # Train using all episodes
+  img_resize:
+    static: 200
+    gripper: 64
+    all: 100  # Resize to this if using all images
+  radius:
+    static: 14
+    gripper: 10
+
+dataloader:
+  num_workers: 4
+  batch_size: 128
+  pin_memory: true
+
+trainer:
+  gpus: -1
+  max_epochs: ${n_epochs}
+  num_sanity_val_steps: 1
+  strategy: ddp
+  precision: 16
+
+wandb:
+  project: affordance_model
+  entity: affordance
+
+#-- Hydra config --#
+save_dir: ./hydra_outputs/affordance_model/
+hydra:
+  run:
+    dir: ${save_dir}/${now:%Y-%m-%d}/${now:%H-%M-%S} # Output directory for normal runs

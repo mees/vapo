@@ -1,0 +1,14 @@
+_target_: robot_io.robot_interface.iiwa_interface.IIWAInterface
+_recursive_: false
+host: "localhost"
+port: 50100
+use_impedance: True
+joint_vel: 0.05
+joint_acc: 0.3
+gripper_rot_vel: 0.3
+cartesian_vel: 100
+cartesian_acc: 300
+workspace_limits: [[0.4, -0.5, 0.1], [0.7, 0.5, 0.5]]  # [[x_min, y_min, z_min], [x_max, y_max, z_max]]
+tcp_name: 20 # TCP_SHORT_FINGER = 20 / TCP = 21
+#neutral_pose: [0.5, 0, 0.25, 3.14, 0, 1.57]  # [x, y, z, rot_x, rot_y, rot_z] for TCP
+neutral_pose: [0.5, 0, 0.25, 3.14, 0, 0]  # [x, y, z, rot_x, rot_y, rot_z] for TCP_SHORT_FINGER

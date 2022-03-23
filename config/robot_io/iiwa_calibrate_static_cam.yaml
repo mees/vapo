@@ -1,0 +1,17 @@
+save_dir: ../calibration/calibration_files/
+record_traj: true
+play_traj: false
+freq: 30
+
+hydra:
+  run:
+    dir: ${save_dir}
+
+defaults:
+  - robot: iiwa_interface
+  - input: vr_input
+  - cams/static_cam@cam: kinect4_highres
+  - recorder: calib_recorder
+  - marker_detector: apriltag_board
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog

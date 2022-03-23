@@ -1,0 +1,103 @@
+defaults:
+  - _self_
+  - robot_io/robot@robot: panda_frankx_interface
+  - robot_io/env@robot_env: env
+  - robot_io/cams@cams: camera_manager
+  - agent: default_real_world
+  - paths: general_paths
+  - aff_model@target_search.aff_cfg.hyperparameters: static_cam
+  - aff_model@affordance.static_cam.hyperparameters: static_cam
+  - aff_model@affordance.gripper_cam.hyperparameters: gripper_cam
+  - transforms@affordance.transforms: aff_transforms
+  - transforms@env_wrapper.transforms: rl_transforms
+  - override hydra/hydra_logging: colorlog
+  - override hydra/job_logging: colorlog
+
+data_path: ${paths.vr_data}
+save_dir: ./hydra_outputs/vapo_real_world/
+model_name: real_world
+# task: pickup
+euler_obs: true
+img_size: 64
+viz_obs: True
+
+# path to load affordance models either gripper_cam 
+# or static_cam
+save_replay_buffer: False
+save_images: False
+resume_training: True
+
+models_path: ${paths.trained_models}
+resume_model_path: ${save_dir}
+
+# Wandb
+wandb_login:
+  entity: test
+  project: vapo_real_world
+
+test:
+  # Absolute path where models are stored
+  models_dir: ${paths.vapo_path}/combined/hydra_outputs
+  model_name: tabletop_rand_relative_img_depth_dist_affMask_dense_19-09_01-12_most_tasks_from_20
+  folder_name: ${test.models_dir}/pickup/2021-09-19/01-10-30_aff_rl
+
+  eval_cfg:
+    n_episodes: 5
+    print_all_episodes: True
+    max_episode_length: 100
+    save_images: ${save_images}
+# Static cam affordance model to detect the targets
+static_cam_aff_model: ${paths.trained_models}/affordance/real_world_static.ckpt
+gripper_cam_aff_model: ${paths.trained_models}/affordance/real_world_gripper.ckpt
+n_objects: 4
+target_search:
+  mode: real_world
+  aff_cfg:
+    img_size: 200
+    use: True
+    model_path: ${static_cam_aff_model}
+
+# Define types of observation input to the RL agent
+env_wrapper:
+  use_pos: True
+  img_size: ${img_size}
+  viz: ${viz_obs}
+  real_world: True
+  gripper_cam:
+    use_img: True
+    use_depth: True
+  static_cam:
+    use_img: False
+    use_depth: False
+
+panda_env_wrapper:
+  d_pos: 0.01
+  d_rot: 0.3
+  gripper_success_displacement: [0, 0, -0.08]
+  gripper_success_width: 0.01
+  reward_fail: -20
+  reward_success: 200
+  termination_radius: 0.08
+  box_pos: [0.24, 0.4, 0.08]
+  box_dims: [0.10, 0.20, 0.05]
+  offset: [0, 0, -0.08]  # Relative to end effector
+    # pickup: [0, 0, 0.05]
+    # drawer: [0, -0.125, 0.08]
+
+
+# Affordance configuration for RL agent observation inputs
+affordance:
+    static_cam:
+      use: False
+      model_path: ${static_cam_aff_model}
+      img_size: 200
+    gripper_cam:
+      use: True  # Use affordance in observation
+      use_distance: True
+      densify_reward: True
+      target_in_obs: False
+      model_path: ${gripper_cam_aff_model}
+
+hydra:
+  run:
+    dir: ${save_dir}/${now:%Y-%m-%d}/${now:%H-%M-%S}

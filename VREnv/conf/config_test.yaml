@@ -1,0 +1,39 @@
+load_dir: ???
+data_path: data
+save_dir: ../tmp/
+show_gui: true
+processes: 1
+task: slide
+img_obs: True
+sparse_reward: False
+euler_obs: true
+
+env:
+  _target_: vapo.wrappers.play_table_rl.PlayTableRL
+  _recursive_: false
+  cameras: ${cameras}
+  seed: 0
+  bullet_time_step: 240.0
+  use_vr: false
+  show_gui: ${show_gui}
+  robot_cfg: ${robot}
+  scene_cfg: ${scene}
+  use_scene_info: false
+  use_egl: True
+  control_freq: 30
+
+robot:
+  euler_obs: ${euler_obs}
+
+hydra:
+  run:
+    dir: ${save_dir}./${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+defaults:
+  - cameras: static_and_gripper
+  - scene: calvin_scene_D
+  - robot: panda
+  - tasks: new_playtable_tasks
+  - recorder: recorder
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog

@@ -1,0 +1,4 @@
+_target_: robot_io.marker_detection.apriltag_detector.ApriltagDetector
+cam: ???
+marker_description: "./tags/marker_36h11b2_3x3x_3cm_two.json"
+min_tags: 3

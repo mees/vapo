@@ -1,0 +1,53 @@
+2022-02-07 00:06:40,767 INFO    MainThread:14400 [wandb_setup.py:_flush():70] setting env: {}
+2022-02-07 00:06:40,767 WARNING MainThread:14400 [wandb_setup.py:_flush():70] could not find program at ../scripts/train_tabletop.py
+2022-02-07 00:06:40,767 INFO    MainThread:14400 [wandb_setup.py:_flush():70] multiprocessing start_methods=fork,spawn,forkserver
+2022-02-07 00:06:40,768 INFO    MainThread:14400 [wandb_setup.py:_flush():70] setting login settings: {}
+2022-02-07 00:06:40,768 INFO    MainThread:14400 [wandb_init.py:_log_setup():318] Logging user logs to /mnt/ssd_shared/Users/Jessica/Documents/Thesis_ssd/vapo/run_on_cluster/hydra_outputs/pickup/2022-02-07/00-06-30/wandb/run-20220207_000640-113p2x0w/logs/debug.log
+2022-02-07 00:06:40,769 INFO    MainThread:14400 [wandb_init.py:_log_setup():319] Logging internal logs to /mnt/ssd_shared/Users/Jessica/Documents/Thesis_ssd/vapo/run_on_cluster/hydra_outputs/pickup/2022-02-07/00-06-30/wandb/run-20220207_000640-113p2x0w/logs/debug-internal.log
+2022-02-07 00:06:41,916 INFO    MainThread:14400 [wandb_run.py:_console_start():1396] atexit reg
+2022-02-07 00:06:41,916 INFO    MainThread:14400 [wandb_run.py:_redirect():1259] redirect: SettingsConsole.REDIRECT
+2022-02-07 00:06:41,917 INFO    MainThread:14400 [wandb_run.py:_redirect():1264] Redirecting console.
+2022-02-07 00:06:41,917 INFO    MainThread:14400 [redirect.py:install():213] install start
+2022-02-07 00:06:41,917 INFO    MainThread:14400 [redirect.py:install():228] install stop
+2022-02-07 00:06:41,917 INFO    MainThread:14400 [redirect.py:install():213] install start
+2022-02-07 00:06:41,917 INFO    MainThread:14400 [redirect.py:install():228] install stop
+2022-02-07 00:06:41,917 INFO    MainThread:14400 [wandb_run.py:_redirect():1310] Redirects installed.
+2022-02-07 00:06:43,722 INFO    MainThread:14400 [wandb_run.py:_atexit_cleanup():1366] got exitcode: 1
+2022-02-07 00:06:43,722 INFO    MainThread:14400 [wandb_run.py:_restore():1338] restore
+2022-02-07 00:06:43,722 INFO    MainThread:14400 [redirect.py:uninstall():232] uninstall start
+2022-02-07 00:06:43,722 INFO    MainThread:14400 [redirect.py:_stop():287] _stop: stdout
+2022-02-07 00:06:43,722 INFO    MainThread:14400 [redirect.py:_stop():293] _stop closed: stdout
+2022-02-07 00:06:43,722 INFO    stdout    :14400 [redirect.py:_pipe_relay():129] relay done saw last write: stdout
+2022-02-07 00:06:43,723 INFO    stdout    :14400 [redirect.py:_pipe_relay():145] relay done done: stdout
+2022-02-07 00:06:43,723 INFO    MainThread:14400 [redirect.py:_stop():299] _stop joined: stdout
+2022-02-07 00:06:43,723 INFO    MainThread:14400 [redirect.py:_stop():301] _stop rd closed: stdout
+2022-02-07 00:06:43,723 INFO    MainThread:14400 [redirect.py:uninstall():236] uninstall done
+2022-02-07 00:06:43,723 INFO    MainThread:14400 [redirect.py:uninstall():232] uninstall start
+2022-02-07 00:06:43,723 INFO    MainThread:14400 [redirect.py:_stop():287] _stop: stderr
+2022-02-07 00:06:43,723 INFO    MainThread:14400 [redirect.py:_stop():293] _stop closed: stderr
+2022-02-07 00:06:43,723 INFO    stderr    :14400 [redirect.py:_pipe_relay():129] relay done saw last write: stderr
+2022-02-07 00:06:43,723 INFO    stderr    :14400 [redirect.py:_pipe_relay():145] relay done done: stderr
+2022-02-07 00:06:43,723 INFO    MainThread:14400 [redirect.py:_stop():299] _stop joined: stderr
+2022-02-07 00:06:43,723 INFO    MainThread:14400 [redirect.py:_stop():301] _stop rd closed: stderr
+2022-02-07 00:06:43,723 INFO    MainThread:14400 [redirect.py:uninstall():236] uninstall done
+2022-02-07 00:06:43,968 INFO    MainThread:14400 [wandb_run.py:_wait_for_finish():1489] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 994
+  total_bytes: 994
+}
+
+2022-02-07 00:06:45,976 INFO    MainThread:14400 [wandb_run.py:_wait_for_finish():1489] got exit ret: done: true
+exit_result {
+}
+file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 6958
+  total_bytes: 6958
+}
+
+2022-02-07 00:06:47,048 INFO    MainThread:14400 [wandb_run.py:_show_files():1711] logging synced files
+2022-02-07 00:06:47,049 INFO    MainThread:14400 [internal.py:handle_exit():139] Internal process exited

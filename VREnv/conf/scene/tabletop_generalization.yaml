@@ -1,0 +1,54 @@
+_target_: vr_env.scene.play_table_scene.PlayTableScene
+_recursive_: false
+data_path: ${data_path}
+global_scaling: 0.8
+euler_obs: ${robot.euler_obs}
+robot_base_position: [0.3, 0.15, 0.45]
+robot_base_orientation: [0, 0, 1.5707963]
+robot_initial_joint_positions: [-0.3457686708019129, -0.15454379621111053, -0.6607497652179231, -2.431721569843283, -0.12811896258574057, 2.3050911768605884, -0.128854091294185]
+surfaces: []
+
+objects:
+  fixed_objects:
+    table:
+      file: table/hightable.urdf
+      initial_pos: [0.3, 0.7, 0.02]
+      initial_orn: [0, 0, 0]
+      fixed: true
+    bin:
+      file: ais_objects/bin_10_30_50/bin_10_30_50.urdf
+      initial_pos: [0.7, 0.75, 0.6]
+      initial_orn: [1.57, 0, 0]
+      fixed: true
+  movable_objects:
+    meat:
+      file: 010_potted_meat_can/google_16k/textured.urdf
+      initial_pos: [0.35, 0.92, 0.623]
+      initial_orn: [0, 0, 2]
+      fixed: false
+    beans:
+      file: ais_objects/beans/beans.urdf
+      initial_pos: [0.2, 0.7, 0.65]
+      initial_orn: [0, 0, 0]
+      fixed: false
+    airplane:
+      file: 072-a_toy_airplane/google_16k/textured.urdf
+      initial_pos: [0.15, 0.9, 0.63]
+      initial_orn: [0, 0, 0.5]
+      scale: 0.4
+      fixed: false
+    gelatin:
+      file: 009_gelatin_box/google_16k/textured.urdf
+      initial_pos: [-0.1, 0.6, 0.623]
+      initial_orn: [0, 0, 0]
+      fixed: false
+    chewinggum:
+      file: ais_objects/chewinggum/chewinggum.urdf
+      initial_pos: [-0.05, 0.85, 0.63]
+      initial_orn: [0, 0, 0]
+      fixed: false
+    rubic cube:
+      file: 077_rubiks_cube/google_16k/textured.urdf
+      initial_pos: [0.08, 0.48, 0.623]
+      initial_orn: [0, 0, 0]
+      fixed: false

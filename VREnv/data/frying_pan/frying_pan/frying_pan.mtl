@@ -1,0 +1,38 @@
+# Blender MTL File: 'None'
+# Material Count: 3
+
+newmtl Material.002
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /home/jessica/Downloads/3D Models/frying_pan/textures/Material.001_Normal.png
+map_Kd /home/jessica/Downloads/3D Models/frying_pan/textures/Material.001_Base_Color.png
+
+newmtl Material.003
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /home/jessica/Downloads/3D Models/frying_pan/textures/Material.002_Normal_DirectX.png
+map_Kd /home/jessica/Downloads/3D Models/frying_pan/textures/Material.002_Base_Color.png
+
+newmtl Material.004
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /home/jessica/Downloads/3D Models/frying_pan/textures/Material.003_Normal_DirectX.png
+map_Kd /home/jessica/Downloads/3D Models/frying_pan/textures/Material.003_Base_Color.png

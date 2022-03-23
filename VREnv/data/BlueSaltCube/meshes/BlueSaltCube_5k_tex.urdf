@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<robot name="BlueSaltCube_5k_tex">
+ <link name="baseLink">
+   <contact>
+     <lateral_friction value="0.5"/>
+   </contact>
+   <inertial>
+     <origin rpy="0 0 0" xyz="0.0055297770000000005 0.033063351 0.000412687"/>
+      <mass value="1.0"/>
+      <inertia ixx="926084800.000000" ixy="-2189141.750000" ixz="9807323.000000" iyy="245418672.000000" iyz="503707.250000" izz="875386816.000000"/>
+   </inertial>
+   <visual>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="BlueSaltCube_5k_tex.obj" scale="0.001 0.001 0.001"/>
+     </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+     </material>
+   </visual>
+   <collision>
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <geometry>
+       <mesh filename="BlueSaltCube_5k_tex_vhacd2.obj" scale="0.001 0.001 0.001"/>
+     </geometry>
+   </collision>
+ </link>
+</robot> 

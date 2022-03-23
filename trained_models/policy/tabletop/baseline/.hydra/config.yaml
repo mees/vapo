@@ -1,0 +1,587 @@
+robot:
+  _target_: vr_env.robot.robot.Robot
+  filename: franka_panda/panda.urdf
+  base_position: ${scene.robot_base_position}
+  base_orientation: ${scene.robot_base_orientation}
+  initial_joint_positions: ${scene.robot_initial_joint_positions}
+  max_joint_force: 200.0
+  gripper_force: 200
+  arm_joint_ids:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  gripper_joint_ids:
+  - 9
+  - 10
+  gripper_joint_limits:
+  - 0
+  - 0.04
+  tcp_link_id: 13
+  end_effector_link_id: 7
+  gripper_cam_link: 12
+  use_nullspace: true
+  max_velocity: 2
+  use_ik_fast: false
+  magic_scaling_factor_pos: 1
+  magic_scaling_factor_orn: 1
+  use_target_pose: true
+  euler_obs: true
+  workspace_limits:
+  - - -0.2
+    - 0.35
+    - 0.61
+  - - 0.7
+    - 0.85
+    - 1.2
+  max_rel_pos: 0.02
+  max_rel_orn: 0.05
+scene:
+  _target_: vr_env.scene.play_table_scene.PlayTableScene
+  _recursive_: false
+  data_path: ${data_path}
+  global_scaling: 0.8
+  euler_obs: ${robot.euler_obs}
+  robot_base_position:
+  - 0.3
+  - 0.15
+  - 0.45
+  robot_base_orientation:
+  - 0
+  - 0
+  - 1.5707963
+  robot_initial_joint_positions:
+  - -0.3457686708019129
+  - -0.15454379621111053
+  - -0.6607497652179231
+  - -2.431721569843283
+  - -0.12811896258574057
+  - 2.3050911768605884
+  - -0.128854091294185
+  surfaces: []
+  positions:
+  - - -0.09
+    - 0.78
+  - - 0.35
+    - 0.55
+  - - 0.025
+    - 0.55
+  - - 0.15
+    - 0.78
+  - - 0.43
+    - 0.83
+  objects:
+    fixed_objects:
+      table:
+        file: table/hightable.urdf
+        initial_pos:
+        - 0.3
+        - 0.7
+        - 0.02
+        initial_orn:
+        - 0
+        - 0
+        - 0
+        fixed: true
+      bin:
+        file: ais_objects/bin_10_30_50/bin_10_30_50.urdf
+        initial_pos:
+        - 0.7
+        - 0.75
+        - 0.6
+        initial_orn:
+        - 1.57
+        - 0
+        - 0
+        fixed: true
+    movable_objects:
+      hammer_1:
+        file: tabletop/hammer/hammer.urdf
+        initial_pos:
+        - 0.18
+        - 0.67
+        - 0.6144
+        initial_orn:
+        - 0
+        - 0
+        - -3
+        fixed: false
+      hammer_2:
+        file: tabletop/hammer_2/hammer.urdf
+        initial_pos:
+        - 0.4
+        - 0.8
+        - 0.612
+        initial_orn:
+        - 0
+        - 0
+        - 0
+        fixed: false
+      hammer_3:
+        file: 048_hammer/google_16k/textured.urdf
+        initial_pos:
+        - 0.15
+        - 0.9
+        - 0.613950484085916
+        initial_orn:
+        - 0
+        - 0
+        - 0
+        fixed: false
+      drill_1:
+        file: tabletop/power_drill/power_drill.urdf
+        initial_pos:
+        - 0.2
+        - 0.45
+        - 0.6303941365790483
+        initial_orn:
+        - 3.14
+        - 0
+        - 0
+        fixed: false
+      drill_2:
+        file: 035_power_drill/google_16k/textured.urdf
+        initial_pos:
+        - 0.13
+        - 0.7
+        - 0.6227
+        initial_orn:
+        - 0
+        - 0
+        - 0
+        fixed: false
+      frying_pan_1:
+        file: tabletop/frying_pan/frying_pan.urdf
+        initial_pos:
+        - 0.11
+        - 0.88
+        - 0.6018220029124765
+        initial_orn:
+        - 0
+        - 0
+        - -1.54
+        fixed: false
+      frying_pan_2:
+        file: tabletop/frying_pan_2/frying_pan.urdf
+        initial_pos:
+        - -0.13
+        - 0.58
+        - 0.6035380616166205
+        initial_orn:
+        - 0
+        - 0
+        - -1
+        fixed: false
+      frying_pan_3:
+        file: tabletop/skillet/textured.urdf
+        initial_pos:
+        - 0.1
+        - 0.9
+        - 0.61
+        initial_orn:
+        - 0
+        - 0
+        - 0.5
+        fixed: false
+      spatula:
+        file: tabletop/spatula/spatula.urdf
+        initial_pos:
+        - 0.42
+        - 0.54
+        - 0.6104
+        initial_orn:
+        - 0
+        - 0
+        - 3.1416
+        fixed: false
+      marker:
+        file: tabletop/marker/textured.urdf
+        initial_pos:
+        - 0.35
+        - 0.92
+        - 0.6156
+        initial_orn:
+        - 0
+        - 0
+        - 0
+        fixed: false
+      small_tool_1:
+        file: tabletop/flat_screwdriver/textured.urdf
+        initial_pos:
+        - -0.1
+        - 0.6
+        - 0.618
+        initial_orn:
+        - 0
+        - 0
+        - -1.57
+        fixed: false
+      small_tool_2:
+        file: tabletop/utility_knife/utility_knife.urdf
+        initial_pos:
+        - 0.4
+        - 0.5
+        - 0.6116962993721645
+        initial_orn:
+        - 0
+        - 0
+        - -1.54
+        fixed: false
+      small_tool_3:
+        file: tabletop/plaster_spatula/plaster_spatula.urdf
+        initial_pos:
+        - 0.2
+        - 0.45
+        - 0.6111299521513464
+        initial_orn:
+        - 0
+        - 0
+        - 0
+        fixed: false
+      knife:
+        file: tabletop/kitchen_knife/kitchen_knife.urdf
+        initial_pos:
+        - 0.37
+        - 0.91
+        - 0.61895
+        initial_orn:
+        - 0
+        - 0
+        - 0
+        fixed: false
+      bowl:
+        file: 024_bowl/google_16k/textured.urdf
+        initial_pos:
+        - 0.18
+        - 0.58
+        - 0.6230520401985216
+        initial_orn:
+        - 0
+        - 0
+        - 0
+        fixed: false
+env:
+  seed: null
+  bullet_time_step: 240.0
+  cameras: ${camera_conf}
+  robot_cfg: ${robot}
+  scene_cfg: ${scene}
+  use_scene_info: false
+  show_gui: false
+  use_egl: true
+  use_vr: false
+  control_freq: 30
+  task: ${task}
+  sparse_reward: true
+  reward_success: 200
+  reward_fail: -10
+  offset: ${gripper_offset}
+  rand_scene:
+    load_only_one: false
+eval_env:
+  seed: null
+  bullet_time_step: 240.0
+  cameras: ${camera_conf}
+  robot_cfg: ${robot}
+  scene_cfg: ${scene}
+  use_scene_info: false
+  show_gui: false
+  use_egl: true
+  use_vr: false
+  control_freq: 30
+  task: ${task}
+  sparse_reward: true
+  reward_success: 200
+  reward_fail: -10
+  offset: ${gripper_offset}
+  rand_scene:
+    load_only_one: false
+camera_conf:
+  static:
+    _target_: vr_env.camera.static_camera.StaticCamera
+    name: static
+    fov: 45
+    aspect: 1
+    nearval: 0.01
+    farval: 2
+    width: 200
+    height: 200
+    look_at:
+    - 0.15026406943798065
+    - 0.6811332106590271
+    - 0.46438753604888916
+    look_from:
+    - -0.32631213472589593
+    - 0.6811343431473001
+    - 1.5656936606290373
+    up_vector:
+    - 0
+    - 0
+    - 1
+  gripper:
+    _target_: vr_env.camera.gripper_camera.GripperCamera
+    name: gripper
+    fov: 75
+    aspect: 1
+    nearval: 0.01
+    farval: 2
+    width: 200
+    height: 200
+agent:
+  save_dir: ./trained_models
+  save_replay_buffer: true
+  train_mean_n_ep: 10
+  hyperparameters:
+    gamma: 0.99
+    actor_lr: 0.0003
+    critic_lr: 0.0003
+    alpha_lr: 0.0003
+    alpha: auto
+    tau: 0.005
+    batch_size: 256
+    buffer_size: 100000.0
+    learning_starts: 1000
+    init_temp: 0.01
+  net_cfg:
+    hidden_dim: 256
+    latent_dim: 16
+    activation: relu
+    n_layers: 4
+    affordance: ${affordance}
+    actor_net: CNNPolicyDenseNet
+    critic_net: CNNCriticDenseNet
+  learn_config:
+    total_timesteps: 400000
+    log_interval: 4000
+    full_eval_interval: 16000
+    max_episode_length: 100
+    n_eval_ep: 5
+test:
+  optim_res: false
+  models_dir: ${paths.vapo_path}/combined/hydra_outputs
+  model_name: tabletop_rand_relative_img_depth_dist_affMask_dense_19-09_01-12_most_tasks_from_20
+  folder_name: ${test.models_dir}/pickup/2021-09-19/01-10-30_aff_rl
+  eval_cfg:
+    n_episodes: 5
+    render: false
+    print_all_episodes: true
+    max_episode_length: 100
+    save_images: ${save_images}
+paths:
+  parent_folder: /home/borjadi/
+  vapo_path: ${paths.parent_folder}/vapo/
+  vr_data: ${paths.parent_folder}/VREnv/data/
+  trained_models: ${paths.vapo_path}/trained_models/
+  datasets: ${paths.parent_folder}/datasets/
+target_search:
+  aff_cfg:
+    hyperparameters:
+      n_classes: 2
+      cfg:
+        loss:
+          centers: 5
+          dice: 10
+          ce_loss: 2
+          affordance:
+            add_dice: true
+            ce_class_weights:
+            - 0.2
+            - 0.8
+        optimizer:
+          lr: 1.0e-05
+          weight_decay: 0.001
+        unet_cfg:
+          decoder_channels:
+          - 128
+          - 64
+          - 32
+        hough_voting:
+          skip_pixels: 2
+          inlier_threshold: 0.7
+          angle_discretization: 100
+          inlier_distance: 10
+          percentage_threshold: 0.3
+          object_center_kernel_radius: 15
+    img_size: 200
+    use: true
+    model_path: ${static_cam_aff_path}
+  mode: env
+affordance:
+  static_cam:
+    hyperparameters:
+      n_classes: 2
+      cfg:
+        loss:
+          centers: 5
+          dice: 10
+          ce_loss: 2
+          affordance:
+            add_dice: true
+            ce_class_weights:
+            - 0.2
+            - 0.8
+        optimizer:
+          lr: 1.0e-05
+          weight_decay: 0.001
+        unet_cfg:
+          decoder_channels:
+          - 128
+          - 64
+          - 32
+        hough_voting:
+          skip_pixels: 2
+          inlier_threshold: 0.7
+          angle_discretization: 100
+          inlier_distance: 10
+          percentage_threshold: 0.3
+          object_center_kernel_radius: 15
+    use: false
+    model_path: ${static_cam_aff_path}
+    img_size: 200
+  gripper_cam:
+    hyperparameters:
+      n_classes: 2
+      cfg:
+        loss:
+          centers: 2.5
+          dice: 5
+          ce_loss: 1
+          affordance:
+            add_dice: true
+            ce_class_weights:
+            - 0.2
+            - 0.8
+        optimizer:
+          lr: 1.0e-05
+          weight_decay: 0.001
+        unet_cfg:
+          decoder_channels:
+          - 128
+          - 64
+          - 32
+        hough_voting:
+          skip_pixels: 2
+          inlier_threshold: 0.7
+          angle_discretization: 100
+          inlier_distance: 10
+          percentage_threshold: 0.3
+          object_center_kernel_radius: 10
+    use: false
+    use_distance: false
+    densify_reward: false
+    target_in_obs: false
+    model_path: ${gripper_cam_aff_path}
+  transforms:
+    train:
+    - _target_: torchvision.transforms.Resize
+      size: ${img_size}
+    - _target_: affordance.dataloader.transforms.ColorTransform
+      contrast: 0.05
+      brightness: 0.05
+      hue: 0.02
+      prob: 1
+    - _target_: torchvision.transforms.Grayscale
+      num_output_channels: 1
+    - _target_: affordance.dataloader.transforms.ScaleImageTensor
+    - _target_: torchvision.transforms.Normalize
+      mean:
+      - 0.5
+      std:
+      - 0.5
+    - _target_: affordance.dataloader.transforms.AddGaussianNoise
+      mean:
+      - 0.0
+      std:
+      - 0.01
+      clip:
+      - -1
+      - 1
+    validation:
+    - _target_: torchvision.transforms.Resize
+      size: ${img_size}
+    - _target_: torchvision.transforms.Grayscale
+      num_output_channels: 1
+    - _target_: affordance.dataloader.transforms.ScaleImageTensor
+    - _target_: torchvision.transforms.Normalize
+      mean:
+      - 0.5
+      std:
+      - 0.5
+    masks:
+    - _target_: torchvision.transforms.Resize
+      size: ${img_size}
+    - _target_: affordance.dataloader.transforms.ThresholdMasks
+      threshold: 50
+    masks_multitask:
+    - _target_: torchvision.transforms.Resize
+      size: ${img_size}
+env_wrapper:
+  transforms:
+    train:
+    - _target_: torchvision.transforms.RandomResizedCrop
+      size: ${img_size}
+      scale:
+      - 0.9
+      - 1.0
+      ratio:
+      - 0.9
+      - 1.0
+    - _target_: affordance.dataloader.transforms.ScaleImageTensor
+    - _target_: torchvision.transforms.Normalize
+      mean:
+      - 0.5
+      std:
+      - 0.5
+    - _target_: affordance.dataloader.transforms.AddGaussianNoise
+      mean:
+      - 0.0
+      std:
+      - 0.01
+    validation:
+    - _target_: torchvision.transforms.Resize
+      size: ${img_size}
+    - _target_: affordance.dataloader.transforms.ScaleImageTensor
+    - _target_: torchvision.transforms.Normalize
+      mean:
+      - 0.5
+      std:
+      - 0.5
+    masks:
+    - _target_: torchvision.transforms.Resize
+      size: ${img_size}
+    - _target_: affordance.dataloader.transforms.ThresholdMasks
+      threshold: 50
+  use_pos: true
+  img_size: ${img_size}
+  use_aff_termination: false
+  max_target_dist: 0.1
+  gripper_cam:
+    use_img: true
+    use_depth: true
+  static_cam:
+    use_img: false
+    use_depth: false
+data_path: ${paths.vr_data}
+save_dir: ./hydra_outputs/${task}
+model_name: 15objs_4lay_256
+task: pickup
+euler_obs: true
+img_size: 64
+repeat_training: 1
+viz_obs: false
+save_replay_buffer: false
+save_images: false
+resume_training: false
+resume_model_path: ./
+wandb_login:
+  entity: jessibd
+  project: vapo_ablation
+gripper_offset:
+- 0.0
+- 0.0
+- -0.05
+gripper_cam_aff_path: ${paths.trained_models}/affordance/gripper_tabletop.ckpt
+static_cam_aff_path: ${paths.trained_models}/affordance/static_tabletop.ckpt

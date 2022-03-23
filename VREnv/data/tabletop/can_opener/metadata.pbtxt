@@ -1,0 +1,34 @@
+model {
+  file: "model.sdf"
+}
+name: "Granimals_20_Wooden_ABC_Blocks_Wagon"
+description: "Granimals 20 Wooden ABC Blocks & Wagon\n18+ months"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Granimals"
+}
+annotations {
+  key: "gtin"
+  value: "834162005067"
+}
+annotations {
+  key: "sku"
+  value: "8426"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+}

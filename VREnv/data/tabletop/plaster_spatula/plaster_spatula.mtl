@@ -1,0 +1,16 @@
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl Shpatel
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.600000 0.600000 0.600000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 9
+map_Bump textures/Shpatel_normal.png
+map_Kd textures/Shpatel_albedo.jpeg
+map_Ns textures/Shpatel_roughness.jpeg
+refl textures/Shpatel_metallic.jpeg

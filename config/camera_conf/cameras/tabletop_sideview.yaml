@@ -1,0 +1,11 @@
+_target_: vr_env.camera.static_camera.StaticCamera
+name: static
+fov: 45
+aspect: 1
+nearval: 0.01
+farval: 2
+width: 200
+height: 200
+look_at: [0.15026406943798065, 0.6811332106590271, 0.46438753604888916]
+look_from: [-0.32631213472589593, 0.6811343431473001, 1.5656936606290373]
+up_vector: [ 0, 0, 1]

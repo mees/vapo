@@ -1,0 +1,36 @@
+_target_: vr_env.scene.play_table_scene.PlayTableScene
+_recursive_: false
+data_path: ${data_path}
+global_scaling: 0.8
+euler_obs: ${robot.euler_obs}
+robot_base_position: [0.6, 0.25, 0.4]
+robot_base_orientation: [0, 0, 1.5707963]
+robot_initial_joint_positions: [-0.18921560539275162, -0.5906129363527061, 0.18586073802284095, -2.720781746004074, 0.12200968931073648, 2.1352994076839327, 0.6856775104172088]
+surfaces: []
+
+objects:
+  fixed_objects:
+    table:
+      file: own_objects/custom_playtable/urdf/playtable.urdf
+      initial_pos: [0.7, 1.0, 0]
+      initial_orn: [0, 0, 3.141592653589793]
+      fixed: true
+      joints:
+        slide_door_joint:
+          initial_state: 0  # prismatic
+    hinged_drawer:
+      file: own_objects/hinged_drawer/urdf/hinged_drawer.urdf
+      initial_pos: [0.7, 1.0, 0]
+      initial_orn: [0, 0, 3.141592653589793]
+      fixed: true
+      joints:
+        top_left_door_joint:
+          initial_state: 0  # revolute
+    drawer:
+      file: own_objects/drawer/drawer.urdf
+      initial_pos: [0.475, 1.0, -0.004]
+      initial_orn: [0, 0, 3.141592653589793]
+      fixed: true
+      joints:
+        drawer_joint:
+          initial_state: 0  # prismatic

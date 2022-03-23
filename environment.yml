@@ -1,0 +1,4 @@
+name: vapo_env
+dependencies:
+  - python=3.8
+  - pip

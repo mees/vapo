@@ -1,0 +1,35 @@
+model {
+  file: "model.sdf"
+}
+name: "Aroma_Stainless_Steel_Milk_Frother_2_Cup"
+description: "Aroma Stainless Steel Milk Frother - 2 Cup"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Aroma"
+}
+annotations {
+  key: "gtin"
+  value: "00021241121804"
+}
+annotations {
+  key: "sku"
+  value: "00021241121804"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Consumer Goods"
+}

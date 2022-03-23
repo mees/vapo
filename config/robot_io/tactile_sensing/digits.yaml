@@ -1,0 +1,6 @@
+_target_: robot_io.tactile_sensing.digits.Digits
+_recursive_: false
+device_a: "D00020"
+device_b: "D00010"
+fps: "30fps"
+resolution: "QVGA"

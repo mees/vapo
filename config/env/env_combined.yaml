@@ -1,0 +1,23 @@
+#_target_: VREnv.vr_env.envs.play_table_env.PlayTableEnv
+seed: Null
+bullet_time_step: 240.0
+cameras: ${camera_conf}
+robot_cfg: ${robot}
+scene_cfg: ${scene}
+use_scene_info: false
+show_gui: False
+use_egl: True
+use_vr: False
+
+# RL Specific
+control_freq: 30
+task: ${task} #slide, hinge, drawer, pickup
+sparse_reward: True
+reward_success: 200
+reward_fail: -1
+offset: ${gripper_offset}
+rand_scene:
+  # Only load one random object on the table
+  # and use uniform sampling over all objects
+  # Only applies to pickup task
+  load_only_one: False

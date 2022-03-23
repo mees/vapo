@@ -1,0 +1,29 @@
+{
+    "os": "Linux-5.13.0-28-generic-x86_64-with-glibc2.17",
+    "python": "3.8.12",
+    "heartbeatAt": "2022-02-06T23:06:41.798792",
+    "startedAt": "2022-02-06T23:06:40.743250",
+    "docker": null,
+    "gpu": "NVIDIA GeForce GTX 1050 Ti",
+    "gpu_count": 1,
+    "cpu_count": 12,
+    "cuda": null,
+    "args": [
+        "model_name=15objs",
+        "agent.learn_config.total_timesteps=500000",
+        "env_wrapper.max_target_dist=0.10",
+        "scene=tabletop_random_15objs",
+        "wandb_login.project=vapo_new"
+    ],
+    "state": "running",
+    "program": "../scripts/train_tabletop.py",
+    "git": {
+        "remote": "https://github.com/JessicaBorja/Master-project.git",
+        "commit": "b881c3cd498b7b361d1fb73403d09529fd08450b"
+    },
+    "email": "jessicalizethborja@gmail.com",
+    "root": "/mnt/ssd_shared/Users/Jessica/Documents/Thesis_ssd/vapo",
+    "host": "jessica-G3-3579",
+    "username": "jessica",
+    "executable": "/home/jessica/anaconda3/envs/thesis/bin/python"
+}

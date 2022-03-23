@@ -1,0 +1,6 @@
+_target_: robot_io.input_devices.vr_input.VrInput
+_recursive_: false
+robot: ???
+quaternion_convention: 'wxyz'
+record_button_queue_len: 60
+workspace_limits: ${robot.workspace_limits}

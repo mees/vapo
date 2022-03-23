@@ -1,0 +1,4 @@
+_target_: robot_io.recorder.calib_recorder.CalibRecorder
+_recursive_: false
+n_digits: 6
+save_dir: ???

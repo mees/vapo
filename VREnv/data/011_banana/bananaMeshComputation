@@ -1,0 +1,25 @@
+Opened mesh /home/anon/Schreibtisch/BachelorGIT/BachelorProject/data/011_banana/google_64k/textured.obj in 951 msec
+All files opened in 951 msec
+OUT OF SCOPE 
+Mesh Bounding Box Size 0.108916 0.178443 0.036712
+Mesh Bounding Box Diag 0.212255 
+Mesh Bounding Box min -0.042989 -0.096562 -0.000384
+Mesh Bounding Box max 0.065927 0.081881 0.036328
+Mesh Surface Area is 0.021652
+Mesh Total Len of 98304 Edges is 84.531906 Avg Len 0.000860
+Mesh Total Len of 98304 Edges is 84.531906 Avg Len 0.000860 (including faux edges))
+Thin shell (faces) barycenter: -0.007432 0.004505 0.016612
+Vertices barycenter -0.003152 0.007866 0.016455
+Mesh Volume is 0.000172
+Center of Mass is -0.009936 0.004073 0.017127
+Inertia Tensor is :
+| 0.000000 -0.000000 0.000000 |
+| -0.000000 0.000000 -0.000000 |
+| 0.000000 -0.000000 0.000000 |
+Principal axes are :
+| 0.314663 0.949198 0.003300 |
+| 0.930286 -0.307699 -0.199721 |
+| 0.188560 -0.065915 0.979847 |
+axis momenta are :
+| 0.000000 0.000000 0.000000 |
+Applied filter Compute Geometric Measures in 273 msec  

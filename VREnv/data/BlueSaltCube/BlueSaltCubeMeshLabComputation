@@ -1,0 +1,25 @@
+Opened mesh /home/anon/Dokumente/Bachelorproject/BachelorProject/data/BlueSaltCube/meshes/BlueSaltCube_5k_tex.obj in 134 msec
+All files opened in 135 msec
+OUT OF SCOPE 
+Mesh Bounding Box Size 57.545097 146.863297 68.523499
+Mesh Bounding Box Diag 171.975967 
+Mesh Bounding Box min -22.703100 -39.426300 -33.838699
+Mesh Bounding Box max 34.841999 107.436996 34.684799
+Mesh Surface Area is 36694.585938
+Mesh Total Len of 7473 Edges is 34112.859375 Avg Len 4.564815
+Mesh Total Len of 7473 Edges is 34112.859375 Avg Len 4.564815 (including faux edges))
+Thin shell (faces) barycenter: 5.587023 33.719318 0.427513
+Vertices barycenter 7.257963 34.791271 0.572772
+Mesh Volume is 460017.031250
+Center of Mass is 5.529777 33.063351 0.412687
+Inertia Tensor is :
+| 926084800.000000 -2189141.750000 9807323.000000 |
+| -2189141.750000 245418672.000000 503707.250000 |
+| 9807323.000000 503707.250000 875386816.000000 |
+Principal axes are :
+| 0.003228 0.999994 -0.000850 |
+| -0.183478 0.001428 0.983023 |
+| 0.983018 -0.003018 0.183482 |
+axis momenta are :
+| 245411168.000000 873557056.000000 927922048.000000 |
+Applied filter Compute Geometric Measures in 65 msec 

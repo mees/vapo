@@ -1,0 +1,57 @@
+_target_: vr_env.scene.play_table_scene.PlayTableScene
+_recursive_: false
+data_path: ${data_path}
+global_scaling: 0.8
+euler_obs: ${robot.euler_obs}
+robot_base_position: [0.3, 0.15, 0.45]
+robot_base_orientation: [0, 0, 1.5707963]
+robot_initial_joint_positions: [-0.3457686708019129, -0.15454379621111053, -0.6607497652179231, -2.431721569843283, -0.12811896258574057, 2.3050911768605884, -0.128854091294185]
+surfaces: []
+# [0.4779615233976951, 0.8403898937210507, 0.6523168033143772]
+# [0.01983885434028484, 0.7759594363500025, 0.6315146179656631]
+# [-0.110610813846427, 0.4749417099552396, 0.6558420140717]
+# [0.41086270736336566, 0.5142109572720498, 0.6685946313865824]
+# x,y pos to randomly place objects
+objects:
+  fixed_objects:
+    table:
+      file: table/hightable.urdf
+      initial_pos: [0.3, 0.7, 0.02]
+      initial_orn: [0, 0, 0]
+      fixed: true
+    bin:
+      file: ais_objects/bin_10_30_50/bin_10_30_50.urdf
+      initial_pos: [0.7, 0.75, 0.6]
+      initial_orn: [1.57, 0, 0]
+      fixed: true
+  movable_objects:
+    bowl:
+      file: 024_bowl/google_16k/textured.urdf
+      initial_pos: [0.43, 0.83, 0.6230520401985216]
+      initial_orn: [0, 0, 0]
+      fixed: false
+    hammer_1:
+      file: tabletop/hammer/hammer.urdf
+      initial_pos: [0.35, 0.55, 0.6144]
+      initial_orn: [0, 0, -3]
+      fixed: false
+    drill_2:
+      file: 035_power_drill/google_16k/textured.urdf
+      initial_pos: [0.03, 0.55, 0.6227]
+      initial_orn: [0, 0, 0.1]
+      fixed: false
+    frying_pan_1:
+      file: tabletop/frying_pan/frying_pan.urdf
+      initial_pos: [0.1, 0.8, 0.6018220029124765]
+      initial_orn: [0, 0, -1.2]
+      fixed: false
+    spatula:
+      file: tabletop/spatula/spatula.urdf
+      initial_pos: [-0.07, 0.77, 0.6104]
+      initial_orn: [0, 0, 3]
+      fixed: false
+    small_tool_1:
+      file: tabletop/flat_screwdriver/textured.urdf
+      initial_pos: [0.25, 0.75, 0.618]
+      initial_orn: [0, 0, -1.57]
+      fixed: false

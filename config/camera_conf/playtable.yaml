@@ -1,0 +1,3 @@
+defaults:
+  - cameras@static: playtable
+  - cameras@gripper: gripper

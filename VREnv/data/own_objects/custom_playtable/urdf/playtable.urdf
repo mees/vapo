@@ -1,0 +1,134 @@
+<?xml version="1.0" ?>
+<robot name="table">
+    <!-- The table -->
+    <link name="baseLink">
+        <contact>
+            <lateral_friction value="0.5"/>
+        </contact>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.425016 0.151115 0.615396"/>
+            <mass value="0.0"/>
+            <inertia ixx="0.003734" ixy="0.000094" ixz="-0.000492" iyy="0.006571" iyz="0.000494" izz="0.004455"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+            <mesh filename="../meshes/table/table.obj" scale="1.0 1.0 1.0"/>
+            </geometry>
+            <material name="white">
+            <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+            <mesh filename="../meshes/table/table_vhacd2.obj" scale="1.0 1.0 1.0"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- bottom right shelf -->
+    <link name="bottom_right_table">
+        <contact>
+            <lateral_friction value="0.5"/>
+        </contact>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.355063 0.161921 0.899693"/>
+            <mass value="1.0"/>
+            <inertia ixx="0.000715" ixy="-0.000003" ixz="0.000000" iyy="0.001669" iyz="0.000001" izz="0.001690"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+            <mesh filename="../meshes/bottom_right_shelf/bottom_right_shelf.obj" scale="1.0 1.0 1.0"/>
+            </geometry>
+            <material name="white">
+            <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+            <mesh filename="../meshes/bottom_right_shelf/bottom_right_shelf_vhacd2.obj" scale="1.0 1.0 1.0"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- sliding door -->
+    <link name="slideDoor">
+        <contact>
+            <lateral_friction value="0.5"/>
+        </contact>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.205081 0.211543 0.749504"/>
+            <mass value="1.0"/>
+            <inertia ixx="0.000008" ixy="-0.000000" ixz="0.000000" iyy="0.000036" iyz="0.000000" izz="0.000028"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+            <mesh filename="../meshes/sliding_door/sliding_door_round_big_handle.obj" scale="1.0 1.0 1.0"/>
+            </geometry>
+            <material name="white">
+            <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+            <mesh filename="../meshes/sliding_door/sliding_door_round_big_handle_vhacd2.obj" scale="1.0 1.0 1.0"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- bottom left shelf-->
+    <link name="bottom_left_table">
+    <contact>
+        <lateral_friction value="0.5"/>
+    </contact>
+    <inertial>
+        <origin rpy="0 0 0" xyz="1.055605 0.164137 0.903363"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.000758" ixy="-0.000002" ixz="0.000002" iyy="0.001665" iyz="-0.000003" izz="0.001678"/>
+    </inertial>
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+        <mesh filename="../meshes/bottom_left_shelf/bottom_left_shelf.obj" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="white">
+        <color rgba="1 1 1 1"/>
+        </material>
+    </visual>
+    <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+        <mesh filename="../meshes/bottom_left_shelf/bottom_left_shelf_vhacd2.obj" scale="1.0 1.0 1.0"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- joint connecting the slide door with the (bottom right) shelf-->
+    <joint name="slide_door_joint" type="prismatic">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <parent link="bottom_right_table"/>
+        <child link="slideDoor"/>
+        <dynamics damping="1.0" friction="0.5"/>
+        <limit effort="500" lower="0.0" upper="0.7" velocity="3.0"/>
+        <axis xyz="0.9 0 0"/>
+    </joint>
+
+    <!-- fixed links to connect the shelfs with the base of the playtable-->
+    <joint name="bottom_left_shelf_2_base" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="baseLink"/>
+        <child link="bottom_left_table"/>
+    </joint>
+
+    <joint name="bottom_right_shelf_2_base" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="baseLink"/>
+        <child link="bottom_right_table"/>
+    </joint>
+
+</robot> 

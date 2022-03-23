@@ -1,0 +1,53 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.10.15
+    framework: huggingface
+    huggingface_version: 4.3.2
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.8.12
+    t:
+      1:
+      - 1
+      - 9
+      - 11
+      2:
+      - 1
+      - 9
+      - 11
+      4: 3.8.12
+      5: 0.10.15
+      6: 4.3.2
+actor_lr:
+  desc: null
+  value: 0.0003
+alpha:
+  desc: null
+  value: auto
+alpha_lr:
+  desc: null
+  value: 0.0003
+batch_size:
+  desc: null
+  value: 256
+critic_lr:
+  desc: null
+  value: 0.0003
+gamma:
+  desc: null
+  value: 0.99
+hidden_dim:
+  desc: null
+  value: 256
+init_temp:
+  desc: null
+  value: 0.01
+learning_starts:
+  desc: null
+  value: 1000
+save_replay_buffer:
+  desc: null
+  value: false

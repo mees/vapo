@@ -1,0 +1,34 @@
+model {
+  file: "model.sdf"
+}
+name: "Chefmate_8_Frypan"
+description: "Chefmate 8\" Frypan"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Chefmate"
+}
+annotations {
+  key: "gtin"
+  value: "00490700103871"
+}
+annotations {
+  key: "sku"
+  value: "00490700103871"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+}
