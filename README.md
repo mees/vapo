@@ -12,11 +12,30 @@ Jessica Borja, [Oier Mees](https://www.oiermees.com/), [Gabriel Kalweit](https:/
 
 Implementation of Visual Affordance-guided Policy Optimization
 
-# Installation
+## Installation
 - [Install locally](./docs/local_setup.md)
 - [Install using Docker](./docs/docker_setup.md)
 
-# Usage
+## Usage
 - [Affordance model](./docs/affordance.md)
 - [Policy](./docs/policy.md)# vapo
 Implementation of Visual Affordance-guided Policy Optimization
+
+
+## Citation
+
+If you find the dataset or code useful, please cite:
+
+```
+@inproceedings{borja22icra,
+author = {Jessica Borja-Diaz and Oier Mees and Gabriel Kalweit and  Lukas Hermann and Joschka Boedecker and Wolfram Burgard},
+title = {Affordance Learning from Play for Sample-Efficient Policy Learning},
+booktitle = {Proceedings of the IEEE International Conference on Robotics and Automation  (ICRA)},
+year = 2022,
+address = {Philadelphia, USA}
+}
+```
+
+## License
+
+MIT License
