@@ -7,7 +7,6 @@ import numpy as np
 
 # A logger for this file
 from omegaconf import OmegaConf
-
 from vr_env.scene.objects.button import Button
 from vr_env.scene.objects.door import Door
 from vr_env.scene.objects.fixed_object import FixedObject
@@ -189,9 +188,9 @@ class PlayTableScene:
             info["fixed_objects"][obj.name] = obj.get_info()
         for obj in self.movable_objects:
             info["movable_objects"][obj.name] = obj.get_info()
-            info["movable_objects"][obj.name].update({
-                "initial_pos": self.object_cfg["movable_objects"][obj.name]["initial_pos"]
-            })
+            info["movable_objects"][obj.name].update(
+                {"initial_pos": self.object_cfg["movable_objects"][obj.name]["initial_pos"]}
+            )
         for obj in self.doors:
             info["doors"][obj.name] = obj.get_info()
         for obj in self.buttons:

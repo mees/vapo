@@ -23,7 +23,7 @@ img_size: 64
 repeat_training: 1
 viz_obs: False
 
-# path to load affordance models either gripper_cam 
+# path to load affordance models either gripper_cam
 # or static_cam
 save_replay_buffer: False
 save_images: False
@@ -34,7 +34,7 @@ resume_model_path: ./
 
 test:
   # Absolute path where models are stored
-  models_dir: ${paths.vapo_path}/hydra_outputs  
+  models_dir: ${paths.vapo_path}/hydra_outputs
   # Vapo
   model_name: most_tasks_from_5
   folder_name: ${test.models_dir}/drawer/2022-03-04/19-21-57_vapo
@@ -63,7 +63,7 @@ env_wrapper:
     use_img: False
     use_depth: False
 
-# tabletop_multiscene_static_sideview.ckpt 
+# tabletop_multiscene_static_sideview.ckpt
 # Static cam affordance model to detect the targets
 gripper_cam_aff_path: ${paths.trained_models}/affordance/gripper_playtable.ckpt
 static_cam_aff_path: ${paths.trained_models}/affordance/static_playtable.ckpt

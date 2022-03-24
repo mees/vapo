@@ -1,6 +1,5 @@
 import numpy as np
 import pybullet as p
-
 from vr_env.camera.camera import Camera
 
 
@@ -23,20 +22,18 @@ class GripperCamera(Camera):
             fov=self.fov, aspect=self.aspect, nearVal=self.nearval, farVal=self.farval
         )
         self.name = name
-        self.tcp2cam_T = self.get_tcp2cam_transform(links['tcp'])
+        self.tcp2cam_T = self.get_tcp2cam_transform(links["tcp"])
 
     def get_tcp2cam_transform(self, tcp_link_id):
         camera_ls = p.getLinkState(
             bodyUniqueId=self.robot_uid, linkIndex=self.gripper_cam_link, physicsClientId=self.cid
         )
-        tcp_pos, tcp_orn = p.getLinkState(
-            self.robot_uid, tcp_link_id, physicsClientId=self.cid)[:2]
+        tcp_pos, tcp_orn = p.getLinkState(self.robot_uid, tcp_link_id, physicsClientId=self.cid)[:2]
 
         camera_pos, camera_orn = camera_ls[:2]
 
         tcp_to_global = p.invertTransform(tcp_pos, tcp_orn)
-        tcp_to_cam = p.multiplyTransforms(*tcp_to_global,
-                                          camera_pos, camera_orn)
+        tcp_to_cam = p.multiplyTransforms(*tcp_to_global, camera_pos, camera_orn)
         return list(tcp_to_cam)
 
     def render(self):

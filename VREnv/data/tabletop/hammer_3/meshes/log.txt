@@ -72,14 +72,14 @@ Examples:
 	 Subdivision level 2
 	 -> Part[0] C  = 0.0294734, E  = 0.0453683, VS = 4640, VI = 5840
 	 -> Part[1] C  = 0.0337882, E  = 0.0645619, VS = 6603, VI = 24480
-+ Generate 2 convex-hulls 
++ Generate 2 convex-hulls
 	 time 0.184087s
 + Merge Convex Hulls
 	 time 0.000569046s
-+ Simplify 2 convex-hulls 
++ Simplify 2 convex-hulls
 		 Simplify CH[00000] 78 V, 152 T
 		 Simplify CH[00001] 335 V, 666 T
 	 time 0.00656826s
-+ Generate output: 2 convex-hulls 
++ Generate output: 2 convex-hulls
 	 CH[00000] 56 V, 108 T
 	 CH[00001] 64 V, 124 T

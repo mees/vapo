@@ -21,7 +21,7 @@ env:
   use_scene_info: false
   use_egl: True
   control_freq: 30
-  
+
   task: ${task} #slide, hinge, drawer
   sparse_reward: ${sparse_reward}
   reward_success: 200

@@ -1,16 +1,42 @@
-import pybullet as p
 import math
-import hydra
+
 import cv2
+import hydra
+import pybullet as p
 from vr_env.envs.play_table_env import PlayTableSimEnv
 
+
 def set_init_pos(task, init_pos):
-    if(task == "slide" or task == "drawer"):
-        init_pos = [-1.1686195081948965, 1.5165126497924815, 1.7042540963745911, -1.6031852712241403, -2.5717679087567484, 2.331416872629473, -1.3006358472301627]
-    elif(task == "hinge"):
-        init_pos = [-0.3803066514807313, 0.931053115322005, 1.1668869976984892, -0.8602164833917604, -1.4818301463768684, 2.78299286093898, -1.7318962831826747]
-    elif(task == "tabletop"):
-        init_pos = [0.2584550602550528, 1.1556688342206756, 1.145914956800992, -0.45965789854738986, -1.0171025924903545, 1.3827150843394707, -1.6732613980921893]
+    if task == "slide" or task == "drawer":
+        init_pos = [
+            -1.1686195081948965,
+            1.5165126497924815,
+            1.7042540963745911,
+            -1.6031852712241403,
+            -2.5717679087567484,
+            2.331416872629473,
+            -1.3006358472301627,
+        ]
+    elif task == "hinge":
+        init_pos = [
+            -0.3803066514807313,
+            0.931053115322005,
+            1.1668869976984892,
+            -0.8602164833917604,
+            -1.4818301463768684,
+            2.78299286093898,
+            -1.7318962831826747,
+        ]
+    elif task == "tabletop":
+        init_pos = [
+            0.2584550602550528,
+            1.1556688342206756,
+            1.145914956800992,
+            -0.45965789854738986,
+            -1.0171025924903545,
+            1.3827150843394707,
+            -1.6732613980921893,
+        ]
     return init_pos
 
 
@@ -48,7 +74,7 @@ def main(cfg):
     for i in range(3):  # ep
         for i in range(3000):  # ep_len
             ns, r, d, info = env.step(action)
-            for i, (name, img) in enumerate(ns['rgb_obs'].items()):
+            for i, (name, img) in enumerate(ns["rgb_obs"].items()):
                 cv2.imshow("cam%d" % i, img[:, :, ::-1])
                 cv2.waitKey(1)
             # pos = env.get_target_pos()[0]

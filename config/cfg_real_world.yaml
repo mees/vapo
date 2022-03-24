@@ -21,7 +21,7 @@ euler_obs: true
 img_size: 64
 viz_obs: True
 
-# path to load affordance models either gripper_cam 
+# path to load affordance models either gripper_cam
 # or static_cam
 save_replay_buffer: False
 save_images: False

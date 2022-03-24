@@ -1,15 +1,14 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+
 from vapo.agent.core.utils import get_activation_fn
-from vapo.agent.networks.networks_common import \
-     get_pos_shape, get_img_network, get_concat_features
+from vapo.agent.networks.networks_common import get_concat_features, get_img_network, get_pos_shape
 
 
 # q function
 class CriticNetwork(nn.Module):
-    def __init__(self, state_dim, action_dim,
-                 activation="relu", hidden_dim=256, **kwargs):
+    def __init__(self, state_dim, action_dim, activation="relu", hidden_dim=256, **kwargs):
         super(CriticNetwork, self).__init__()
         self.fc1 = nn.Linear(state_dim + action_dim, hidden_dim)
         self.fc2 = nn.Linear(hidden_dim, hidden_dim)
@@ -24,27 +23,30 @@ class CriticNetwork(nn.Module):
 
 
 class CNNCritic(nn.Module):
-    def __init__(self, obs_space, action_dim, affordance=None,
-                 hidden_dim=256, activation="relu", latent_dim=16, **kwargs):
+    def __init__(
+        self, obs_space, action_dim, affordance=None, hidden_dim=256, activation="relu", latent_dim=16, **kwargs
+    ):
         super(CNNCritic, self).__init__()
         _tcp_pos_shape = get_pos_shape(obs_space, "robot_obs")
         _target_pos_shape = get_pos_shape(obs_space, "detected_target_pos")
         _distance_shape = get_pos_shape(obs_space, "target_distance")
         self.cnn_img = get_img_network(
-                            obs_space,
-                            out_feat=latent_dim,
-                            activation=activation,
-                            affordance_cfg=affordance.static_cam,
-                            cam_type="static")
+            obs_space,
+            out_feat=latent_dim,
+            activation=activation,
+            affordance_cfg=affordance.static_cam,
+            cam_type="static",
+        )
         self.cnn_gripper = get_img_network(
-                            obs_space,
-                            out_feat=latent_dim,
-                            activation=activation,
-                            affordance_cfg=affordance.gripper_cam,
-                            cam_type="gripper")
+            obs_space,
+            out_feat=latent_dim,
+            activation=activation,
+            affordance_cfg=affordance.gripper_cam,
+            cam_type="gripper",
+        )
         out_feat = 0
         for net in [self.cnn_img, self.cnn_gripper]:
-            if(net is not None):
+            if net is not None:
                 out_feat += latent_dim
         out_feat += _tcp_pos_shape + _target_pos_shape + _distance_shape
         self.out_feat = out_feat
@@ -58,10 +60,7 @@ class CNNCritic(nn.Module):
         self.aff_cfg = affordance
 
     def forward(self, states, actions):
-        features = get_concat_features(self.aff_cfg,
-                                       states,
-                                       self.cnn_img,
-                                       self.cnn_gripper)
+        features = get_concat_features(self.aff_cfg, states, self.cnn_img, self.cnn_gripper)
         x = F.elu(self.fc0(features))
         x = torch.cat((x, actions), -1)
         x = F.elu(self.fc1(x))
@@ -81,10 +80,7 @@ class CNNCriticRes(CNNCritic):
         self.q = nn.Linear(self.hidden_dim, 1)
 
     def forward(self, states, actions):
-        features = get_concat_features(self.aff_cfg,
-                                       states,
-                                       self.cnn_img,
-                                       self.cnn_gripper)
+        features = get_concat_features(self.aff_cfg, states, self.cnn_img, self.cnn_gripper)
         features = torch.cat((features, actions), -1)
         x = F.elu(self.fc0(features))
         x = torch.cat([x, features], -1)
@@ -112,10 +108,7 @@ class CNNCriticDenseNet(CNNCritic):
         self.q = nn.Linear(out_size, 1)
 
     def forward(self, states, actions):
-        features = get_concat_features(self.aff_cfg,
-                                       states,
-                                       self.cnn_img,
-                                       self.cnn_gripper)
+        features = get_concat_features(self.aff_cfg, states, self.cnn_img, self.cnn_gripper)
         x_in = torch.cat((features, actions), -1)
         for layer in self.fc_layers:
             x_out = F.silu(layer(x_in))

@@ -1,21 +1,29 @@
+import logging
+import math
 import time
 
 import gym
 import numpy as np
 from robot_io.utils.utils import pos_orn_to_matrix
-import logging
-import math
 
 log = logging.getLogger(__name__)
 
 
 class PandaEnvWrapper(gym.Wrapper):
-    def __init__(self, env, d_pos, d_rot,
-                 gripper_success_width,
-                 gripper_success_displacement,
-                 reward_fail, reward_success,
-                 termination_radius, offset,
-                 *args, **kwargs):
+    def __init__(
+        self,
+        env,
+        d_pos,
+        d_rot,
+        gripper_success_width,
+        gripper_success_displacement,
+        reward_fail,
+        reward_success,
+        termination_radius,
+        offset,
+        *args,
+        **kwargs,
+    ):
         super().__init__(env)
         self.d_pos = d_pos
         self.d_rot = d_rot
@@ -24,8 +32,7 @@ class PandaEnvWrapper(gym.Wrapper):
         self.reward_success = reward_success
         self.termination_radius = termination_radius
         self.offset = np.array([*offset, 1])
-        self.gripper_success_displacement = \
-            np.array([*gripper_success_displacement, 1])
+        self.gripper_success_displacement = np.array([*gripper_success_displacement, 1])
         self._task = "drawer"
         # self._target_orn = np.array([- math.pi * 3/4, 0, 0])
         # Orn from cluster data
@@ -67,8 +74,7 @@ class PandaEnvWrapper(gym.Wrapper):
             move_to = offset_global_frame[:3]
         else:
             move_to = target_pos
-        return self.transform_obs(
-                    self.env.reset(move_to, target_orn))
+        return self.transform_obs(self.env.reset(move_to, target_orn))
 
     def check_success(self, robot_obs):
         gripper_width = robot_obs["gripper_opening_width"]
@@ -80,7 +86,7 @@ class PandaEnvWrapper(gym.Wrapper):
 
         # Initial position in end effector frame coords
         _initial_pos = np.array([*self.init_task_pos, 1])
-        rel_disp_from_aff = - np.linalg.inv(T_world_tcp) @ _initial_pos
+        rel_disp_from_aff = -np.linalg.inv(T_world_tcp) @ _initial_pos
         moved_thresh_dist = rel_disp_from_aff[-1] >= self.gripper_success_displacement[-1]
 
         return holding_obj and moved_thresh_dist
@@ -95,8 +101,7 @@ class PandaEnvWrapper(gym.Wrapper):
         rel_target_orn = np.array([0, 0, 0])
         gripper_action = action[-1]
 
-        action = {"motion": (rel_target_pos, rel_target_orn, gripper_action),
-                  "ref": "rel"}
+        action = {"motion": (rel_target_pos, rel_target_orn, gripper_action), "ref": "rel"}
 
         obs, reward, done, info = self.env.step(action)
         info["success"] = False
@@ -119,7 +124,7 @@ class PandaEnvWrapper(gym.Wrapper):
 
     @staticmethod
     def transform_obs(obs):
-        robot_obs = obs['robot_state']
-        obs['robot_obs'] = np.concatenate([robot_obs["tcp_pos"], [robot_obs["gripper_opening_width"]]])
+        robot_obs = obs["robot_state"]
+        obs["robot_obs"] = np.concatenate([robot_obs["tcp_pos"], [robot_obs["gripper_opening_width"]]])
         del obs["robot_state"]
         return obs

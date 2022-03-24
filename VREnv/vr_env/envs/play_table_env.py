@@ -15,7 +15,6 @@ import hydra
 import numpy as np
 import pybullet as p
 import pybullet_utils.bullet_client as bc
-
 import vr_env
 from vr_env.utils.utils import FpsController, get_git_commit_hash
 
@@ -36,7 +35,7 @@ class PlayTableSimEnv(gym.Env):
         use_scene_info,
         use_egl,
         control_freq=30,
-        **kwargs
+        **kwargs,
     ):
         self.p = p
         # for calculation of FPS
@@ -259,7 +258,7 @@ class PlayTableSimEnv(gym.Env):
         return data["state_obs"], data["done"], data["info"]
 
     def serialize(self):
-        data = {"time": time.time_ns() / (10 ** 9), "robot": self.robot.serialize(), "scene": self.scene.serialize()}
+        data = {"time": time.time_ns() / (10**9), "robot": self.robot.serialize(), "scene": self.scene.serialize()}
         return data
 
 
@@ -291,7 +290,6 @@ def get_env(dataset_path, obs_space=None, show_gui=True, **kwargs):
 def test_env(cfg):
     env = hydra.utils.instantiate(cfg.env, show_gui=True, use_vr=False, use_scene_info=True)
     from robot_io.utils.utils import matrix_to_orn, orn_to_matrix, quat_to_euler
-
     from vr_env.io_utils.space_mouse import SpaceMouse
 
     def to_world_frame(action, robot_obs):

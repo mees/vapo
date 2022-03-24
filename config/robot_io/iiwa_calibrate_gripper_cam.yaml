@@ -15,4 +15,3 @@ defaults:
   - calibration/gripper_cam_pose_sampler@gripper_cam_pose_sampler: iiwa_sampler
   - override hydra/job_logging: colorlog
   - override hydra/hydra_logging: colorlog
-

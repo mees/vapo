@@ -6,9 +6,8 @@ import cv2
 import numpy as np
 import pybullet as p
 import quaternion
-
 from vr_env.robot.mixed_ik import MixedIK
-from vr_env.utils.utils import timeit, orn_to_matrix, pos_orn_to_matrix
+from vr_env.utils.utils import orn_to_matrix, pos_orn_to_matrix, timeit
 
 # A logger for this file
 log = logging.getLogger(__name__)
@@ -76,8 +75,8 @@ class Robot:
         self.target_orn = None
         self.max_drift = np.array(max_drift)
         self.use_target_pose = use_target_pose
-        if('workspace_limits' in kwargs):
-            self.workspace_limits = kwargs['workspace_limits']
+        if "workspace_limits" in kwargs:
+            self.workspace_limits = kwargs["workspace_limits"]
         else:
             self.workspace_limits = None
 
@@ -280,15 +279,13 @@ class Robot:
     def apply_action(self, action, update_target=True):
         if not len(action) == 3:
             action = self.relative_to_absolute(action)
-        if(update_target):
+        if update_target:
             tcp_pos = p.getLinkState(self.robot_uid, self.tcp_link_id, physicsClientId=self.cid)[0]
             self.target_pos = tcp_pos
 
         target_ee_pos, target_ee_orn, self.gripper_action = action
-        if(self.workspace_limits):
-            target_ee_pos = np.clip(target_ee_pos,
-                                    self.workspace_limits[0],
-                                    self.workspace_limits[1])
+        if self.workspace_limits:
+            target_ee_pos = np.clip(target_ee_pos, self.workspace_limits[0], self.workspace_limits[1])
         assert len(target_ee_pos) == 3
         assert len(target_ee_orn) in (3, 4)
         # automatically transform euler actions to quaternion

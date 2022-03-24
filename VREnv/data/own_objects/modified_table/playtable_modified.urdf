@@ -202,4 +202,4 @@
    <parent link="baseLink"/>
    <child link="top_left_table"/>
  </joint>
-</robot> 
+</robot>

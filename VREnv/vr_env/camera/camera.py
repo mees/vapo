@@ -53,7 +53,7 @@ class Camera:
         """
 
         # reshape to get homogeneus transform
-        if(len(point) == 3):
+        if len(point) == 3:
             point = np.array([*point, 1])
         persp_m = np.array(self.projectionMatrix).reshape((4, 4)).T
         view_m = np.array(self.viewMatrix).reshape((4, 4)).T

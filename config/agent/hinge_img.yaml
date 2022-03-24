@@ -9,7 +9,7 @@ hyperparameters:
     batch_size: 64
     buffer_size: 1e6
     learning_starts: 200 #timesteps before starting updates
-    
+
 net_cfg:
     hidden_dim: 313
     activation: relu

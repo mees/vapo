@@ -34,7 +34,7 @@ def timeit(method):
 
 class FpsController:
     def __init__(self, freq):
-        self.loop_time = (1.0 / freq) * 10 ** 9
+        self.loop_time = (1.0 / freq) * 10**9
         self.prev_time = time.time_ns()
 
     def step(self):
@@ -243,7 +243,7 @@ def pos_orn_to_matrix(pos, orn):
     elif len(orn) == 4:
         mat[:3, :3] = R.from_quat(orn).as_matrix()
     elif len(orn) == 3:
-        mat[:3, :3] = R.from_euler('xyz', orn).as_matrix()
+        mat[:3, :3] = R.from_euler("xyz", orn).as_matrix()
     mat[:3, 3] = pos
     return mat
 
@@ -256,7 +256,7 @@ def orn_to_matrix(orn):
     elif len(orn) == 4:
         mat[:3, :3] = R.from_quat(orn).as_matrix()
     elif len(orn) == 3:
-        mat[:3, :3] = R.from_euler('xyz', orn).as_matrix()
+        mat[:3, :3] = R.from_euler("xyz", orn).as_matrix()
     return mat
 
 

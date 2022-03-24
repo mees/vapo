@@ -11,7 +11,7 @@ train:
   - _target_: vapo.affordance.dataloader.transforms.AddGaussianNoise
     mean: [0.0]
     std: [0.01]
-    
+
 validation:
   - _target_: torchvision.transforms.Resize
     size: ${img_size}
@@ -21,7 +21,7 @@ validation:
   - _target_: torchvision.transforms.Normalize
     mean: [0.5,]
     std: [0.5,]
-  
+
 masks:
   - _target_: torchvision.transforms.Resize
     size: ${img_size}

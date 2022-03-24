@@ -4,7 +4,6 @@ from hydra.experimental import compose, initialize
 import numpy as np
 from omegaconf import DictConfig, ListConfig, OmegaConf
 import pytest
-
 from vr_env.envs.play_table_env import PlayTableSimEnv
 
 

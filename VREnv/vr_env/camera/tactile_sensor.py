@@ -2,7 +2,6 @@ import os
 
 import numpy as np
 import pybullet as p
-
 import tacto
 from vr_env.camera.camera import Camera
 

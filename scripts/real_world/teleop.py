@@ -2,8 +2,8 @@ import time
 
 import hydra
 from robot_io.cams.realsense.realsense import Realsense
-
 from robot_io.utils.utils import FpsController
+
 from vapo.affordance.utils.utils import load_from_hydra
 from vapo.utils.utils import transform_and_predict
 
@@ -26,18 +26,22 @@ def main(cfg):
     while True:
         action, record_info = input_device.get_action()
         obs, _, _, _ = env.step(action)
-        transform_and_predict(gripper_cam_aff_net,
-                              gripper_cfg.dataset.transforms_cfg["validation"],
-                              obs["rgb_gripper"],
-                              gripper_cfg.img_size["gripper"],
-                              rgb=True,
-                              cam="gripper")
-        transform_and_predict(static_cam_aff_net,
-                              static_cfg.dataset.transforms_cfg["validation"],
-                              obs["rgb_static"],
-                              static_cfg.img_size["static"],
-                              rgb=True,
-                              cam="static")
+        transform_and_predict(
+            gripper_cam_aff_net,
+            gripper_cfg.dataset.transforms_cfg["validation"],
+            obs["rgb_gripper"],
+            gripper_cfg.img_size["gripper"],
+            rgb=True,
+            cam="gripper",
+        )
+        transform_and_predict(
+            static_cam_aff_net,
+            static_cfg.dataset.transforms_cfg["validation"],
+            obs["rgb_static"],
+            static_cfg.img_size["static"],
+            rgb=True,
+            cam="static",
+        )
         robot.visualize_joint_states()
         recorder.step(action, obs, record_info)
         env.render()

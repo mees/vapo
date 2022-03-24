@@ -1,8 +1,8 @@
 Opened mesh /home/anon/Schreibtisch/BachelorGIT/BachelorProject/data/011_banana/google_64k/textured.obj in 951 msec
 All files opened in 951 msec
-OUT OF SCOPE 
+OUT OF SCOPE
 Mesh Bounding Box Size 0.108916 0.178443 0.036712
-Mesh Bounding Box Diag 0.212255 
+Mesh Bounding Box Diag 0.212255
 Mesh Bounding Box min -0.042989 -0.096562 -0.000384
 Mesh Bounding Box max 0.065927 0.081881 0.036328
 Mesh Surface Area is 0.021652
@@ -22,4 +22,4 @@ Principal axes are :
 | 0.188560 -0.065915 0.979847 |
 axis momenta are :
 | 0.000000 0.000000 0.000000 |
-Applied filter Compute Geometric Measures in 273 msec  
+Applied filter Compute Geometric Measures in 273 msec

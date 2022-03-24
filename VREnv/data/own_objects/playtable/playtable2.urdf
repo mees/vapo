@@ -119,7 +119,7 @@
      </geometry>
    </collision>
  </link>
- 
+
  <link name="slideDoor">
    <contact>
      <lateral_friction value="0.05"/>

@@ -1,7 +1,6 @@
 import numpy as np
 import pybullet as p
 from scipy.spatial.transform import Rotation as R
-
 from vr_env.utils.utils import angle_between_quaternions
 
 
@@ -33,7 +32,6 @@ class MixedIK:
         self.ik_fast = None
         if self.use_ik_fast:
             from ikfast_franka_panda import get_fk
-
             from vr_env.robot.IKfast import IKfast
 
             self.get_fk = get_fk

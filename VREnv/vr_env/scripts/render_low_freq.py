@@ -8,7 +8,6 @@ import sys
 import numpy as np
 from omegaconf import OmegaConf
 from tqdm import tqdm
-
 from vr_env.utils import utils
 
 

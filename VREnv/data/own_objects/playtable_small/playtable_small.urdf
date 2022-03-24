@@ -95,4 +95,4 @@
     <limit effort="500" lower="0.0" upper="0.385" velocity="3.0"/>
     <axis xyz="1 0 0"/>
   </joint>
-</robot> 
+</robot>

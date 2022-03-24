@@ -23,7 +23,7 @@ img_size: 64
 repeat_training: 1
 viz_obs: False
 
-# path to load affordance models either gripper_cam 
+# path to load affordance models either gripper_cam
 # or static_cam
 save_replay_buffer: False
 save_images: False
@@ -60,7 +60,7 @@ env_wrapper:
     use_img: False
     use_depth: False
 
-# tabletop_multiscene_static_sideview.ckpt 
+# tabletop_multiscene_static_sideview.ckpt
 # Static cam affordance model to detect the targets
 gripper_cam_aff_path: ${paths.trained_models}/affordance/gripper_tabletop.ckpt
 static_cam_aff_path: ${paths.trained_models}/affordance/static_tabletop.ckpt

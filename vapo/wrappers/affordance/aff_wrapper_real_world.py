@@ -1,10 +1,13 @@
 import logging
-import numpy as np
+
 import cv2
 from gym import spaces
-from vapo.wrappers.affordance.aff_wrapper_base import AffordanceWrapperBase
-from vapo.utils.utils import pos_orn_to_matrix, get_depth_around_point
+import numpy as np
+
 from vapo.affordance.utils.img_utils import get_px_after_crop_resize
+from vapo.utils.utils import get_depth_around_point, pos_orn_to_matrix
+from vapo.wrappers.affordance.aff_wrapper_base import AffordanceWrapperBase
+
 logger = logging.getLogger(__name__)
 
 
@@ -15,7 +18,7 @@ class AffordanceWrapperRealWorld(AffordanceWrapperBase):
         _action_space = np.ones(4)
         self.action_space = spaces.Box(_action_space * -1, _action_space)
         self.gripper_cam = self.env.camera_manager.gripper_cam
-        self.T_tcp_cam = self.env.env.camera_manager.gripper_cam.get_extrinsic_calibration('panda')
+        self.T_tcp_cam = self.env.env.camera_manager.gripper_cam.get_extrinsic_calibration("panda")
 
     @property
     def task(self):
@@ -26,7 +29,7 @@ class AffordanceWrapperRealWorld(AffordanceWrapperBase):
         return self.env.target_orn
 
     def step(self, action, move_to_box=False):
-        if(self.task == "pickup"):
+        if self.task == "pickup":
             action = np.append(action, 1)
         obs, reward, done, info = self.env.step(action, move_to_box)
         reward = self.reward(reward, obs, done, info["success"])
@@ -35,9 +38,9 @@ class AffordanceWrapperRealWorld(AffordanceWrapperBase):
     def get_images(self, obs_cfg, obs_dict, cam_type):
         depth_img, rgb_img = None, None
         if obs_cfg.use_depth:
-            depth_img = obs_dict['depth_%s' % cam_type]
+            depth_img = obs_dict["depth_%s" % cam_type]
         if obs_cfg.use_img:
-            rgb_img = obs_dict['rgb_%s' % cam_type]
+            rgb_img = obs_dict["rgb_%s" % cam_type]
         return depth_img, rgb_img
 
     def observation(self, obs):
@@ -63,14 +66,17 @@ class AffordanceWrapperRealWorld(AffordanceWrapperBase):
 
     def viz_curr_target(self):
         u, v = self.target_search.static_cam.project(self.curr_detected_obj)
-        u, v = get_px_after_crop_resize((u, v),
-                                        self.target_search.static_cam.crop_coords,
-                                        self.target_search.static_cam.resize_resolution)
+        u, v = get_px_after_crop_resize(
+            (u, v), self.target_search.static_cam.crop_coords, self.target_search.static_cam.resize_resolution
+        )
         img = self.target_search.orig_img.copy()
-        img = cv2.drawMarker(img, (int(u), int(v)),
-                             (0, 0, 0),
-                             markerType=cv2.MARKER_CROSS,
-                             markerSize=15,
-                             thickness=3,
-                             line_type=cv2.LINE_AA)
+        img = cv2.drawMarker(
+            img,
+            (int(u), int(v)),
+            (0, 0, 0),
+            markerType=cv2.MARKER_CROSS,
+            markerSize=15,
+            thickness=3,
+            line_type=cv2.LINE_AA,
+        )
         cv2.imshow("detected target", img[:, :, ::-1])

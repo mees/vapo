@@ -1,13 +1,14 @@
-import os
-import gym
-import numpy as np
-from scipy.spatial.transform.rotation import Rotation as R
-import hydra
-
-from omegaconf import OmegaConf
-from vapo.agent.core.utils import set_init_pos
-from vapo.affordance.affordance_model import AffordanceModel
 import glob
+import os
+
+import gym
+import hydra
+import numpy as np
+from omegaconf import OmegaConf
+from scipy.spatial.transform.rotation import Rotation as R
+
+from vapo.affordance.affordance_model import AffordanceModel
+from vapo.agent.core.utils import set_init_pos
 
 
 def get_files_regex(path, search_str, recursive):
@@ -40,21 +41,23 @@ def torch_to_numpy(x):
 
 def init_aff_net(affordance_cfg, cam_str=None, in_channels=1):
     aff_net = None
-    if(affordance_cfg is not None):
-        if(cam_str is not None):
+    if affordance_cfg is not None:
+        if cam_str is not None:
             aff_cfg = affordance_cfg["%s_cam" % cam_str]
         else:
             aff_cfg = affordance_cfg
-        if("use" in aff_cfg and aff_cfg.use):
+        if "use" in aff_cfg and aff_cfg.use:
             path = aff_cfg.model_path
             path = get_abs_path(path)
             # Configuration of the model
-            hp = {"cfg": aff_cfg.hyperparameters.cfg,
-                  "n_classes": aff_cfg.hyperparameters.n_classes,
-                  "input_channels": in_channels}
+            hp = {
+                "cfg": aff_cfg.hyperparameters.cfg,
+                "n_classes": aff_cfg.hyperparameters.n_classes,
+                "input_channels": in_channels,
+            }
             hp = OmegaConf.create(hp)
             # Create model
-            if(os.path.exists(path)):
+            if os.path.exists(path):
                 aff_net = AffordanceModel.load_from_checkpoint(path, **hp)
                 aff_net.cuda()
                 aff_net.eval()
@@ -70,34 +73,26 @@ def change_project_path(cfg, run_cfg):
     run_cfg.paths.parent_folder = cfg.paths.parent_folder
     # Change affordance path to match current system
     static_cam_aff_path = net_cfg.affordance.static_cam.model_path
-    static_cam_aff_path = static_cam_aff_path.replace(
-        run_cfg.models_path,
-        cfg.models_path)
+    static_cam_aff_path = static_cam_aff_path.replace(run_cfg.models_path, cfg.models_path)
     net_cfg.affordance.static_cam.model_path = static_cam_aff_path
 
     # Gripper cam
     gripper_cam_aff_path = net_cfg.affordance.gripper_cam.model_path
-    gripper_cam_aff_path = gripper_cam_aff_path.replace(
-        run_cfg.models_path,
-        cfg.models_path)
+    gripper_cam_aff_path = gripper_cam_aff_path.replace(run_cfg.models_path, cfg.models_path)
     net_cfg.affordance.gripper_cam.model_path = gripper_cam_aff_path
 
     # Static cam target_search
     target_search = run_cfg.target_search.model_path
-    target_search = target_search.replace(
-        run_cfg.models_path,
-        cfg.models_path)
+    target_search = target_search.replace(run_cfg.models_path, cfg.models_path)
     run_cfg.target_search.model_path = target_search
 
     # VREnv data path
     run_cfg.models_path = cfg.models_path
-    run_cfg.data_path = run_cfg.data_path.replace(
-        run_cfg.project_path,
-        cfg.project_path)
+    run_cfg.data_path = run_cfg.data_path.replace(run_cfg.project_path, cfg.project_path)
 
 
 def load_cfg(cfg_path, cfg, optim_res=False):
-    if(os.path.exists(cfg_path) and not optim_res):
+    if os.path.exists(cfg_path) and not optim_res:
         run_cfg = OmegaConf.load(cfg_path)
         net_cfg = run_cfg.agent.net_cfg
         env_wrapper = run_cfg.env_wrapper
@@ -110,21 +105,21 @@ def load_cfg(cfg_path, cfg, optim_res=False):
         env_wrapper = cfg.env_wrapper
         agent_cfg = cfg.agent.hyperparameters
 
-    if('init_pos_near' in run_cfg):
-        if(run_cfg.init_pos_near):
+    if "init_pos_near" in run_cfg:
+        if run_cfg.init_pos_near:
             init_pos = run_cfg.env.robot_cfg.initial_joint_positions
             init_pos = set_init_pos(run_cfg.task, init_pos)
             run_cfg.env.robot_cfg.initial_joint_positions = init_pos
             run_cfg.eval_env.robot_cfg.initial_joint_positions = init_pos
-    if('rand_init_state' in run_cfg.env):
-        run_cfg.env.pop('rand_init_state')
-        run_cfg.eval_env.pop('rand_init_state')
+    if "rand_init_state" in run_cfg.env:
+        run_cfg.env.pop("rand_init_state")
+        run_cfg.eval_env.pop("rand_init_state")
     return run_cfg, net_cfg, env_wrapper, agent_cfg
 
 
 def get_3D_end_points(x, y, z, w, h, d):
-    w = w/2
-    h = h/2
+    w = w / 2
+    h = h / 2
     box_top_left = [x - w, y + h, z]
     box_bott_right = [x + w, y - h, z + d]
     return (box_top_left, box_bott_right)
@@ -132,8 +127,8 @@ def get_3D_end_points(x, y, z, w, h, d):
 
 def register_env():
     gym.envs.register(
-        id='VREnv-v0',
-        entry_point='VREnv.vr_env.envs.play_table_env:PlayTableSimEnv',
+        id="VREnv-v0",
+        entry_point="VREnv.vr_env.envs.play_table_env:PlayTableSimEnv",
         max_episode_steps=200,
     )
 
@@ -158,14 +153,14 @@ def pos_orn_to_matrix(pos, orn):
     elif len(orn) == 4:
         mat[:3, :3] = R.from_quat(orn).as_matrix()
     elif len(orn) == 3:
-        mat[:3, :3] = R.from_euler('xyz', orn).as_matrix()
+        mat[:3, :3] = R.from_euler("xyz", orn).as_matrix()
     mat[:3, 3] = pos
     return mat
 
 
 def get_depth_around_point(point, depth):
     for width in range(5):
-        area = depth[point[1] - width: point[1] + width + 1, point[0] - width: point[0] + width + 1]
+        area = depth[point[1] - width : point[1] + width + 1, point[0] - width : point[0] + width + 1]
         area[np.where(area == 0)] = np.inf
         if np.all(np.isinf(area)):
             continue

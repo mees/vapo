@@ -1,11 +1,12 @@
+import logging
+import math
 import time
 
 import gym
 import numpy as np
-from vapo.utils.utils import get_3D_end_points
 from robot_io.utils.utils import quat_to_euler
-import logging
-import math
+
+from vapo.utils.utils import get_3D_end_points
 
 log = logging.getLogger(__name__)
 
@@ -17,7 +18,19 @@ GRIPPER_WIDTH_FAIL = 0.075
 
 
 class PandaEnvWrapper(gym.Wrapper):
-    def __init__(self, env, d_pos, d_rot, gripper_success_threshold, reward_fail, reward_success, termination_radius, offset, *args, **kwargs):
+    def __init__(
+        self,
+        env,
+        d_pos,
+        d_rot,
+        gripper_success_threshold,
+        reward_fail,
+        reward_success,
+        termination_radius,
+        offset,
+        *args,
+        **kwargs,
+    ):
         super().__init__(env)
         self.d_pos = d_pos
         self.d_rot = d_rot
@@ -29,11 +42,9 @@ class PandaEnvWrapper(gym.Wrapper):
         self.offset = offset["pickup"]
         self.task = "pickup"
         self.start_orn = np.array([math.pi, 0, 0])
-        if("box_pos" in kwargs):
-            self.box_pos = kwargs['box_pos']
-            self.box_3D_end_points = get_3D_end_points(
-                *self.box_pos,
-                *kwargs["box_dims"])
+        if "box_pos" in kwargs:
+            self.box_pos = kwargs["box_pos"]
+            self.box_3D_end_points = get_3D_end_points(*self.box_pos, *kwargs["box_dims"])
 
     @property
     def task(self):
@@ -50,8 +61,7 @@ class PandaEnvWrapper(gym.Wrapper):
             move_to = target_pos + self.offset[self.task]
         else:
             move_to = target_pos
-        return self.transform_obs(
-                    self.env.reset(move_to, target_orn))
+        return self.transform_obs(self.env.reset(move_to, target_orn))
 
     def check_success(self):
         time.sleep(WAIT_AFTER_GRIPPER_CLOSE)
@@ -92,12 +102,11 @@ class PandaEnvWrapper(gym.Wrapper):
 
         curr_pos = self.env.robot.get_tcp_pos_orn()[0]
         depth_thresh = curr_pos[-1] <= self.env.workspace_limits[0][-1] + 0.01
-        if(depth_thresh):
+        if depth_thresh:
             print("depth tresh")
             gripper_action = -1
 
-        action = {"motion": (rel_target_pos, rel_target_orn, gripper_action),
-                  "ref": "rel"}
+        action = {"motion": (rel_target_pos, rel_target_orn, gripper_action), "ref": "rel"}
 
         obs, reward, done, info = self.env.step(action)
 
@@ -108,7 +117,7 @@ class PandaEnvWrapper(gym.Wrapper):
             if self.check_success():
                 reward = self.reward_success
                 info["success"] = True
-                if(move_to_box):
+                if move_to_box:
                     self.move_to_box()
                 else:
                     self.put_back_object()
@@ -120,8 +129,8 @@ class PandaEnvWrapper(gym.Wrapper):
             if done:
                 reward = self.reward_fail
                 info["failure_case"] = "outside_radius"
-        if('failure_case' in info):
-            print(info['failure_case'])
+        if "failure_case" in info:
+            print(info["failure_case"])
 
         obs = self.transform_obs(obs)
         return obs, reward, done, info
@@ -131,7 +140,9 @@ class PandaEnvWrapper(gym.Wrapper):
 
     @staticmethod
     def transform_obs(obs):
-        robot_obs = obs['robot_state']
-        obs['robot_obs'] = np.concatenate([robot_obs["tcp_pos"], quat_to_euler(robot_obs["tcp_orn"])[-1:], [robot_obs["gripper_opening_width"]]])
+        robot_obs = obs["robot_state"]
+        obs["robot_obs"] = np.concatenate(
+            [robot_obs["tcp_pos"], quat_to_euler(robot_obs["tcp_orn"])[-1:], [robot_obs["gripper_opening_width"]]]
+        )
         del obs["robot_state"]
         return obs

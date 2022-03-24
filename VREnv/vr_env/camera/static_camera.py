@@ -1,6 +1,5 @@
 import numpy as np
 import pybullet as p
-
 from vr_env.camera.camera import Camera
 
 

@@ -16,4 +16,3 @@ defaults:
   - calibration/gripper_cam_pose_sampler@gripper_cam_pose_sampler: panda_sampler
   - override hydra/job_logging: colorlog
   - override hydra/hydra_logging: colorlog
-

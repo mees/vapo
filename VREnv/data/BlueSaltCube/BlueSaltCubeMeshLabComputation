@@ -1,8 +1,8 @@
 Opened mesh /home/anon/Dokumente/Bachelorproject/BachelorProject/data/BlueSaltCube/meshes/BlueSaltCube_5k_tex.obj in 134 msec
 All files opened in 135 msec
-OUT OF SCOPE 
+OUT OF SCOPE
 Mesh Bounding Box Size 57.545097 146.863297 68.523499
-Mesh Bounding Box Diag 171.975967 
+Mesh Bounding Box Diag 171.975967
 Mesh Bounding Box min -22.703100 -39.426300 -33.838699
 Mesh Bounding Box max 34.841999 107.436996 34.684799
 Mesh Surface Area is 36694.585938
@@ -22,4 +22,4 @@ Principal axes are :
 | 0.983018 -0.003018 0.183482 |
 axis momenta are :
 | 245411168.000000 873557056.000000 927922048.000000 |
-Applied filter Compute Geometric Measures in 65 msec 
+Applied filter Compute Geometric Measures in 65 msec

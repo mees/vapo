@@ -42,7 +42,7 @@ docker build -t vapo_image .
 
 ### Run a container
 
-The following line will run the vapo_image under the docker container named "vapo_container". This will open a command line of an ubuntu filesystem in which you can run the code of this repo. 
+The following line will run the vapo_image under the docker container named "vapo_container". This will open a command line of an ubuntu filesystem in which you can run the code of this repo.
 
 The "--rm" flag removes the container after the session is closed.
 
@@ -69,7 +69,7 @@ docker run -it --rm \
 For more information see [run opencv on docker](https://stackoverflow.com/questions/67099130/how-to-run-my-scrip-python-opencv-on-docker-ubuntu).
 
 ###  Resume the container
-Start your container using container id: 
+Start your container using container id:
 ```
 docker start vapo_container
 ```

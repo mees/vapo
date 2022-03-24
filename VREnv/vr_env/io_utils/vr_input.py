@@ -4,7 +4,6 @@ import logging
 import numpy as np
 import pybullet as p
 import quaternion  # noqa
-
 import vr_env.utils.utils as utils
 
 # A logger for this file

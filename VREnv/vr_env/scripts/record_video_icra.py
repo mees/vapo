@@ -9,7 +9,6 @@ import hydra
 import matplotlib.pyplot as plt
 import numpy as np
 import pybullet as p
-
 from vr_env.envs.tasks import Tasks
 from vr_env.utils import utils
 

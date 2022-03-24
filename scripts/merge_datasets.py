@@ -3,6 +3,7 @@ import os
 
 import hydra
 
+
 def get_abs_path(path_str):
     if not os.path.isabs(path_str):
         path_str = os.path.join(hydra.utils.get_original_cwd(), path_str)

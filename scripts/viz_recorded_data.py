@@ -47,7 +47,7 @@ def viz_data(cfg):
                     cv2.imwrite(img_filename, data[key][:, :, ::-1])  # RGB
             else:
                 max_depth = 4
-                img = img.astype("float") / (2 ** 16 - 1) * max_depth
+                img = img.astype("float") / (2**16 - 1) * max_depth
                 # max_range = 2**14 if "static" in key else 2**13
                 img = normalizeImg(0, 1, img)
                 # img = cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8U)

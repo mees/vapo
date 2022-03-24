@@ -2,6 +2,7 @@ import json
 import logging
 import os
 
+import affordance.utils.flowlib as flowlib
 import cv2
 import hydra
 import numpy as np
@@ -15,7 +16,6 @@ from vapo.affordance.dataset_creation.core.utils import (
     instantiate_env,
     save_dict_data,
 )
-import affordance.utils.flowlib as flowlib
 from vapo.affordance.utils.img_utils import (
     create_circle_mask,
     get_px_after_crop_resize,

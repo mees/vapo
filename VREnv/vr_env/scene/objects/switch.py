@@ -63,7 +63,7 @@ class Switch:
             return self.get_state() < self.trigger_threshold
 
     def get_state(self):
-        """ return button joint state """
+        """return button joint state"""
         return float(self.p.getJointState(self.uid, self.joint_index, physicsClientId=self.cid)[0])
 
     def get_info(self):

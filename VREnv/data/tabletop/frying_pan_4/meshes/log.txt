@@ -278,11 +278,11 @@ Examples:
 	 -> Part[13] C  = 0.00254826, E  = 0.0032766, VS = 733, VI = 0
 	 -> Part[14] C  = 0.00175324, E  = 0.0021993, VS = 492, VI = 0
 	 -> Part[15] C  = 0.00368005, E  = 0.0042198, VS = 944, VI = 0
-+ Generate 22 convex-hulls 
++ Generate 22 convex-hulls
 	 time 1.26697s
 + Merge Convex Hulls
 	 time 0.0134428s
-+ Simplify 22 convex-hulls 
++ Simplify 22 convex-hulls
 		 Simplify CH[00000] 69 V, 134 T
 		 Simplify CH[00001] 18 V, 32 T
 		 Simplify CH[00002] 54 V, 104 T
@@ -306,7 +306,7 @@ Examples:
 		 Simplify CH[00020] 25 V, 46 T
 		 Simplify CH[00021] 34 V, 64 T
 	 time 0.00235756s
-+ Generate output: 22 convex-hulls 
++ Generate output: 22 convex-hulls
 	 CH[00000] 40 V, 76 T
 	 CH[00001] 15 V, 26 T
 	 CH[00002] 27 V, 50 T

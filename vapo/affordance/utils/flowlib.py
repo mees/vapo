@@ -119,7 +119,7 @@ def read_flow_png(flow_file):
         flow[i, :, 2] = flow_data[i][2::3]
 
     invalid_idx = flow[:, :, 2] == 0
-    flow[:, :, 0:2] = (flow[:, :, 0:2] - 2 ** 15) / 64.0
+    flow[:, :, 0:2] = (flow[:, :, 0:2] - 2**15) / 64.0
     flow[invalid_idx, 0] = 0
     flow[invalid_idx, 1] = 0
     return flow
@@ -211,13 +211,13 @@ def flow_error(tu, tv, u, v):
     ind2 = [(np.absolute(stu) > smallflow) | (np.absolute(stv) > smallflow)]
     index_su = su[ind2]
     index_sv = sv[ind2]
-    an = 1.0 / np.sqrt(index_su ** 2 + index_sv ** 2 + 1)
+    an = 1.0 / np.sqrt(index_su**2 + index_sv**2 + 1)
     un = index_su * an
     vn = index_sv * an
 
     index_stu = stu[ind2]
     index_stv = stv[ind2]
-    tn = 1.0 / np.sqrt(index_stu ** 2 + index_stv ** 2 + 1)
+    tn = 1.0 / np.sqrt(index_stu**2 + index_stv**2 + 1)
     tun = index_stu * tn
     tvn = index_stv * tn
 
@@ -260,7 +260,7 @@ def flow_to_image(flow):
     maxv = max(maxv, np.max(v))
     minv = min(minv, np.min(v))
 
-    rad = np.sqrt(u ** 2 + v ** 2)
+    rad = np.sqrt(u**2 + v**2)
     maxrad = max(-1, np.max(rad))
 
     # print("max flow: %.4f\nflow range:\nu = %.3f .. %.3f\nv = %.3f .. %.3f" % (maxrad, minu,maxu, minv, maxv))
@@ -440,7 +440,7 @@ def compute_color(u, v):
     colorwheel = make_color_wheel()
     ncols = np.size(colorwheel, 0)
 
-    rad = np.sqrt(u ** 2 + v ** 2)
+    rad = np.sqrt(u**2 + v**2)
 
     a = np.arctan2(-v, -u) / np.pi
 
