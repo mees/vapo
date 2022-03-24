@@ -10,7 +10,11 @@ Jessica Borja, [Oier Mees](https://www.oiermees.com/), [Gabriel Kalweit](https:/
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
-Implementation of Visual Affordance-guided Policy Optimization
+We present Visual Affordance-guided Policy Optimization (VAPO), a novel approach that extracts a selfsupervised visual affordance model from human teleoperated
+play data and leverages it to enable efficient policy learning and motion planning. We combine model-based planning with model-free deep reinforcement learning (RL) to learn policies
+that favor the same object regions favored by people, while requiring minimal robot interactions with the environment.
+We find that our policies train 4x faster than the baselines and generalize better to novel objects because our visual affordance model can
+anticipate their affordance regions. More information at our [project page](http://vapo.cs.uni-freiburg.de/).
 
 ## Installation
 - [Install locally](./docs/local_setup.md)
@@ -18,7 +22,8 @@ Implementation of Visual Affordance-guided Policy Optimization
 
 ## Usage
 - [Affordance model](./docs/affordance.md)
-- [Policy](./docs/policy.md)# vapo
+- [Policy](./docs/policy.md)
+
 Implementation of Visual Affordance-guided Policy Optimization
 
 
