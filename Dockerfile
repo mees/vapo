@@ -1,47 +1,82 @@
-FROM nvidia/cuda:11.6.0-base-ubuntu20.04
-WORKDIR /home/
-
-# Install miniconda
-ENV PATH="/root/miniconda3/bin:${PATH}"
-ARG PATH="/root/miniconda3/bin:${PATH}"
-RUN apt-get update
-RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/*
-
-RUN wget \
-    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && mkdir /root/.conda \
-    && bash Miniconda3-latest-Linux-x86_64.sh -b \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh 
-RUN conda --version
-RUN conda init bash
-
-# Install cuda toolkit 11.3
+FROM nvidia/cuda:11.3.0-devel-ubuntu20.04
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
-RUN mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
-RUN wget https://developer.download.nvidia.com/compute/cuda/11.3.0/local_installers/cuda-repo-ubuntu2004-11-3-local_11.3.0-465.19.01-1_amd64.deb
-RUN dpkg -i cuda-repo-ubuntu2004-11-3-local_11.3.0-465.19.01-1_amd64.deb
-RUN apt-key add /var/cuda-repo-ubuntu2004-11-3-local/7fa2af80.pub
-RUN apt-get update
-RUN apt-get -y install cuda
+RUN apt-get update && \
+    apt-get -y install sudo
+RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/*
 
-# Install conda environment
+# install packages
+RUN apt-get update
+RUN apt-get install build-essential cmake -y
 RUN apt-get install -y git
 RUN apt-get install ffmpeg libsm6 libxext6  -y
-RUN conda init bash
-# RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+RUN nvcc --version
+
+# Add user
+ENV user lg
+RUN useradd -m -d /home/user user && \
+    chown -R user /home/user && \
+    adduser user sudo && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+USER user
+WORKDIR /home/user
+ENV PATH="/home/user/.local/bin:${PATH}"
+
+# Install conda
+ENV PATH="/home/user/miniconda3/bin:${PATH}"
+ARG PATH="/home/user/miniconda3/bin:${PATH}"
+RUN wget \
+    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && mkdir /home/user/.conda \
+    && bash Miniconda3-latest-Linux-x86_64.sh -b \
+    && rm -f Miniconda3-latest-Linux-x86_64.sh 
+RUN conda --version
 
 # Create the environment:
-COPY environment.yml .
+COPY --chown=user:user environment.yml .
+RUN conda init bash
 RUN conda env create -f environment.yml
-RUN echo 'cd /home/' >> /root/.bashrc
-RUN echo 'conda activate vapo_env' >> /root/.bashrc
 
 # Make RUN commands use the new environment:
-SHELL ["conda", "run", "-n", "vapo_env", "/bin/bash", "-c"]
+RUN echo 'cd /home/user/' >> /home/user/.bashrc
+RUN echo 'conda activate vapo_env' >> /home/user/.bashrc
 
-# The code to run when container is started:
-COPY start.sh .
-RUN bash start.sh
+# Install pybullet
+WORKDIR /home/user/
+RUN git clone https://github.com/bulletphysics/bullet3.git
+RUN cd bullet3
+RUN wget https://raw.githubusercontent.com/BlGene/bullet3/egl_remove_works/examples/OpenGLWindow/EGLOpenGLWindow.cpp -O /home/user/bullet3/examples/OpenGLWindow/EGLOpenGLWindow.cpp
+
+SHELL ["conda", "run", "-n", "vapo_env", "/bin/bash", "-c"]
+# Install pytorch
+RUN conda install pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=11.3 -c pytorch -c conda-forge
+
+# Install bullet
+WORKDIR /home/user/bullet3
+RUN pip install numpy
+RUN pip install -e .
+
+# Install VREnv
+WORKDIR /home/user/
+RUN git clone https://github.com/mees/vapo.git
+WORKDIR /home/user/vapo/VREnv
+RUN pip install -e .
+
+# Install vapo
+WORKDIR /home/user/vapo/
+RUN pip install -e .
+
+# Install hough voting layer
+WORKDIR /home/user/
+RUN git clone https://github.com/eigenteam/eigen-git-mirror.git
+
+WORKDIR /home/user/eigen-git-mirror/
+RUN mkdir build/
+
+WORKDIR /home/user/eigen-git-mirror/build
+RUN cmake ..
+RUN sudo make install
+WORKDIR /home/user/vapo/vapo/affordance/hough_voting/
+RUN python setup.py install
