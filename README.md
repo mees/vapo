@@ -16,6 +16,10 @@ that favor the same object regions favored by people, while requiring minimal ro
 We find that our policies train 4x faster than the baselines and generalize better to novel objects because our visual affordance model can
 anticipate their affordance regions. More information at our [project page](http://vapo.cs.uni-freiburg.de/).
 
+<p align="center">
+  <img src="http://vapo.cs.uni-freiburg.de/images/motivation.png" width="75%"/>
+</p>
+
 ## Installation
 - [Install locally](./docs/local_setup.md)
 - [Install using Docker](./docs/docker_setup.md)
