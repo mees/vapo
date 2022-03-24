@@ -113,6 +113,7 @@ __pycache__
 hydra_outputs/
 workspace.code-workspace
 .idea/
+trained_models/
 wandb/
 vapo/analysis/figures/
 vapo/analysis/results_csv/
