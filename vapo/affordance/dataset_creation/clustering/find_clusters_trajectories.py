@@ -8,7 +8,7 @@ import numpy as np
 from sklearn.cluster import DBSCAN, KMeans
 import tqdm
 
-from vapo.affordance.dataset_creation.core.data_discovery import TaskDetector
+from vapo.affordance.dataset_creation.core.data_discovery import TasksDiscovery
 from vapo.affordance.dataset_creation.core.utils import check_file, get_data
 
 
@@ -79,7 +79,7 @@ def label_motion(cfg):
     # Multiple folders in real-robot data
     _, curr_folder = os.path.split(head)
 
-    task_detector = TaskDetector(cfg)
+    task_detector = TasksDiscovery(cfg)
     for idx, filename in enumerate(tqdm.tqdm(files)):
         data = check_file(filename)
         if data is None:
@@ -186,9 +186,6 @@ def find_most_sampled(trajectories):
 @hydra.main(config_path="../../../config", config_name="cfg_datacollection")
 def main(cfg):
     pos = label_motion(cfg)
-    # pos = load_json('/mnt/ssd_shared/Users/Jessica/Documents/Proyecto_ssd/datasets/tmp_test/trajectories.json')
-    # pos = load_json("C:/Users/Jessica/Documents/Proyecto_ssd/datasets/playtable_multiclass_200px_MoC/trajectories_3objs.json")
-    # pos = find_most_sampled(pos)
     plot_clusters(pos)
 
 
