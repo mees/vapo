@@ -11,7 +11,7 @@ from vapo.utils.utils import init_aff_net
 
 class TargetSearch:
     def __init__(
-        self, env, mode, aff_transforms=None, aff_cfg=None, class_label=None, initial_pos=None, *args, **kwargs
+        self, env, mode: str, aff_transforms=None, aff_cfg=None, class_label=None, initial_pos=None, **kwargs
     ) -> None:
         self.env = env
         self.mode = mode

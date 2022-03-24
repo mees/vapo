@@ -2,6 +2,7 @@ from collections import defaultdict
 import json
 import os
 import re
+from typing import Dict, List
 
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
@@ -14,36 +15,24 @@ import wandb
 plt.rc("text", usetex=True)
 
 sns.set(style="white", font_scale=2)
-# plt.rcParams['text.latex.preamble'] = [r"\usepackage{lmodern}"]
 plt.rcParams["font.size"] = 50
 
 
 def plot_data(data, ax, label, n_ep=5, color="gray", stats_axis=0):
     mean = np.mean(data, axis=stats_axis)[:, -1]
-    # std = np.std(data, axis=stats_axis)[:, -1]
     min_values = np.min(data, axis=stats_axis)[:, -1]
     max_values = np.max(data, axis=stats_axis)[:, -1]
 
     smooth_window = 10 if n_ep == 5 else 5
     mean = np.array(pd.Series(mean).rolling(smooth_window, min_periods=smooth_window).mean())
-    # std = np.array(pd.Series(std).rolling(smooth_window,
-    #                                       min_periods=smooth_window).mean())
     min_values = np.array(pd.Series(min_values).rolling(smooth_window, min_periods=smooth_window).mean())
     max_values = np.array(pd.Series(max_values).rolling(smooth_window, min_periods=smooth_window).mean())
 
     steps = data[0, :, 0]
-    # for learning_curve in data:
-    #     smooth_data = np.array(pd.Series(learning_curve[:, 1]).rolling(smooth_window,
-    #                                             min_periods=smooth_window).mean())
-    #     ax.plot(learning_curve[:, 0], smooth_data, 'k', linewidth=1, color=color)
-
     ax.plot(steps, mean, "k", label=label, color=color)
-    # lb = mean - std
     lb = min_values
     lb[lb < 0] = 0
-    # ax.fill_between(steps, mean + std, lb, color=color, alpha=0.15)
     ax.fill_between(steps, max_values, min_values, color=color, alpha=0.10)
-    # ax.axhline(n_ep, color="gray", ls="--")
     return ax
 
 
@@ -102,12 +91,9 @@ def plot_experiments(
     ax.set_xlabel(x_label.title())
     ax.set_ylabel(y_label.title())
     ax.set_xlim(xmin=0, xmax=x_lim)
-    # x_ticks = [*ax.get_xticks()[:-1], x_lim]
-    # ax.set_xticks(x_ticks)
     ax.xaxis.set_major_formatter(ticker.EngFormatter())
     ax.set_ylim([0, 1])
     ax.legend(loc="upper left")
-    # fig.suptitle("%s" % (metric.title()))
 
     if not os.path.exists(save_folder):
         os.makedirs(save_folder)
@@ -119,9 +105,13 @@ def plot_experiments(
 
 class WandbPlots:
     def __init__(
-        self, experiments, track_metrics, load_from_file=True, show=True, save_dir="./analysis/figures"
+        self,
+        experiments: Dict,
+        track_metrics: List[str],
+        load_from_file: bool = True,
+        show: bool = True,
+        save_dir: str = "./analysis/figures",
     ) -> None:
-
         os.makedirs(save_dir, exist_ok=True)
         self.save_dir = os.path.abspath(save_dir)
         json_filepath = os.path.join(self.save_dir, "exp_data.json")
@@ -254,8 +244,8 @@ if __name__ == "__main__":
 
     run_info = {"vapo_gen_15objs": runs_gen, "vapo_15objs": runs_orig}
 
-    track_metrics = ["eval/success(15ep)", "eval/success(5ep)"]
+    metrics = ["eval/success(15ep)", "eval/success(5ep)"]
     for exp_name, runs in run_info.items():
         analysis = WandbPlots(
-            runs, track_metrics, load_from_file=True, show=False, save_dir="./analysis/figures/%s" % exp_name
+            runs, metrics, load_from_file=True, show=False, save_dir="./analysis/figures/%s" % exp_name
         )
