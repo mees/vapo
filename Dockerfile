@@ -51,8 +51,6 @@ RUN echo 'export MESA_GL_VERSION_OVERRIDE=3.3' >> /home/user/.bashrc
 
 
 SHELL ["conda", "run", "-n", "vapo_env", "/bin/bash", "-c"]
-# Install pytorch
-#RUN conda install pytorch==1.9.0 torchvision==0.10.0 cudatoolkit=11.3 -c pytorch -c conda-forge
 
 # Install bullet
 RUN pip install pybullet
