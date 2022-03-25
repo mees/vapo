@@ -47,6 +47,7 @@ RUN conda env create -f environment.yml
 # Make RUN commands use the new environment:
 RUN echo 'cd /home/user/' >> /home/user/.bashrc
 RUN echo 'conda activate vapo_env' >> /home/user/.bashrc
+RUN echo 'export MESA_GL_VERSION_OVERRIDE=3.3' >> /home/user/.bashrc
 
 
 SHELL ["conda", "run", "-n", "vapo_env", "/bin/bash", "-c"]
