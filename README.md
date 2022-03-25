@@ -1,4 +1,6 @@
 # VAPO
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [**Affordance Learning from Play for Sample-Efficient Policy Learning**](https://arxiv.org/pdf/2203.00352.pdf)
 
@@ -6,8 +8,7 @@ Jessica Borja, [Oier Mees](https://www.oiermees.com/), [Gabriel Kalweit](https:/
 
 [ICRA 2022](https://www.icra2022.org/)
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 
 We present Visual Affordance-guided Policy Optimization (VAPO), a novel approach that extracts a selfsupervised visual affordance model from human teleoperated
