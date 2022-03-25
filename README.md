@@ -1,5 +1,7 @@
 # VAPO
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/mees/vapo.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/mees/vapo/context:python)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/mees/vapo.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/mees/vapo/alerts/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [**Affordance Learning from Play for Sample-Efficient Policy Learning**](https://arxiv.org/pdf/2203.00352.pdf)
