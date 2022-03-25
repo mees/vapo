@@ -1,6 +1,11 @@
-FROM nvidia/cuda:11.3.0-devel-ubuntu20.04
+FROM nvidia/cuda:11.3.1-devel-ubuntu20.04
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
+
+
+# You should modify this to match your GPU compute capability
+ENV TORCH_CUDA_ARCH_LIST="6.1 7.0 7.5 8.6+PTX"
+ENV TORCH_NVCC_FLAGS="-Xfatbin -compress-all"
 
 RUN apt-get update && \
     apt-get -y install sudo
@@ -10,7 +15,7 @@ RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/*
 RUN apt-get update
 RUN apt-get install build-essential cmake -y
 RUN apt-get install -y git
-RUN apt-get install ffmpeg libsm6 libxext6  -y
+RUN apt-get install ffmpeg libsm6 libxext6 libopenblas-dev -y
 
 RUN nvcc --version
 
@@ -43,20 +48,14 @@ RUN conda env create -f environment.yml
 RUN echo 'cd /home/user/' >> /home/user/.bashrc
 RUN echo 'conda activate vapo_env' >> /home/user/.bashrc
 
-# Install pybullet
-WORKDIR /home/user/
-RUN git clone https://github.com/bulletphysics/bullet3.git
-RUN cd bullet3
-RUN wget https://raw.githubusercontent.com/BlGene/bullet3/egl_remove_works/examples/OpenGLWindow/EGLOpenGLWindow.cpp -O /home/user/bullet3/examples/OpenGLWindow/EGLOpenGLWindow.cpp
 
 SHELL ["conda", "run", "-n", "vapo_env", "/bin/bash", "-c"]
 # Install pytorch
-RUN conda install pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=11.3 -c pytorch -c conda-forge
+#RUN conda install pytorch==1.9.0 torchvision==0.10.0 cudatoolkit=11.3 -c pytorch -c conda-forge
 
 # Install bullet
-WORKDIR /home/user/bullet3
-RUN pip install numpy
-RUN pip install -e .
+RUN pip install pybullet
+#RUN pip install numpy
 
 # Install VREnv
 WORKDIR /home/user/
@@ -70,12 +69,12 @@ RUN pip install -e .
 
 # Install hough voting layer
 WORKDIR /home/user/
-RUN git clone https://github.com/eigenteam/eigen-git-mirror.git
+RUN git clone https://gitlab.com/libeigen/eigen.git
 
-WORKDIR /home/user/eigen-git-mirror/
+WORKDIR /home/user/eigen/
 RUN mkdir build/
 
-WORKDIR /home/user/eigen-git-mirror/build
+WORKDIR /home/user/eigen/build
 RUN cmake ..
 RUN sudo make install
 WORKDIR /home/user/vapo/vapo/affordance/hough_voting/
