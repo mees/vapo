@@ -15,7 +15,7 @@ RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/*
 RUN apt-get update
 RUN apt-get install build-essential cmake -y
 RUN apt-get install -y git
-RUN apt-get install ffmpeg libsm6 libxext6 libopenblas-dev -y
+RUN apt-get install ffmpeg libsm6 libxext6  libx11-dev libopenblas-dev libglvnd0 libgl1 libglx0 libegl1 -y
 
 RUN nvcc --version
 
@@ -61,6 +61,7 @@ RUN pip install pybullet
 WORKDIR /home/user/
 RUN git clone https://github.com/mees/vapo.git
 WORKDIR /home/user/vapo/VREnv
+RUN chmod u+x egl_check/EGL_options.o
 RUN pip install -e .
 
 # Install vapo
