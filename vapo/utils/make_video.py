@@ -47,7 +47,7 @@ def make_videos(path, cam, val_dir=False):
 
 
 if __name__ == "__main__":
-    pred_folder = "/mnt/ssd_shared/Users/Jessica/Documents/Thesis_ssd/rollouts/2022-03-07/11-20-59/images"
+    pred_folder = "/mnt/ssd_shared/Users/Jessica/Documents/rollouts/2022-03-07/11-20-59/images"
 
     gripper_ep_dirs = glob.glob("%s/ep_*" % pred_folder)
     gripper_eps = [os.path.join(ep_dir, "gripper_dirs") for ep_dir in gripper_ep_dirs]

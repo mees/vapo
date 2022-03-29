@@ -6,4 +6,4 @@ vr_data: ${paths.vapo_path}/VREnv/data/
 trained_models: ${paths.vapo_path}/trained_models/
 
 # For training affordance model
-datasets: ${paths.parent_folder}/Thesis_ssd/datasets/
+datasets: ${paths.parent_folder}/datasets/
