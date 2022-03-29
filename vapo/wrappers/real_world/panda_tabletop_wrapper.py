@@ -54,6 +54,9 @@ class PandaEnvWrapper(gym.Wrapper):
     def task(self, value):
         self._task = value
 
+    def get_target_orn(self, task):
+        return self.start_orn
+
     def reset(self, target_pos=None, target_orn=None):
         self.env.robot.open_gripper()
         if target_pos is not None and target_orn is not None:

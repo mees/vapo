@@ -83,7 +83,7 @@ def plot_experiments(
 
     cm = plt.get_cmap("tab10")
     colors = cm(np.linspace(0, 1, len(data)))
-    colors = [[0, 0, 1, 1], [1, 0, 0, 0.8]]
+    # colors = [[0, 0, 1, 1], [1, 0, 0, 0.8]]
     for exp_data, c in zip(data, colors):
         name, data = exp_data
         ax = plot_data(data, ax, n_ep=n_ep, label=name, color=c, stats_axis=0)
@@ -224,7 +224,7 @@ class WandbPlots:
 
         ts_axis = 0
         min_data_axs = min([np.array(d)[:, ts_axis][-1] for d in data])
-        min_data_axs = 400000
+        # min_data_axs = 400000
         data_by_ts = merge_data(data, min_data_axs, n_data_points, axis=ts_axis)
         return data_by_ep, data_by_ts, n_eval_ep
 

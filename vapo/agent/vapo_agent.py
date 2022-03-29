@@ -81,7 +81,7 @@ class VAPOAgent(SAC):
         if max_episode_length is None:
             max_episode_length = sys.maxsize  # "infinite"
 
-        plot_data = {"actor_loss": [], "critic_loss": [], "ent_coef_loss": [], "ent_coef": []}
+        # plot_data = {"actor_loss": [], "critic_loss": [], "ent_coef_loss": [], "ent_coef": []}
 
         _log_n_ep = log_interval // max_episode_length
         _full_eval_interval = full_eval_interval // max_episode_length
@@ -199,7 +199,7 @@ class VAPOAgent(SAC):
                 n_episodes = len(tasks)
             else:
                 # Keep same scene that with wich was trained
-                s = env.reset(eval=True)
+                env.reset(eval=True)
                 target_pos, no_target, center_targets = self.target_search.compute(env, return_all_centers=True)
                 n_episodes = len(center_targets)
 
@@ -270,7 +270,7 @@ class VAPOAgent(SAC):
 
         ep_success = []
         total_ts = 0
-        s = env.reset()
+        env.reset()
         # Set total timeout to timeout per task times all tasks + 1
         while (
             total_ts <= max_episode_length * n_tasks and self.no_detected_target < 3 and not self.env.all_objs_in_box()

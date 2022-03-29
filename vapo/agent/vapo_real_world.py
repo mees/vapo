@@ -59,7 +59,8 @@ class VAPOAgent(SAC):
             task = "drawer"
         else:
             task = "pickup"
-        task = self.get_detected_task(target_pos)
+        # Testing feature 
+        # task = self.get_detected_task(target_pos)
         env.task = task
         target_orn = env.get_target_orn(task)
         return target_orn
@@ -89,7 +90,7 @@ class VAPOAgent(SAC):
         if max_episode_length is None:
             max_episode_length = sys.maxsize  # "infinite"
 
-        plot_data = {"actor_loss": [], "critic_loss": [], "ent_coef_loss": [], "ent_coef": []}
+        # plot_data = {"actor_loss": [], "critic_loss": [], "ent_coef_loss": [], "ent_coef": []}
 
         _log_n_ep = log_interval // max_episode_length
         if _log_n_ep < 1:
@@ -174,7 +175,7 @@ class VAPOAgent(SAC):
         ep_returns, ep_lengths = [], []
         no_target = True
         while no_target:
-            s = env.reset()
+            env.reset()
             target_pos, no_target, center_targets = self.target_search.compute(env, return_all_centers=True)
             if no_target:
                 input("No object detected. Please rearrange table.")
@@ -221,7 +222,6 @@ class VAPOAgent(SAC):
     def tidy_up(self, env, max_episode_length=100, n_objects=4, deterministic=True):
         ep_success = []
         total_ts = 0
-        s = env.reset()
         self.no_detected_target = 0
         # Set total timeout to timeout per task times all tasks + 1
         while total_ts <= max_episode_length * n_objects:

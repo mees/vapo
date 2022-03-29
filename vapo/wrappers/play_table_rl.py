@@ -221,7 +221,7 @@ class PlayTableRL(PlayTableSimEnv):
         elif self.task == "hinge":
             link_id = self.scene.get_info()["fixed_objects"]["hinged_drawer"]["uid"]
             targetWorldPos = self.p.getLinkState(link_id, 1, physicsClientId=self.cid)[0]
-            targetState = self.p.getJointState(link_id, 1, physicsClientId=self.cid)[0]
+            # targetState = self.p.getJointState(link_id, 1, physicsClientId=self.cid)[0]
 
             targetWorldPos = [targetWorldPos[0] + 0.02, targetWorldPos[1], 1]
             # table is id 0,

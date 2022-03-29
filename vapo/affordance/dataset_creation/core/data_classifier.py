@@ -31,6 +31,7 @@ class BaseDetector:
 
 class TaskDetector(BaseDetector):
     def __init__(self, cfg, data_info=None, *args, **kwargs):
+        super().__init__()
         if cfg.clustering_method.lower() == "kmeans":
             _clustering_method = KMeans(**cfg.params)
         else:  # dbscan
@@ -40,7 +41,6 @@ class TaskDetector(BaseDetector):
         self.interact_ts_counter = 0
         self.start_point = None
         self.curr_obj = None
-        self.clusters = None
         self.directions = []
         if data_info is not None:
             self.data = data_info
