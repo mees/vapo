@@ -4,7 +4,6 @@ from typing import Dict, Set
 import numpy as np
 from omegaconf import ListConfig
 from scipy.spatial.transform import Rotation as R
-from vr_env.utils.utils import timeit
 
 
 class Tasks:

@@ -1,13 +1,9 @@
 import logging
-import math
-import os
 
-import cv2
 import numpy as np
 import pybullet as p
-import quaternion
 from vr_env.robot.mixed_ik import MixedIK
-from vr_env.utils.utils import orn_to_matrix, pos_orn_to_matrix, timeit
+from vr_env.utils.utils import orn_to_matrix
 
 # A logger for this file
 log = logging.getLogger(__name__)

@@ -1,22 +1,41 @@
 import json
 import os
+from pathlib import Path
+import argparse
+import yaml
 
-import hydra
+def to_abs(path):
+    if os.path.isabs(path):
+        return path
+    else:
+        repo_src_dir = Path(__file__).absolute().parents[1]
+        return os.path.abspath(repo_src_dir / path)
 
+def parse_args():
+    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser.add_argument('--output_dir', type=str, default='',
+                        help='directory to output merged episodes_split.json')
 
-def get_abs_path(path_str):
-    if not os.path.isabs(path_str):
-        path_str = os.path.join(hydra.utils.get_original_cwd(), path_str)
-        path_str = os.path.abspath(path_str)
-    return path_str
+    args = parser.parse_args()
+    cfg_path = to_abs("./config/cfg_merge_dataset.yaml")
+    with open(cfg_path, 'r') as stream:
+        directory_list = yaml.safe_load(stream)['data_lst']
 
+    if args.output_dir == '':
+        output_dir = to_abs(os.path.dirname(directory_list[0]))
+    else:
+        output_dir = to_abs(args.ouput_dir)
+
+    print("Writing to %s " % output_dir)
+    return output_dir, directory_list
 
 # Merge datasets using json files
-def merge_datasets(directory_list, output_dir):
-    output_dir = get_abs_path(output_dir)
+def merge_datasets():
+    output_dir, directory_list = parse_args()
+
     new_data = {"training": {}, "validation": {}}
     for dir in directory_list:
-        abs_dir = get_abs_path(dir)
+        abs_dir = os.path.abspath(dir)
         json_path = os.path.join(abs_dir, "episodes_split.json")
         with open(json_path) as f:
             data = json.load(f)
@@ -41,10 +60,6 @@ def merge_datasets(directory_list, output_dir):
         json.dump(new_data, outfile, indent=2)
 
 
-@hydra.main(config_path="../config", config_name="cfg_merge_dataset")
-def main(cfg):
-    merge_datasets(cfg.data_lst, cfg.output_dir)
-
-
 if __name__ == "__main__":
-    main()
+    
+    merge_datasets()

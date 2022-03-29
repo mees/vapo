@@ -3,9 +3,7 @@ import logging
 import os
 
 import hydra
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.cluster import DBSCAN, KMeans
 
 from vapo.affordance.dataset_creation.core.data_reader import DataReader
 from vapo.affordance.utils.utils import get_abs_path

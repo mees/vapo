@@ -19,6 +19,7 @@ setup(
         "pynput",
         "omegaconf",
         "flake8",
+        "Pillow",
         "matplotlib",
     ],
 )

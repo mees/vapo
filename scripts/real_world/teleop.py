@@ -53,7 +53,7 @@ def main(cfg):
         recorder.step(action, obs, record_info)
         env.render()
         fps.step()
-        # print(1 / (time.time() - t1))
+        print(1 / (time.time() - t1))
         t1 = time.time()
 
 

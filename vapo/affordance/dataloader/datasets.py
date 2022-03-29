@@ -34,7 +34,6 @@ class VREnvData(Dataset):
         data_dir,
         img_resize,
         transforms_cfg,
-        n_train_ep=-1,
         split="train",
         cam="static",
         log=None,
@@ -45,7 +44,7 @@ class VREnvData(Dataset):
         self.log = log
         self.root_dir = get_abs_path(data_dir)
         _data_info = self.read_json(os.path.join(self.root_dir, "episodes_split.json"))
-        self.data = self._get_split_data(_data_info, split, cam, n_train_ep)
+        self.data = self._get_split_data(_data_info, split, cam)
         self.add_rotation = False
         self.img_resize = img_resize
         self.transforms = get_transforms(transforms_cfg[split], img_resize[cam])
@@ -64,15 +63,9 @@ class VREnvData(Dataset):
         test_tensor = self.transforms(test_tensor)
         return test_tensor.shape  # C, H, W
 
-    def _get_split_data(self, data, split, cam, n_train_ep):
+    def _get_split_data(self, data, split, cam):
         split_data = []
         split_episodes = list(data[split].keys())
-
-        # Select amount of data to train on
-        if n_train_ep > 0 and split == "train":
-            assert len(split_episodes) >= n_train_ep, "n_train_ep must <= %d" % len(split_episodes)
-            split_episodes = np.random.choice(split_episodes, n_train_ep, replace=False)
-
         print("%s episodes: %s" % (split, str(split_episodes)))
         for ep in split_episodes:
             data[split][ep].sort()
@@ -174,6 +167,7 @@ class VREnvData(Dataset):
 
         # return blank masks and directions
         if len(centers) == 0:
+            direction_labels = torch.tensor(direction_labels).permute(2, 0, 1)
             return direction_labels, obj_mask
 
         for center_info in centers:
@@ -223,9 +217,10 @@ def test_dir_labels(hv, frame, aff_mask, center_dir):
     return frame
 
 
-@hydra.main(config_path="../../config", config_name="cfg_affordance")
+@hydra.main(config_path="../../../config", config_name="cfg_affordance")
 def main(cfg):
-    val = VREnvData(split="validation", log=None, **cfg.dataset)
+    # split = 'validation' or 'training'
+    val = VREnvData(split="training", log=None, **cfg.dataset)
     val_loader = DataLoader(val, num_workers=1, batch_size=1, pin_memory=True)
     print("val minibatches {}".format(len(val_loader)))
     from vapo.affordance.hough_voting import hough_voting as hv
@@ -250,15 +245,15 @@ def main(cfg):
         directions = np.transpose(directions, (1, 2, 0))
         flow_img = flowlib.flow_to_image(directions)  # RGB
 
-        out_img = frame
-        for label in range(1, val.n_classes):
-            color = colors[label - 1]
-            color[-1] = 0.3
-            color = tuple((color * 255).astype("int32"))
-            class_mask = np.zeros(mask.shape[1:])
-            class_mask[mask[0] == label] = 255
-            out_img = overlay_mask(class_mask, out_img, color)
-        cv2.imshow("masks", out_img[:, :, ::-1])
+        # out_img = frame
+        # for label in range(1, val.n_classes):
+        #     color = colors[label - 1]
+        #     color[-1] = 0.3
+        #     color = tuple((color * 255).astype("int32"))
+        #     class_mask = np.zeros(mask.shape[1:])
+        #     class_mask[mask[0] == label] = 255
+        #     out_img = overlay_mask(class_mask, out_img, color)
+        # cv2.imshow("masks", out_img[:, :, ::-1])
 
         fg_mask = mask.any(axis=0).astype("uint8")  # Binary (0,1)
         fg_mask = torch.tensor(fg_mask).unsqueeze(0)

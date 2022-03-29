@@ -121,3 +121,4 @@ build/
 dist/
 *.egg-info/
 *EGl_options.o
+.mypy_cache/

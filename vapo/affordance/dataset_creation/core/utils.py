@@ -265,7 +265,7 @@ def get_files(path, extension, recursive=False):
     return files
 
 
-def get_data(play_data_dir, real_world, lang_file=""):
+def get_data(play_data_dir, real_world, lang_file=None):
     # Episodes info
     # Sorted files
     files = []

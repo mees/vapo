@@ -1,5 +1,5 @@
 defaults:
-  - labeling: simulation
+  - aff_model/labeling@labeling: simulation
   - env: env_labeling
   - scene: empty_table
   - robot: panda
@@ -10,31 +10,28 @@ defaults:
 
 #Environment
 output_size:
-  static: 256
-  gripper: 96
+  static: 200
+  gripper: 64
 mask_on_close: True
 save_viz: False
 euler_obs: True
 frames_before_saving: 20000
 viz: false
-cluster_data: true
-
-language:
-  file: auto_lang_ann.npy
 
 # To write all data to a single split
 output_cfg:
-  single_split: False
+  single_split: False  # True if all the images in the play_data_dir belong to a single split, otherwise they will be split into validation and training
   save_split: "training"
   multiclass: False
 
 # For collecting dataset with playdata
-dataset_name: real_world/drawer_affordance/2021-11-18
+dataset_name: tabletop/tabletop_kitchen
 play_data_dir: ${paths.datasets}/unprocessed/${dataset_name}
 
 #Output directory where dataset will be stored
 output_dir: ${paths.datasets}/${dataset_name}/
 
+### TESTING FEATURE ###
 # Finding classes in playdata
 task_discovery:
   dist_thresh: 0.03  # Max distance to consider that object is the same

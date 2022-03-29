@@ -28,6 +28,12 @@ anticipate their affordance regions. More information at our [project page](http
 - [Install using Docker](./docs/docker_setup.md)
 
 ## Usage
+If you want to use the trained affordance models or policies, you can download them using the script in [trained_models](./trained_models/download_model_weights.sh)
+```
+  cd VAPO_ROOT/trained_models
+  bash download_model_weights.sh
+```
+
 - [Affordance model](./docs/affordance.md)
 - [Policy](./docs/policy.md)
 

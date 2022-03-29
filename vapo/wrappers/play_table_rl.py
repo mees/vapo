@@ -281,7 +281,7 @@ class PlayTableRL(PlayTableSimEnv):
 
         # Move to target
         a = [move_to, initial_orn, 1]
-        tcp_pos = self.move_to(tcp_pos, a)
+        self.move_to(tcp_pos, a)
 
     def move_to(self, curr_pos, action):
         # action = [pos, orn, gripper_action]

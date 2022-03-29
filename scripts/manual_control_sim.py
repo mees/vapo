@@ -87,7 +87,8 @@ def main(cfg):
                         axis = v["axis"]
                         if axis < action_dim:
                             action[axis] = v["value"]
-            ns, r, d, info = env.step(action)
+            # ns, r, d, info = env.step(action)
+            env.step(action)
         env, s, _ = model.detect_and_correct(env, None, noisy=True)
 
 

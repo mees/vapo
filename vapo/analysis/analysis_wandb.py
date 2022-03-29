@@ -238,8 +238,8 @@ if __name__ == "__main__":
 
     # Generalization
     runs_gen = {
-        "VAPO": {"jessibd/vapo_ablation": ["2g3fqg16", "2p6qrqwq"]},
-        "local-SAC": {"jessibd/vapo_ablation": ["194x7p41", "8898hvp5", "2mufff20"]},  # 194x7p41
+        "VAPO": {"jessibd/vapo_ablation": ["2g3fqg16", "2p6qrqwq", "14os99wr"]},
+        "local-SAC": {"jessibd/vapo_ablation": ["194x7p41", "8898hvp5", "2mufff20"]},
     }
 
     run_info = {"vapo_gen_15objs": runs_gen, "vapo_15objs": runs_orig}

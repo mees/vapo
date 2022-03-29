@@ -1,6 +1,6 @@
 import logging
 import os
-
+from pathlib import Path
 import hydra
 
 from vapo.affordance.dataset_creation.core.data_classifier import BaseDetector, TaskDetector
@@ -13,6 +13,10 @@ log = logging.getLogger(__name__)
 
 @hydra.main(config_path="../config", config_name="cfg_datacollection")
 def main(cfg):
+    repo_dir = hydra.utils.get_original_cwd()
+    parent_folder = os.path.abspath(os.path.join(repo_dir, cfg.paths.parent_folder))
+    print(parent_folder)
+    cfg.paths.parent_folder = parent_folder
     # Find different objects, trajectories, directions etc for clustering
     if cfg.output_cfg.multiclass:
         output_dir = get_abs_path(cfg.output_dir)
@@ -28,7 +32,8 @@ def main(cfg):
         if not (os.path.isfile(cluster_info) or cluster_info_available):
             log.info("No classes_data.json found... initiating tasks discovery")
             task_discovery = TasksDiscovery(cfg)
-            info_dct = task_discovery.iterate()
+            # info_dct = task_discovery.iterate()
+            task_discovery.iterate()
             log.info("Tasks discovery finished")
 
         # Initialize class detector

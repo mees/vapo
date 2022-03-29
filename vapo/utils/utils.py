@@ -63,7 +63,7 @@ def init_aff_net(affordance_cfg, cam_str=None, in_channels=1):
                 aff_net.eval()
                 print("obs_wrapper: %s cam affordance model loaded" % cam_str)
             else:
-                affordance_cfg = None
+                # affordance_cfg = None
                 raise TypeError("Path does not exist: %s" % path)
     return aff_net
 

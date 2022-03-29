@@ -2,7 +2,7 @@ import json
 import logging
 import os
 
-import affordance.utils.flowlib as flowlib
+import vapo.affordance.utils.flowlib as flowlib
 import cv2
 import hydra
 import numpy as np

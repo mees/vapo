@@ -10,20 +10,17 @@ get_eval_files: True
 model_path: ./hydra_outputs/affordance_model/2022-02-01/22-05-41
 model_name: last.ckpt
 
-dataset_name: tabletop_sideview/tabletop_kitchen
+dataset_name: tabletop/tabletop_kitchen
 data_dir: ${paths.datasets}/${dataset_name}
 
 # For visualization
+out_size: 200
 save_images: False
 imshow: True
-out_size: 200
 output_dir: ./predictions/
 
+# Uncomment to specify a camera, otherwise it will look for the folder of the camera used for training
 # cam_data: static
-# Input size to affordance model
-img_size:
-  static: 200
-  gripper: 64
 
 #-- Hydra config --#
 # hydra output will be stored to save_dir

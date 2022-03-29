@@ -14,8 +14,7 @@ class DataReader:
     def __init__(self, cfg, *args, **kwargs):
         self.real_world = cfg.labeling.real_world
         self.play_data_dir = cfg.play_data_dir
-        self.language_cfg = cfg.language
-        self.files, self.end_ids, self.lang_ann = get_data(self.play_data_dir, self.real_world, self.language_cfg.file)
+        self.files, self.end_ids, self.lang_ann = get_data(self.play_data_dir, self.real_world)
         self.img_hist = {"static": [], "gripper": []}
 
     def after_loop(self, episode):

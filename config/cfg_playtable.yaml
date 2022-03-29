@@ -16,7 +16,7 @@ defaults:
 
 data_path: ${paths.vr_data}
 save_dir: ./hydra_outputs/${task}
-model_name: full
+model_name: vapo
 task: drawer
 euler_obs: true
 img_size: 64
@@ -47,15 +47,15 @@ test:
 wandb_login:
   entity: test
   project: vapo
-  mode: offline
+  mode: offline  # Remove when logging to wandb
 
 # Define types of observation input to the RL agent
-gripper_offset: [0.0, 0.0, -0.04]
+gripper_offset: [0.0, 0.0, -0.05]
 env_wrapper:
   use_pos: True
   img_size: ${img_size}
   use_aff_termination: False
-  max_target_dist: 0.15
+  max_target_dist: 0.10
   gripper_cam:
     use_img: True
     use_depth: True
@@ -81,9 +81,9 @@ affordance:
       model_path: ${static_cam_aff_path}
       img_size: 200
     gripper_cam:
-      use: False  # Use affordance in observation
-      use_distance: False
-      densify_reward: False  # Use affordance to shape the reward function
+      use: True  # Use affordance in observation
+      use_distance: True
+      densify_reward: True  # Use affordance to shape the reward function
       target_in_obs: False  # Add target detected by affordance into observation
       model_path: ${gripper_cam_aff_path}
 

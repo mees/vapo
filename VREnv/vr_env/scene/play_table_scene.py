@@ -17,7 +17,7 @@ from vr_env.scene.objects.switch import Switch
 log = logging.getLogger(__name__)
 
 
-REPO_BASE = Path(__file__).parents[2]
+REPO_BASE = Path(__file__).parents[3]
 
 
 class PlayTableScene:
@@ -141,7 +141,7 @@ class PlayTableScene:
                     break
             if not contact:
                 return
-        log.error(f"Could not place objects in {num_sampling_iterations} iterations without contacts")
+        # log.error(f"Could not place objects in {num_sampling_iterations} iterations without contacts")
         return
 
     def step(self):

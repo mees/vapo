@@ -1,22 +1,21 @@
 defaults:
   - paths: general_paths
-  - model_cfg: default
+  - aff_model@model_cfg: default
   - transforms@dataset.transforms_cfg: rgb
   - override hydra/hydra_logging: colorlog
   - override hydra/job_logging: colorlog
 
-model_name: test
+model_name: aff
 n_epochs: 50
 rand_crop: 0.8
 
 model_cfg:
   n_classes: 2
 
-dataset_name: real_world/drawer_affordance/
+dataset_name: tabletop
 dataset:
   data_dir: ${paths.datasets}/${dataset_name}
-  cam: static
-  n_train_ep: -1  # Train using all episodes
+  cam: gripper  # gripper or static
   img_resize:
     static: 200
     gripper: 64
@@ -40,6 +39,7 @@ trainer:
 wandb:
   project: affordance_model
   entity: affordance
+  mode: offline
 
 #-- Hydra config --#
 save_dir: ./hydra_outputs/affordance_model/

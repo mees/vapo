@@ -59,7 +59,7 @@ class VAPOAgent(SAC):
             task = "drawer"
         else:
             task = "pickup"
-        # Testing feature 
+        # Testing feature
         # task = self.get_detected_task(target_pos)
         env.task = task
         target_orn = env.get_target_orn(task)
