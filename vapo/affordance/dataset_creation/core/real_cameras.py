@@ -1,6 +1,5 @@
 import numpy as np
 import cv2
-import numpy as np
 import logging
 
 log = logging.getLogger(__name__)
@@ -102,8 +101,8 @@ class CamProjections:
             homogeneous: boolean, return homogenous coordinates
         """
         if depth.shape != self.resolution[::-1]:
-            old_point = point
-            old_depth = depth.copy()
+            # old_point = point
+            # old_depth = depth.copy()
             point_mat = np.zeros_like(depth)
             point_mat[point[1], point[0]] = 1
             transformed_coords = self.revert_crop_and_resize(point_mat)

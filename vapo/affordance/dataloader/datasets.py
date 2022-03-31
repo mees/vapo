@@ -228,7 +228,7 @@ def main(cfg):
     hv = hv.HoughVoting(**cfg.model_cfg.hough_voting)
 
     cm = plt.get_cmap("jet")
-    colors = cm(np.linspace(0, 1, val.n_classes))
+    # colors = cm(np.linspace(0, 1, val.n_classes))
     for b_idx, b in enumerate(val_loader):
         # RGB
         frame, labels = b

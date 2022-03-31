@@ -1,6 +1,5 @@
 import logging
 import os
-from pathlib import Path
 import hydra
 
 from vapo.affordance.dataset_creation.core.data_classifier import BaseDetector, TaskDetector
