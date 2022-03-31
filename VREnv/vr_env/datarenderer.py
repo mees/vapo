@@ -169,7 +169,7 @@ def set_static_cams_from_gui(cfg, load_dir, max_frames):
             fov = cam.fov
             while True:
                 file_path = load_dir / f"{frame:012d}.pickle"
-                state_ob, done, info = env.reset_from_storage(file_path)
+                _, _, _ = env.reset_from_storage(file_path)
                 env.p.stepSimulation()
                 frame_rgbs, frame_depths = env.get_camera_obs()
                 rgb_static = frame_rgbs[cam_index]

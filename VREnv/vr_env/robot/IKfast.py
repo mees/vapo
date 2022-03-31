@@ -1,6 +1,5 @@
-from ikfast_franka_panda import get_dof, get_fk, get_free_dof, get_ik
+# from ikfast_franka_panda import get_dof, get_fk, get_free_dof, get_ik
 import numpy as np
-import pybullet as p
 from scipy.spatial.transform import Rotation as R
 
 

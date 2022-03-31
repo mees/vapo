@@ -23,7 +23,7 @@ def viz_data(cfg):
     files = get_files(data_dir, "npz", recursive=True)  # Sorted files
     if not cfg.labeling.real_world:
         ep_start_end_ids = np.load(os.path.join(data_dir, "ep_start_end_ids.npy"))
-        end_ids = ep_start_end_ids[:, -1]
+        # end_ids = ep_start_end_ids[:, -1]
     else:
         # Real life experiments
         # Remove camera calibration npz from iterable files

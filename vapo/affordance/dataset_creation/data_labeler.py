@@ -90,7 +90,7 @@ class DataLabeler(DataReader):
                 n_classes=self.classifier.n_classes,
             )
         # Add n_classes and orientation per class
-        data = {"target_orn": None}
+        # data = {"target_orn": None}
         orientations = {}
         for label, v in self.classifier.clusters.items():
             orientations[int(label)] = list(v["orn"])

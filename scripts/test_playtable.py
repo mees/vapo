@@ -16,6 +16,7 @@ def main(cfg):
     run_dir = os.path.abspath(run_dir)
     run_cfg, net_cfg, env_wrapper, agent_cfg = load_cfg(os.path.join(run_dir, ".hydra/config.yaml"), cfg)
 
+    run_cfg.paths = cfg.paths
     run_cfg.test = cfg.test
     run_cfg.env.show_gui = cfg.env.show_gui
     run_cfg.scene = cfg.scene

@@ -60,12 +60,14 @@ RUN pip install pybullet
 WORKDIR /home/user/
 RUN git clone https://github.com/mees/vapo.git
 WORKDIR /home/user/vapo/VREnv
-RUN chmod u+x egl_check/EGL_options.o
+# RUN chmod u+x egl_check/EGL_options.o
 RUN pip install -e .
 
 # Install vapo
 WORKDIR /home/user/vapo/
 RUN pip install -e .
+WORKDIR /home/user/vapo/trained_models
+RUN bash download_model_weights.sh
 
 # Install hough voting layer
 WORKDIR /home/user/

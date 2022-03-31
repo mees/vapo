@@ -1,7 +1,6 @@
 import logging
 
 import numpy as np
-from omegaconf import ListConfig
 from omegaconf.errors import ConfigKeyError
 from vr_env.scene.objects.base_object import BaseObject
 

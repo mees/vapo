@@ -31,7 +31,7 @@ class BaseDetector:
 
 class TaskDetector(BaseDetector):
     def __init__(self, cfg, data_info=None, *args, **kwargs):
-        super().__init__()
+        super().__init__(cfg, *args, **kwargs)
         if cfg.clustering_method.lower() == "kmeans":
             _clustering_method = KMeans(**cfg.params)
         else:  # dbscan
@@ -214,7 +214,7 @@ class TrajectoriesClassifier(TaskDetector):
 def main(cfg):
     classifier = TaskDetector(cfg.task_detector)
     classifier.find_clusters("grasps", k=2)
-    ax = classifier.plot_clusters()
+    # ax = classifier.plot_clusters()
     # _data = np.vstack([x for x in classifier.data["trajectories"].values()])
     # for pt in _data:
     #     label = classifier.predict(pt)

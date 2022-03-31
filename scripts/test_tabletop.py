@@ -7,7 +7,6 @@ from vapo.utils.utils import load_cfg
 from vapo.wrappers.affordance.aff_wrapper_sim import AffordanceWrapperSim
 from vapo.wrappers.play_table_rl import PlayTableRL
 
-
 @hydra.main(config_path="../config", config_name="cfg_tabletop")
 def main(cfg):
     # Load model cfg
@@ -16,6 +15,7 @@ def main(cfg):
     run_dir = os.path.abspath(run_dir)
     run_cfg, net_cfg, env_wrapper, agent_cfg = load_cfg(os.path.join(run_dir, ".hydra/config.yaml"), cfg)
 
+    run_cfg.paths = cfg.paths
     run_cfg.test = cfg.test
     run_cfg.env.show_gui = cfg.env.show_gui
     run_cfg.scene = cfg.scene

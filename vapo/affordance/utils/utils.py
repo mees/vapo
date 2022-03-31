@@ -31,11 +31,6 @@ def get_transforms(transforms_cfg, img_size=None):
     for cfg in transforms_config:
         if ("size" in cfg) and img_size is not None:
             cfg.size = img_size
-        if "vapo.affordance_model.utils.transforms" in cfg._target_:
-            cfg._target_ = cfg._target_.replace(
-                "vapo.affordance_model.utils.transforms",
-                "affordance.dataloader.transforms",
-            )
         transforms_lst.append(hydra.utils.instantiate(cfg))
 
     return transforms.Compose(transforms_lst)

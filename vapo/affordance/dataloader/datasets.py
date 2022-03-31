@@ -197,9 +197,9 @@ class VREnvData(Dataset):
 def test_dir_labels(hv, frame, aff_mask, center_dir):
     bool_mask = (aff_mask == 1).int().cuda()
     center_dir = center_dir.cuda()  # 1, 2, H, W
-    initial_masks, num_objects, object_centers_padded = hv(bool_mask, center_dir.contiguous())
+    _, _, object_centers_padded = hv(bool_mask, center_dir.contiguous())
 
-    initial_masks = initial_masks.cpu()
+    # initial_masks = initial_masks.cpu()
     object_centers_padded = object_centers_padded[0].cpu().permute((1, 0))
     for c in object_centers_padded:
         c = c.detach().cpu().numpy()
@@ -227,7 +227,7 @@ def main(cfg):
 
     hv = hv.HoughVoting(**cfg.model_cfg.hough_voting)
 
-    cm = plt.get_cmap("jet")
+    # cm = plt.get_cmap("jet")
     # colors = cm(np.linspace(0, 1, val.n_classes))
     for b_idx, b in enumerate(val_loader):
         # RGB

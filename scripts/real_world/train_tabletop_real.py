@@ -2,7 +2,7 @@ import logging
 import os
 
 import hydra
-from robot_io.cams.realsense.realsense import Realsense
+# from robot_io.cams.realsense.realsense import Realsense
 
 from vapo.agent.vapo_real_world import VAPOAgent
 from vapo.wrappers.affordance.aff_wrapper_real_world import AffordanceWrapperRealWorld

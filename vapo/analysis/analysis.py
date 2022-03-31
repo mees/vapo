@@ -6,11 +6,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy.interpolate import interp1d
-import seaborn as sns
 
 plt.rc("text", usetex=True)
-
-sns.set(style="white", font_scale=2)
 # plt.rcParams['text.latex.preamble'] = [r"\usepackage{lmodern}"]
 plt.rcParams["font.size"] = 24
 
@@ -137,7 +134,7 @@ def plot_by_time(plot_dict, csv_dir="./results_csv/"):
     fig, ax = plt.subplots(1, 1, figsize=(10, 5.5), sharey=True)
     cm = plt.get_cmap("cool")
     colors = cm(np.linspace(0, 1, len(data)))
-    colors = [[0, 0, 1, 1], [1, 0, 0, 1]]
+    # colors = [[0, 0, 1, 1], [1, 0, 0, 1]]
     smooth_window = 5
     for exp_data, c, label in zip(data, colors, labels):
         d = exp_data[:, 2]

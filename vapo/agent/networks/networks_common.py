@@ -11,10 +11,8 @@ from vapo.utils.utils import get_abs_path
 
 def get_pos_shape(obs_space, key="robot_obs"):
     _obs_space_keys = list(obs_space.spaces.keys())
-    _position_shape = key in _obs_space_keys
     if key in _obs_space_keys:
-        _position_shape = obs_space[key].shape[-1]
-        return _position_shape
+        return obs_space[key].shape[-1]
     return 0
 
 

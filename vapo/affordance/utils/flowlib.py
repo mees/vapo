@@ -212,14 +212,14 @@ def flow_error(tu, tv, u, v):
     index_su = su[ind2]
     index_sv = sv[ind2]
     an = 1.0 / np.sqrt(index_su**2 + index_sv**2 + 1)
-    un = index_su * an
-    vn = index_sv * an
+    # un = index_su * an
+    # vn = index_sv * an
 
     index_stu = stu[ind2]
     index_stv = stv[ind2]
     tn = 1.0 / np.sqrt(index_stu**2 + index_stv**2 + 1)
-    tun = index_stu * tn
-    tvn = index_stv * tn
+    # tun = index_stu * tn
+    # tvn = index_stv * tn
 
     """
     angle = un * tun + vn * tvn + (an * tn)
@@ -245,20 +245,20 @@ def flow_to_image(flow):
     u = flow[:, :, 0]
     v = flow[:, :, 1]
 
-    maxu = -999.0
-    maxv = -999.0
-    minu = 999.0
-    minv = 999.0
+    # maxu = -999.0
+    # maxv = -999.0
+    # minu = 999.0
+    # minv = 999.0
 
     idxUnknow = (abs(u) > UNKNOWN_FLOW_THRESH) | (abs(v) > UNKNOWN_FLOW_THRESH)
     u[idxUnknow] = 0
     v[idxUnknow] = 0
 
-    maxu = max(maxu, np.max(u))
-    minu = min(minu, np.min(u))
+    # maxu = max(maxu, np.max(u))
+    # minu = min(minu, np.min(u))
 
-    maxv = max(maxv, np.max(v))
-    minv = min(minv, np.min(v))
+    # maxv = max(maxv, np.max(v))
+    # minv = min(minv, np.min(v))
 
     rad = np.sqrt(u**2 + v**2)
     maxrad = max(-1, np.max(rad))

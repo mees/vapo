@@ -1,14 +1,8 @@
 #!/usr/bin/python3
-from copy import deepcopy
 import logging
-import os
-import sys
 
 import hydra
-import pybullet as p
-import quaternion  # noqa
 from vr_env.io_utils.data_recorder import DataRecorder
-from vr_env.io_utils.vr_input import VrInput
 
 # A logger for this file
 log = logging.getLogger(__name__)
