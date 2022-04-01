@@ -3,7 +3,6 @@ import os
 
 import cv2
 import hydra
-import matplotlib.pyplot as plt
 import numpy as np
 import torch
 from torch.utils.data import DataLoader, Dataset

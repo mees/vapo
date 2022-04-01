@@ -209,15 +209,15 @@ def flow_error(tu, tv, u, v):
     sv[idxUnknow] = 0
 
     ind2 = [(np.absolute(stu) > smallflow) | (np.absolute(stv) > smallflow)]
-    index_su = su[ind2]
-    index_sv = sv[ind2]
-    an = 1.0 / np.sqrt(index_su**2 + index_sv**2 + 1)
+    # index_su = su[ind2]
+    # index_sv = sv[ind2]
+    # an = 1.0 / np.sqrt(index_su**2 + index_sv**2 + 1)
     # un = index_su * an
     # vn = index_sv * an
 
-    index_stu = stu[ind2]
-    index_stv = stv[ind2]
-    tn = 1.0 / np.sqrt(index_stu**2 + index_stv**2 + 1)
+    # index_stu = stu[ind2]
+    # index_stv = stv[ind2]
+    # tn = 1.0 / np.sqrt(index_stu**2 + index_stv**2 + 1)
     # tun = index_stu * tn
     # tvn = index_stv * tn
 

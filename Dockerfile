@@ -16,6 +16,7 @@ RUN apt-get update
 RUN apt-get install build-essential cmake -y
 RUN apt-get install -y git
 RUN apt-get install ffmpeg libsm6 libxext6  libx11-dev libopenblas-dev libglvnd0 libgl1 libglx0 libegl1 -y
+RUN apt-get install -y unzip
 
 RUN nvcc --version
 
@@ -49,7 +50,6 @@ RUN echo 'cd /home/user/' >> /home/user/.bashrc
 RUN echo 'conda activate vapo_env' >> /home/user/.bashrc
 RUN echo 'export MESA_GL_VERSION_OVERRIDE=3.3' >> /home/user/.bashrc
 
-
 SHELL ["conda", "run", "-n", "vapo_env", "/bin/bash", "-c"]
 
 # Install bullet
@@ -66,9 +66,11 @@ RUN pip install -e .
 # Install vapo
 WORKDIR /home/user/vapo/
 RUN pip install -e .
+SHELL ["/bin/sh", "-c"]
 WORKDIR /home/user/vapo/trained_models
 RUN bash download_model_weights.sh
 
+SHELL ["conda", "run", "-n", "vapo_env", "/bin/bash", "-c"]
 # Install hough voting layer
 WORKDIR /home/user/
 RUN git clone https://gitlab.com/libeigen/eigen.git

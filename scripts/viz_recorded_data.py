@@ -21,10 +21,9 @@ def viz_data(cfg):
     # Simulation
     data_dir = get_abs_path(cfg.play_data_dir)
     files = get_files(data_dir, "npz", recursive=True)  # Sorted files
-    if not cfg.labeling.real_world:
-        ep_start_end_ids = np.load(os.path.join(data_dir, "ep_start_end_ids.npy"))
-        # end_ids = ep_start_end_ids[:, -1]
-    else:
+    # ep_start_end_ids = np.load(os.path.join(data_dir, "ep_start_end_ids.npy"))
+    # end_ids = ep_start_end_ids[:, -1]
+    if cfg.labeling.real_world:
         # Real life experiments
         # Remove camera calibration npz from iterable files
         files = [f for f in files if "camera_info.npz" not in f]

@@ -1,11 +1,10 @@
 import hough_voting_cuda
 import torch
-from torch import nn
-from torch.autograd import Function
+import torch.nn as nn
 
 
 # https://github.com/chrisdxie/uois/blob/515c92f63bc83411be21da8449d22660863affbd/src/hough_voting/hough_voting.py#L8
-class HoughVotingFunction(Function):
+class HoughVotingFunction(torch.autograd.Function):
     @staticmethod
     def forward(
         ctx,

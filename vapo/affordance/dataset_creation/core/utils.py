@@ -44,7 +44,7 @@ def select_files(episode_files, remove_blank_masks, min_labels=3, only_language=
         if remove_blank_masks or only_language:
             try:
                 np_file = np.load(file, allow_pickle=True)
-            except:
+            except Exception:
                 print("faulty file: %s" % file)
             blank_masks_constraint = False
             gripper_label = True
