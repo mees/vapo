@@ -196,8 +196,8 @@ class TargetSearch:
                 thickness=3,
                 line_type=cv2.LINE_AA,
             )
-            cv2.imshow("TargetSearch: img", out_img[:, :, ::-1])
-            cv2.waitKey(1)
+            # cv2.imshow("TargetSearch: img", out_img[:, :, ::-1])
+            # cv2.waitKey(1)
             if self.save_images:
                 os.makedirs("./static_centers/", exist_ok=True)
                 cv2.imwrite("./static_centers/img_%04d.jpg" % self.global_obs_it, out_img[:, :, ::-1])

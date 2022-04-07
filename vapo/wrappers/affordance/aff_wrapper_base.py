@@ -87,7 +87,7 @@ class AffordanceWrapperBase(gym.Wrapper):
             real_world=real_world,
             oracle=self.use_env_state,
         )
-
+        self.env.observation_space = self.observation_space
         self._curr_detected_obj = None
         self._target = None
 
@@ -292,12 +292,13 @@ class AffordanceWrapperBase(gym.Wrapper):
         im_dict = viz_aff_centers_preds(
             orig_img, aff_mask, center_dir, object_centers, "gripper", self.obs_it, self.episode, viz=self.viz
         )
-        if self.viz:
-            depth_img = cv2.resize(depth, orig_img.shape[:2])
-            cv2.imshow("gripper-depth", depth_img)
+        # if self.viz:
+        #     depth_img = cv2.resize(depth, orig_img.shape[:2])
+        #     cv2.imshow("gripper-depth", depth_img)
 
         if self.save_images:
             # Now between 0 and 8674
+            depth_img = cv2.resize(depth, orig_img.shape[:2])
             write_depth = depth_img - depth_img.min()
             write_depth = write_depth / write_depth.max() * 255
             write_depth = np.uint8(write_depth)
@@ -347,6 +348,6 @@ class AffordanceWrapperBase(gym.Wrapper):
                         self.curr_detected_obj = c
                         self.env.target_pos = self.curr_detected_obj
                         most_robust = out_dict["robustness"]
-            if self.viz:
-                self.viz_curr_target()
+            # if self.viz:
+            #     self.viz_curr_target()
         return im_dict

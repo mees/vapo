@@ -1,5 +1,7 @@
 # Dataset creation
-Before training a model we first need to process the data to discover the affordances from the playdata. To do so we need to the [create_dataset.py](../scripts/create_dataset.py) script. If unspecified we assume the dataset will be stored in a folder named "datasets" in the VAPO_ROOT parent directory. This can be modified in [cfg_datacollection.yaml](../config/cfg_datacollection.yaml)
+Before training a model we first need to process the data to discover the affordances from the playdata. To do so we need to the [create_dataset.py](../scripts/create_dataset.py) script. 
+
+If unspecified we assume the dataset will be stored in a folder named "datasets" in the VAPO_ROOT parent directory. This can be modified in [cfg_datacollection.yaml](../config/cfg_datacollection.yaml)
 
 From VAPO_ROOT run:
 ```
@@ -20,10 +22,10 @@ python ./vapo/affordance/dataloader/datasets.py
 Modify the main method of that same script to change between the `validation` and `training` dataloader. This will run the configuration on [cfg_affordance](../config/cfg_affordance.yaml). Therefore it takes as argument the same parameters that the training scrip.
 
 # Training the affordance model
-# Set up wandb
+## Set up wandb
 We use wandb to log out results. By default it is set to offline under the configuration file [cfg_affordance](../config/cfg_affordance.yaml). Before training anything please log into your wandb and change the values of wandb_login in the previous file.
 
-# Train a model
+## Train a model
 The [training script](../scripts/train_affordance.py) uses the configuration defined in [cfg_affordance](../config/cfg_affordance.yaml). To train the affordance model you can try running the following:
 
 ```
@@ -41,10 +43,12 @@ Visualization configuration can be found in [viz_affordances.yaml](../config/viz
 
 Visualization script can be found in [viz_affordances.py](../scripts/viz_affordances.py)
 
-If the images come from a dataset created by create_dataset.py, you can specify the camera images for which you want to test with cam_data=gripper or cam_data=static. Otherwise set cam_data=null
+If the images come from a dataset created by create_dataset.py, you can specify the camera images for which you want to test with cam_data=gripper or cam_data=static. Otherwise set cam_data=null to load the default camera for the given model.
 
 **Examples**:
 ```
 python ./scripts/viz_affordances.py data_dir=DATA_DIR model_path=MODEL_HYDRA_OUTPUT_PATH
+
+
 python ./scripts/viz_affordances.py data_dir=DATA_DIR model_path=MODEL_HYDRA_OUTPUT_PATH model_cfg=NEW_CFG_FILENAME
 ```

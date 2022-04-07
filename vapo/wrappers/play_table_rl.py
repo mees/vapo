@@ -303,7 +303,9 @@ class PlayTableRL(PlayTableSimEnv):
     def save_and_viz_obs(self, obs):
         if self.viz:
             for cam_name, _ in self.cam_ids.items():
-                cv2.imshow("%s_cam" % cam_name, obs["rgb_obs"]["rgb_%s" % cam_name][:, :, ::-1])
+                if ("gripper_aff" not in self.observation_space.spaces
+                    or cam_name=="render" or cam_name == "static"):
+                    cv2.imshow("%s_cam" % cam_name, obs["rgb_obs"]["rgb_%s" % cam_name][:, :, ::-1])
             cv2.waitKey(1)
         if self.save_images:
             for cam_name, _ in self.cam_ids.items():

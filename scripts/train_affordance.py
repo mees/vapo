@@ -33,7 +33,7 @@ def train(cfg):
     checkpoint_loss_callback = ModelCheckpoint(
         monitor="val_total_loss",
         dirpath="trained_models",
-        filename="%s_{epoch:02d}-{val_total_loss:.3f}" % model_name,
+        filename="best_val_loss",
         save_top_k=2,
         verbose=True,
         mode="min",
@@ -42,7 +42,7 @@ def train(cfg):
     checkpoint_miou_callback = ModelCheckpoint(
         monitor="val_miou",
         dirpath="trained_models",
-        filename="%s_{epoch:02d}-{val_miou:.3f}" % model_name,
+        filename="best_val_miou",
         save_top_k=2,
         verbose=True,
         mode="max",

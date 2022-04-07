@@ -1,0 +1,89 @@
+defaults:
+  - robot: panda
+  - scene: tabletop_6objs
+  - env: env_combined
+  - env@eval_env: env_combined
+  - camera_conf: tabletop_render
+  - agent: default
+  - paths: general_paths
+  - aff_model@target_search.aff_cfg.hyperparameters: static_cam
+  - aff_model@affordance.static_cam.hyperparameters: static_cam
+  - aff_model@affordance.gripper_cam.hyperparameters: gripper_cam
+  - transforms@affordance.transforms: aff_transforms
+  - transforms@env_wrapper.transforms: rl_transforms
+  - override hydra/hydra_logging: colorlog
+  - override hydra/job_logging: colorlog
+
+data_path: ${paths.vr_data}
+save_dir: ./hydra_outputs/${task}
+model_name: vapo
+task: pickup
+euler_obs: true
+img_size: 64
+repeat_training: 1
+viz_obs: False
+
+# path to load affordance models either gripper_cam
+# or static_cam
+save_replay_buffer: False
+save_images: False
+
+# Resume training
+resume_training: False
+resume_model_path: ./
+
+test:
+  model_name: most_tasks_from_15
+  folder_name: ${paths.vapo_path}/trained_models/policy/tabletop/vapo
+  eval_cfg:
+    n_episodes: 5
+    print_all_episodes: True
+    max_episode_length: 100
+
+# Wandb
+wandb_login:
+  entity: test
+  project: vapo
+  mode: offline
+
+# Define types of observation input to the RL agent
+gripper_offset: [0.0, 0.0, -0.05]
+env_wrapper:
+  use_pos: True
+  img_size: ${img_size}
+  use_aff_termination: False
+  max_target_dist: 0.10
+  gripper_cam:
+    use_img: True
+    use_depth: True
+  static_cam:
+    use_img: False
+    use_depth: False
+
+# tabletop_multiscene_static_sideview.ckpt
+# Static cam affordance model to detect the targets
+gripper_cam_aff_path: ${paths.trained_models}/affordance/gripper_tabletop.ckpt
+static_cam_aff_path: ${paths.trained_models}/affordance/static_tabletop.ckpt
+target_search:
+  mode: "affordance"
+  aff_cfg:
+    img_size: 200
+    use: True
+    model_path: ${static_cam_aff_path}
+
+# Affordance configuration for RL agent observation inputs
+affordance:
+    static_cam:
+      use: False
+      model_path: ${static_cam_aff_path}
+      img_size: 200
+    gripper_cam:
+      use: True  # Use affordance in observation
+      use_distance: True
+      densify_reward: True  # Use affordance to shape the reward function
+      target_in_obs: False  # Add target detected by affordance into observation
+      model_path: ${gripper_cam_aff_path}
+
+hydra:
+  run:
+    dir: ${save_dir}/${now:%Y-%m-%d}/${now:%H-%M-%S}

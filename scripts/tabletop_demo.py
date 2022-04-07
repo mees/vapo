@@ -7,7 +7,7 @@ from vapo.utils.utils import load_cfg
 from vapo.wrappers.affordance.aff_wrapper_sim import AffordanceWrapperSim
 from vapo.wrappers.play_table_rl import PlayTableRL
 
-@hydra.main(config_path="../config", config_name="cfg_tabletop")
+@hydra.main(config_path="../config", config_name="cfg_tabletop_demo")
 def main(cfg):
     # Load model cfg
     original_dir = hydra.utils.get_original_cwd()
@@ -37,7 +37,6 @@ def main(cfg):
         **agent_cfg,
     }
 
-    run_cfg.target_search.mode = "affordance"
     model = VAPOAgent(run_cfg, sac_cfg=sac_cfg)
     path = "%s/trained_models/%s.pth" % (run_dir, cfg.test.model_name)
     success = model.load(path)
