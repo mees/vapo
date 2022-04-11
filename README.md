@@ -32,30 +32,30 @@ Please modify the pytorch cudatoolkit of the environment accordingly.
 For more details please refer to [local installation](./docs/local_setup.md).
 
 ```
-$ git clone https://github.com/mees/vapo.git
+git clone https://github.com/mees/vapo.git
 export VAPO_ROOT=$(pwd)/vapo
-$ cd $VAPO_ROOT
-$ conda create -n vapo_env python=3.8
-$ conda activate vapo_env
-$ sh install.sh
+cd $VAPO_ROOT
+conda create -n vapo_env python=3.8
+conda activate vapo_env
+sh install.sh
 ```
 
 ### Install the Hough voting layer
 To install the voting layer first install [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page).
 ```
-$ git clone https://gitlab.com/libeigen/eigen.git
-$ cd eigen/
-$ mkdir build/
-$ cd build/
-$ cmake ..
-$ sudo make install
+git clone https://gitlab.com/libeigen/eigen.git
+cd eigen/
+mkdir build/
+cd build/
+cmake ..
+sudo make install
 ```
 
 Go to the directory of the voting layer and run [setup.py](./vapo/affordance/hough_voting/setup.py). If you do not have sudo privileges, don't run `sudo make install` instead change the diretory in "include_dirs" to match where the eigen repo was downloaded, then run:
 
 ```
-$ cd $VAPO_ROOT/vapo/affordance/hough_voting/
-$ python setup.py install
+cd $VAPO_ROOT/vapo/affordance/hough_voting/
+python setup.py install
 ```
 
 ## Quickstart
@@ -64,8 +64,8 @@ A quick tutorial on evaluating a pre-trained policy on the unseen dataset.
 ### Pre-trained Checkpoints 
 If you want to use the trained affordance models or policies, you can download them using the script in [trained_models](./trained_models/download_model_weights.sh)
 ```
-$ cd VAPO_ROOT/trained_models
-$ bash download_model_weights.sh
+cd VAPO_ROOT/trained_models
+bash download_model_weights.sh
 ```
 ### Evaluation
 We show how to run the evaluation for the policy on the unseen objets. For more details on running the policy please refer to [Policy](./docs/policy.md)
@@ -73,12 +73,12 @@ We show how to run the evaluation for the policy on the unseen objets. For more 
 #### VAPO
 The default configuration is set to run with the parameters of VAPO
 ```
-$ python ./scripts/eval_tabletop.py scene=tabletop_random_unseen_15objs
+python ./scripts/eval_tabletop.py scene=tabletop_random_unseen_15objs
 ```
 
 #### Baseline
 ```
-$ python ./scripts/eval_tabletop.py scene=tabletop_random_unseen_15objs test.folder_name=./trained_models/policy/tabletop/baseline
+python ./scripts/eval_tabletop.py scene=tabletop_random_unseen_15objs test.folder_name=./trained_models/policy/tabletop/baseline
 ```
 ## Hardware Requirements
 A single NVIDIA GPU with 8GB memory should be sufficient for training and evaluation.
@@ -107,7 +107,7 @@ If you want to visualize the discovered affordances while is being created, add 
 
 From `$VAPO_ROOT` run:
 ```
-$ python ./scripts/create_dataset.py play_data_dir=PLAY_DATA_DIR output_dir=DATA_DIR
+python ./scripts/create_dataset.py play_data_dir=PLAY_DATA_DIR output_dir=DATA_DIR
 ```
 
 This will create a dataset at `DATA_DIR` which can be used to train the affordance model.
@@ -126,12 +126,12 @@ To train the affordance models you can run the following:
 
 ##### Gripper camera affordance model
 ```
-$ python ./scripts/train_affordance.py model_name=aff_gripper dataset.cam=gripper dataset.data_dir=DATA_DIR
+python ./scripts/train_affordance.py model_name=aff_gripper dataset.cam=gripper dataset.data_dir=DATA_DIR
 ```
 
 ##### Static camera affordance model
 ```
-$ python ./scripts/train_affordance.py model_name=aff_static dataset.cam=static dataset.data_dir=DATA_DIR
+python ./scripts/train_affordance.py model_name=aff_static dataset.cam=static dataset.data_dir=DATA_DIR
 ```
 
 This will create an output at `hydra_outputs/affordance_model/date/time`. Alternatively you can specify were you want the model output by adding the flag `hydra.run.dir=CAM_AFF_OUT_FOLDER`
@@ -142,14 +142,14 @@ After training the affordance model you can try training a policy and load the d
 
 #### VAPO
 ```
-$ python ./scripts/train_tabletop.py \
+python ./scripts/train_tabletop.py \
 gripper_cam_aff_path=GRIPPER_AFF_OUT_FOLDER/trained_models/best_val_miou.ckpt \
 static_cam_aff_path=STATIC_AFF_OUT_FOLDER/trained_models/best_val_miou.ckpt
 ```
 
 #### Baseline
 ```
-$ python ./scripts/train_tabletop.py \
+python ./scripts/train_tabletop.py \
 gripper_cam_aff_path=GRIPPER_AFF_OUT_FOLDER/trained_models/best_val_miou.ckpt \
 static_cam_aff_path=STATIC_AFF_OUT_FOLDER/trained_models/best_val_miou.ckpt \
 affordance.gripper_cam.use_distance=False \
@@ -168,7 +168,7 @@ Additionally, we save different checkpoints. These can be found under `POLICY_TR
 For this example we load the model with the most successful grasp on the all-objects evaluation
 
 ```
-$ python ./scripts/eval_tabletop.py \
+python ./scripts/eval_tabletop.py \
 test.model_name=most_tasks_from_15 \
 test.folder_name=POLICY_TRAIN_FOLDER
 ```

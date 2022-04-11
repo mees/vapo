@@ -57,6 +57,8 @@ docker run -it --gpus all --name vapo_container vapo_image bash
 To be able to visualize the images in the host computer, instead run:
 ```
 xhost +local:docker
+```
+```
 docker run -it --rm \
   --gpus all \
   --name vapo_container \
@@ -87,25 +89,25 @@ https://stackoverflow.com/questions/67099130/how-to-run-my-scrip-python-opencv-o
 # Docker commands
 - See all images
 ```
-    docker images
+docker images
 ```
 
 - See running containers
 ```
-    docker ps
+docker ps
 ```
 
 - See all containers
 ```
-    docker ps -a
+docker ps -a
 ```
 
 - Remove image
 ```
-    docker image rm [IMG_ID or IMG_NAME]
+docker image rm [IMG_ID or IMG_NAME]
 ```
 
 - Remove container
 ```
-    docker rm [CONTAINER_ID or CONTAINER_NAME]
+docker rm [CONTAINER_ID or CONTAINER_NAME]
 ```
