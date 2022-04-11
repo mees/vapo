@@ -38,7 +38,6 @@ trainer:
 
 wandb:
   project: affordance_model
-  entity: affordance
   mode: offline
 
 #-- Hydra config --#
