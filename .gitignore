@@ -123,3 +123,4 @@ dist/
 *EGl_options.o
 .mypy_cache/
 VREnv/egl_check/EGL_options.o
+datasets/playdata/*/

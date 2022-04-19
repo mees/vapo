@@ -90,27 +90,47 @@ OS - Ubuntu 20.04.4
 
 We show how to train a model from scratch assuming access to the playdata
 
-1. Discover affordances in the playdata to create a dataset.
+1. Download the playdata
+2. Discover affordances in the playdata to create a dataset.
 2. Train the affordance model for both the static and gripper camera.
 3. Train the policy using the previously trained affordance models.
 4. Evaluation.
 
-### Dataset generation
-Before training a model we first need to process the data to discover the affordances from the playdata. To do so we need to the [create_dataset.py](../scripts/create_dataset.py) script. 
+### Download the playdata
+We provide the playdata used for both simulation and the real world experiments.
+  - Simulation data (37.7 GB)
+    ```
+    cd VAPO_ROOT/datasets/playdata
+    bash download_playdata_simulation.sh
+    ```
+  - Real world data (57.6 GB)
 
-If unspecified we assume the dataset will be stored in a folder named "datasets" in the VAPO_ROOT parent directory. This can be modified in [cfg_datacollection.yaml](../config/cfg_datacollection.yaml).
+    ```
+    cd VAPO_ROOT/datasets/playdata
+    bash download_playdata_real_world.sh
+    ```
+
+### Dataset generation
+Before training a model we first need to process the data to discover the affordances from the playdata. To do so we need to the [create_dataset.py](./scripts/create_dataset.py) script. 
+
+If unspecified we assume the dataset will be stored in a folder named "datasets" in the VAPO_ROOT parent directory. This can be modified in [cfg_datacollection.yaml](./config/cfg_datacollection.yaml).
 
 If you want to visualize the discovered affordances while is being created, add the flag viz=True
 
-From VAPO_ROOT run:
+For the simulation playdata run from VAPO_ROOT:
 ```
-python ./scripts/create_dataset.py play_data_dir=PLAY_DATA_DIR output_dir=DATA_DIR
+python ./scripts/create_dataset.py dataset_name=simulation
 ```
 
-This will create a dataset at DATA_DIR which can be used to train the affordance model.
+For the real world playdata run from VAPO_ROOT:
+```
+python ./scripts/create_dataset.py dataset_name=real_world
+```
+
+This will create a dataset at VAPO_ROOT/datasets/dataset_name which can be used to train the affordance model.
 
 ### Training an affordance model
-Here we show a small summary on how to train the affordance model. For a more detailed explanation on the available options please refer to the[affordance model documentation](./docs/affordance.md)
+Here we show a small summary on how to train the affordance model. For a more detailed explanation on the available options please refer to the [affordance model documentation](./docs/affordance.md)
 
 #### Set up wandb
 We use wandb to log out results. By default it is set to offline under the configuration file [cfg_affordance](../config/cfg_affordance.yaml). Before training anything please log into your wandb and change the values of wandb_login in the previous file.
@@ -122,12 +142,12 @@ To train the affordance models you can run the following:
 
 ##### Gripper camera affordance model
 ```
-python ./scripts/train_affordance.py model_name=aff_gripper dataset.cam=gripper dataset.data_dir=DATA_DIR
+python ./scripts/train_affordance.py model_name=aff_gripper dataset.cam=gripper dataset_name=DATASET_NAME
 ```
 
 ##### Static camera affordance model
 ```
-python ./scripts/train_affordance.py model_name=aff_static dataset.cam=static dataset.data_dir=DATA_DIR
+python ./scripts/train_affordance.py model_name=aff_static dataset.cam=static dataset_name=DATASET_NAME
 ```
 
 This will create an output at hydra_outputs/affordance_model/date/time. Alternatively you can specify were you want the model output by adding the flag `hydra.run.dir=CAM_AFF_OUT_FOLDER`
@@ -176,7 +196,7 @@ test.folder_name=POLICY_TRAIN_FOLDER \
 scene=tabletop_random_unseen_15objs
 ```
 
-For more details on using the policy please refer to [Policy](./docs/policy.md)
+For more details on using the policy please refer to the [policy documentation](./docs/policy.md)
 
 ## Citation
 

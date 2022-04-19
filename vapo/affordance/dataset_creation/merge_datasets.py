@@ -30,9 +30,7 @@ def parse_args():
     return output_dir, directory_list
 
 # Merge datasets using json files
-def merge_datasets():
-    output_dir, directory_list = parse_args()
-
+def merge_datasets(output_dir, directory_list):
     new_data = {"training": {}, "validation": {}}
     for dir in directory_list:
         abs_dir = os.path.abspath(dir)
@@ -61,5 +59,5 @@ def merge_datasets():
 
 
 if __name__ == "__main__":
-    
-    merge_datasets()
+    output_dir, directory_list = parse_args()
+    merge_datasets(output_dir, directory_list)

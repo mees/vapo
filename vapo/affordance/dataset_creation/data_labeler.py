@@ -30,7 +30,7 @@ log = logging.getLogger(__name__)
 
 
 class DataLabeler(DataReader):
-    def __init__(self, cfg, classifier=None, discovery_episodes=[], new_cfg=True, *args, **kwargs):
+    def __init__(self, cfg, classifier=None, discovery_episodes=[], new_cfg=False, *args, **kwargs):
         super(DataLabeler, self).__init__(cfg, *args, **kwargs)
         self.remove_blank_mask_instances = cfg.labeling.remove_blank_mask_instances
         self.save_viz = cfg.save_viz
@@ -418,7 +418,7 @@ class DataLabeler(DataReader):
 
 @hydra.main(config_path="../../config", config_name="cfg_datacollection")
 def main(cfg):
-    labeler = DataLabeler(cfg, new_cfg=False)
+    labeler = DataLabeler(cfg)
     labeler.iterate()
     # labeler.after_loop()
 
