@@ -51,10 +51,10 @@ The camera configuration tabletop_render is the one used to produce the videos, 
 From the root directory run:
 ### Vapo
 ```
-    python ./scripts/eval_tabletop.py viz_obs=true camera_conf=tabletop_render test.folder_name=./trained_models/policy/tabletop/vapo
+python ./scripts/eval_tabletop.py viz_obs=true camera_conf=tabletop_render test.folder_name=./trained_models/policy/tabletop/vapo
 ```
 
 ## Baseline
 ```
-    python ./scripts/eval_tabletop.py viz_obs=true camera_conf=tabletop_render test.folder_name=./trained_models/policy/tabletop/baseline
+python ./scripts/eval_tabletop.py viz_obs=true camera_conf=tabletop_render test.folder_name=./trained_models/policy/tabletop/baseline
 ```

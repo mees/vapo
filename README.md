@@ -24,13 +24,17 @@ anticipate their affordance regions. More information at our [project page](http
 </p>
 
 ## Installation
-Here we show how to install vapo on your local machine. Alternatively you can [install using Docker](./docs/docker_setup.md)
+Here we show how to install vapo on your local machine. Alternatively you can [install using Docker](./docs/docker_setup.md).
 
-The installer is set to download pytorch 1.11 with cuda 11.3 by default. To correctly install the voting layer the cudatoolkit version installed with pytorch must match your systems CUDA version, which can be verified with nvcc --version command. Please modify the pytorch cudatoolkit of the environment accordingly. For mre details please refer to [local installation](./docs/local_setup.md)
+The installer is set to download pytorch 1.11 with cuda 11.3 by default. 
+To correctly install the voting layer the cudatoolkit version installed with pytorch must match your systems CUDA version, which can be verified with nvcc --version command. 
+Please modify the pytorch cudatoolkit of the environment accordingly. 
+For more details please refer to [local installation](./docs/local_setup.md).
 
 ```
 git clone https://github.com/mees/vapo.git
-cd vapo/
+export VAPO_ROOT=$(pwd)/vapo
+cd $VAPO_ROOT
 conda create -n vapo_env python=3.8
 conda activate vapo_env
 sh install.sh
@@ -50,21 +54,20 @@ sudo make install
 Go to the directory of the voting layer and run [setup.py](./vapo/affordance/hough_voting/setup.py). If you do not have sudo privileges, don't run `sudo make install` instead change the diretory in "include_dirs" to match where the eigen repo was downloaded, then run:
 
 ```
-conda activate vapo_env
-cd /VAPO_ROOT/vapo/affordance/hough_voting/
+cd $VAPO_ROOT/vapo/affordance/hough_voting/
 python setup.py install
 ```
 
 ## Quickstart
 A quick tutorial on evaluating a pre-trained policy on the unseen dataset.
 
-### Download the checkpoints
+### Pre-trained Checkpoints 
 If you want to use the trained affordance models or policies, you can download them using the script in [trained_models](./trained_models/download_model_weights.sh)
 ```
-  cd VAPO_ROOT/trained_models
-  bash download_model_weights.sh
+cd VAPO_ROOT/trained_models
+bash download_model_weights.sh
 ```
-### Running an evaluation
+### Evaluation
 We show how to run the evaluation for the policy on the unseen objets. For more details on running the policy please refer to [Policy](./docs/policy.md)
 
 #### VAPO
@@ -78,17 +81,17 @@ python ./scripts/eval_tabletop.py scene=tabletop_random_unseen_15objs
 python ./scripts/eval_tabletop.py scene=tabletop_random_unseen_15objs test.folder_name=./trained_models/policy/tabletop/baseline
 ```
 ## Hardware Requirements
-A single NVIDIA GPU with 8GB memory should be sufficient for training and evaluation. Altough the training time may vary.
+A single NVIDIA GPU with 8GB memory should be sufficient for training and evaluation.
 
 Tested with:
-GPU - ???
-CPU - ???
-RAM - ???
-OS - Ubuntu 20.04.4
+- **GPU** - Nvidia RTX 2080 Ti
+- **CPU** - AMD EPYC 7502
+- **RAM** - 64GB
+- **OS** - Ubuntu 20.04.4
 
 ## Training
 
-We show how to train a model from scratch assuming access to the playdata
+We show how to train a model from scratch assuming access to the play data.
 
 1. Download the playdata
 2. Discover affordances in the playdata to create a dataset.
@@ -150,7 +153,7 @@ python ./scripts/train_affordance.py model_name=aff_gripper dataset.cam=gripper 
 python ./scripts/train_affordance.py model_name=aff_static dataset.cam=static dataset_name=DATASET_NAME
 ```
 
-This will create an output at hydra_outputs/affordance_model/date/time. Alternatively you can specify were you want the model output by adding the flag `hydra.run.dir=CAM_AFF_OUT_FOLDER`
+This will create an output at `hydra_outputs/affordance_model/date/time`. Alternatively you can specify were you want the model output by adding the flag `hydra.run.dir=CAM_AFF_OUT_FOLDER`
 
 
 ### Training a policy
@@ -160,7 +163,7 @@ After training the affordance model you can try training a policy and load the d
 ```
 python ./scripts/train_tabletop.py \
 gripper_cam_aff_path=GRIPPER_AFF_OUT_FOLDER/trained_models/best_val_miou.ckpt \
-static_cam_aff_path=STATIC_AFF_OUT_FOLDER/trained_models/best_val_miou.ckpt \
+static_cam_aff_path=STATIC_AFF_OUT_FOLDER/trained_models/best_val_miou.ckpt
 ```
 
 #### Baseline
@@ -170,13 +173,16 @@ gripper_cam_aff_path=GRIPPER_AFF_OUT_FOLDER/trained_models/best_val_miou.ckpt \
 static_cam_aff_path=STATIC_AFF_OUT_FOLDER/trained_models/best_val_miou.ckpt \
 affordance.gripper_cam.use_distance=False \
 affordance.gripper_cam.use=False \
-affordance.gripper_cam.densify_reward=False \
+affordance.gripper_cam.densify_reward=False
 ```
 
-This will create an output to hydra_outputs/pickup/date/time. Alternatively you can define where to ouput the models using the flag hydra.run.dir=POLICY_TRAIN_FOLDER
+This will create an output to `hydra_outputs/pickup/date/time`. 
+Alternatively you can define where to ouput the models using the flag `hydra.run.dir=POLICY_TRAIN_FOLDER`.
 
 ## Evaluating your model
-The evaluation script loads the parameters used for training by default. For this you need to provide the folder that is outputed as a result of training (POLICY_TRAIN_FOLDER). Additionally, we save different checkpoints. These can be found under POLICY_TRAIN_FOLDER/trained_models.
+The evaluation script loads the parameters used for training by default. 
+For this you need to provide the folder that is outputed as a result of training (`POLICY_TRAIN_FOLDER`).
+Additionally, we save different checkpoints. These can be found under `POLICY_TRAIN_FOLDER/trained_models`.
 
 For this example we load the model with the most successful grasp on the all-objects evaluation
 
@@ -186,9 +192,9 @@ test.model_name=most_tasks_from_15 \
 test.folder_name=POLICY_TRAIN_FOLDER
 ```
 
-To test on a different scene you can add the flag scene=DESIRED_SCENE where DESIRED_SCENE is a yaml file name under [./config/scene](./config/scene/).
+To test on a different scene you can add the flag `scene=DESIRED_SCENE` where `DESIRED_SCENE` is a yaml file name under [./config/scene](./config/scene/).
 
-For instance to run the evaluation on the unseen objects run:
+For instance, to run the evaluation on the unseen objects run:
 ```
 python ./scripts/eval_tabletop.py \
 test.model_name=most_tasks_from_15 \
